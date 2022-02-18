@@ -1,2 +1,2 @@
-# biomade-collab
-BioMADE Collaboration Repo
+# FSML.org
+A BioMADE Collaboration Project
