@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+# Welcome to FSML.org !
 
 You can use the [editor on GitHub](https://github.com/TeselaGen/biomade-collab/edit/website/README.md) to maintain and preview the content for your website in Markdown files.
 
