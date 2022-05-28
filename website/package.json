@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-gitbook-boilerplate",
+  "name": "fsml-website",
   "private": true,
-  "description": "Documentation, built with mdx",
+  "description": "FSML Documentation, built with mdx",
   "author": "Praveen <praveen@hasura.io> (@praveenweb)",
   "version": "0.0.1",
   "dependencies": {
