@@ -36,14 +36,8 @@ const config = {
     },
   },
   sidebar: {
-    forcedNavOrder: [
-      '/index',
-      '/introduction', // add trailing slash if enabled above
-      '/codeblock',
-    ],
-    collapsedNav: [
-      '/codeblock', // add trailing slash if enabled above
-    ],
+    forcedNavOrder: ['/index', '/background', '/model', '/examples'],
+    collapsedNav: ['/background', '/model', '/examples'],
     links: [
       { text: 'TeselaGen', link: 'https://teselagen.com' },
       { text: 'BioMADE', link: 'https://www.biomade.org/' },
