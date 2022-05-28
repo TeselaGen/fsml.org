@@ -17,8 +17,8 @@ As mentioned in our Design Principles we’re taking a file first approach that 
 
 ### Links
 
-- [Core Sections](/model/core-sections)
-- [Supplemental Sections](/model/supplemental-sections)
+- [Core Sections](/model/manifest/core-sections)
+- [Supplemental Sections](/model/manifest/supplemental-sections)
 - [An Example](/examples/pdf-yaml-example)
 
 # Presentation Layer
@@ -27,7 +27,7 @@ Being able to exchange data in an automated way is important but it’s equally 
 
 ### Links
 
-- [Rendering Frameworks](/model/rendering-frameworks)
-- [Markdown Conversion Support](/model/markdown-support)
+- [Rendering Frameworks](/model/presentation/rendering-frameworks)
+- [Markdown Conversion Support](/model/presentation/markdown-support)
 
 \*Note: this schema is still under heavy development and subject to change!
