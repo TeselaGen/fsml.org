@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"path": "../FSML.org"
+	},
+	{
+		"path": "app/cli"
+	}
+],
+  "settings": {}
+}
