@@ -1,11 +1,14 @@
 {
   "folders": [
-	{
-		"path": "../FSML.org"
-	},
-	{
-		"path": "app/cli"
-	}
-],
+		{
+			"path": "../FSML.org"
+		},
+		{
+			"path": "app/cli"
+		},
+		{
+			"path": "packages/manifest-model"
+		}
+	],
   "settings": {}
 }

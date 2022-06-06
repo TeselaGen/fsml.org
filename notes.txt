@@ -21,3 +21,13 @@ https://github.com/sinclairzx81/typebox/issues/143  How to output the schema
 
 Deno + Other Projects Ergonomics 
 https://github.com/microsoft/vscode/issues/45470
+https://github.com/denoland/vscode_deno/issues/488
+https://github.com/denoland/vscode_deno/blob/main/docs/workspaceFolders.md
+
+Audit Tools
+https://github.com/SAP/fosstars-rating-core
+https://deno.land/x/cicd@v0.8.4
+https://github.com/renovatebot/renovate/issues/12724
+https://github.com/dependabot/dependabot-core/issues/2417
+https://github.com/hayd/deno-udd
+https://github.com/advisories
