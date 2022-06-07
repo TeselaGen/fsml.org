@@ -1,11 +1,7 @@
-import {
-  Static,
-  Type,
-} from 'https://deno.land/x/typebox@0.23.4/src/typebox.ts';
+export { Manifest } from "./manifest/manifest.ts"
 
-const ContentReference = Type.Object({
-  format: Type.String(),
-  uri: Type.String(),
-});
+
+
+
 
 

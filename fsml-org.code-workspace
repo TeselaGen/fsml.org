@@ -1,7 +1,7 @@
 {
   "folders": [
 		{
-			"path": "../FSML.org"
+			"path": "../fsml.org"
 		},
 		{
 			"path": "app/cli"
