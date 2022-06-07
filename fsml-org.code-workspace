@@ -7,7 +7,7 @@
 			"path": "app/cli"
 		},
 		{
-			"path": "packages/manifest-model"
+			"path": "packages/spec"
 		}
 	],
   "settings": {}
