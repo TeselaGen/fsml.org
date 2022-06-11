@@ -1,0 +1,640 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "identifierAuthority": {
+      "type": "string"
+    },
+    "identifierEncoding": {
+      "type": "string"
+    },
+    "sourceContent": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string"
+          },
+          "contentUri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contentType",
+          "contentUri"
+        ]
+      }
+    },
+    "utilityScore": {
+      "type": "number"
+    },
+    "categoryScores": {
+      "type": "object",
+      "properties": {
+        "readable": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "parsability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "scalability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "automatible": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "viability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "traceability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "parameterization": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "transferability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "executability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "predictability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "relevance": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "queryable": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "comparability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "clarity": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        },
+        "flexibility": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "type": "number"
+            },
+            "categoryWeight": {
+              "type": "number"
+            },
+            "criteria": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {}
+              }
+            },
+            "criteriaScores": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            },
+            "criteriaWeights": {
+              "type": "object",
+              "patternProperties": {
+                "^.*$": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "required": [
+            "score",
+            "categoryWeight"
+          ]
+        }
+      },
+      "required": [
+        "readable",
+        "parsability",
+        "scalability",
+        "automatible",
+        "viability",
+        "traceability",
+        "parameterization",
+        "transferability",
+        "executability",
+        "predictability",
+        "relevance",
+        "queryable",
+        "comparability",
+        "clarity",
+        "flexibility"
+      ]
+    },
+    "provenance": {},
+    "classification": {},
+    "usage": {},
+    "executions": {},
+    "references": {},
+    "metadata": {},
+    "executionContext": {},
+    "protocolBlocks": {},
+    "operations": {},
+    "workflow": {},
+    "parameters": {},
+    "domainDictionary": {},
+    "keywords": {}
+  },
+  "required": [
+    "id",
+    "name",
+    "version",
+    "identifierAuthority",
+    "sourceContent",
+    "utilityScore",
+    "categoryScores"
+  ]
+}
