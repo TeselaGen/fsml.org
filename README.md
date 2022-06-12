@@ -1,6 +1,6 @@
 
 
-# FsmlOrg
+# Fsml.org
 
 This project was generated using [Nx](https://nx.dev).
 
