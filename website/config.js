@@ -9,7 +9,8 @@ const config = {
     logo: '/assets/logo-dark.svg',
     logoLink: '/',
     title: "<a href='/'>FSML.org</a>",
-    githubUrl: 'https://github.com/TeselaGen/fsml.org',
+    // githubUrl: 'https://github.com/TeselaGen/fsml.org',
+    githubUrl: '',
     helpUrl: '',
     tweetText: '',
     // social: `<li>
