@@ -33,3 +33,4 @@ jobs:
           preview-branch: main
           umbrella-dir: ./docs/pr-preview
           base-url: fsml.org
+          umbrella-url: pr-preview

@@ -24,6 +24,9 @@ inputs:
   base-url:
     description: Base website url
     required: true
+  umbrella-url:
+    description: Umbrella url path
+    required: true
   action:
     description: >
       Determines what this action will do when it is executed. Supported
@@ -50,6 +53,7 @@ runs:
       env:
         action: ${{ inputs.action }}
         umbrella: ${{ inputs.umbrella-dir }}
+        umbrellaurl: ${{ inputs.umbrella-url }}
         pr: ${{ github.event.number }}
         actionref: ${{ github.action_ref }}
         actionrepo: ${{ github.action_repository }}
@@ -57,6 +61,7 @@ runs:
       run: |
         echo "action=$action" >> $GITHUB_ENV
         echo "targetdir=$umbrella/pr-$pr" >> $GITHUB_ENV
+        echo "targetpath=$umbrellaurl/pr-$pr" >> $GITHUB_ENV
         echo "pr=$pr" >> $GITHUB_ENV
 
         # pagesurl=$(echo $GITHUB_REPOSITORY | sed 's/\//.github.io\//')
@@ -104,7 +109,7 @@ runs:
           :---:
 
           :rocket: Deployed preview to
-          https://${{ env.pagesurl }}/${{ env.targetdir }}/
+          https://${{ env.pagesurl }}/${{ env.targetpath }}/
 
           on branch [`${{ inputs.preview-branch }}`](\
           ${{ github.server_url }}/${{ github.repository }}\
