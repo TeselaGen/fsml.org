@@ -27,8 +27,9 @@ jobs:
           yarn build-docs
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+        uses: ./.github/actions/pr-preview-action
         with:
           source-dir: ./docs/
           preview-branch: main
           umbrella-dir: ./docs/pr-preview
+          base-url: https://fsml.org
