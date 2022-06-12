@@ -70,11 +70,11 @@ runs:
         echo "actionrepo=$actionrepo" >> $GITHUB_ENV
       shell: bash
 
-    - name: Determine action version
-      run: >-
-        ${{ github.action_path }}/lib/find-current-git-tag.sh
-        -p $actionrepo -f $actionref
-      shell: bash
+    # - name: Determine action version
+    #   run: >-
+    #     ${{ github.action_path }}/lib/find-current-git-tag.sh
+    #     -p $actionrepo -f $actionref
+    #   shell: bash
 
     - name: Determine auto action
       if: env.action == 'auto'
@@ -99,7 +99,7 @@ runs:
         message: "\
           [PR Preview Action]\
           (${{ github.server_url }}/${{ env.actionrepo }})
-          ${{ env.action_version }}
+          # ${{ env.action_version }}
 
           :---:
 
@@ -130,7 +130,7 @@ runs:
         message: "\
           [PR Preview Action]\
           (${{ github.server_url }}/${{ env.actionrepo }})
-          ${{ env.action_version }}
+          # ${{ env.action_version }}
 
           :---:
 

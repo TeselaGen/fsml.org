@@ -27,7 +27,7 @@ jobs:
           yarn build-docs
 
       - name: Deploy preview
-        uses: TeselaGen/pr-preview-action@85f363dceadc8c8f5fb71997d39476f3bffbb760
+        uses: ./.github/actions/pr-preview-action
         with:
           source-dir: ./docs/
           preview-branch: main
