@@ -32,4 +32,4 @@ jobs:
           source-dir: ./docs/
           preview-branch: main
           umbrella-dir: ./docs/pr-preview
-          base-url: https://fsml.org
+          base-url: fsml.org
