@@ -68,20 +68,23 @@ if (
   });
 }
 // check and add pwa functionality
-if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
-  plugins.push({
-    resolve: `gatsby-plugin-manifest`,
-    options: { ...config.pwa.manifest },
-  });
-  plugins.push({
-    resolve: 'gatsby-plugin-offline',
-    options: {
-      appendScript: require.resolve(`./src/custom-sw-code.js`),
-    },
-  });
-} else {
-  plugins.push('gatsby-plugin-remove-serviceworker');
-}
+// if (config.pwa && config.pwa.enabled && config.pwa.manifest) {
+//   plugins.push({
+//     resolve: `gatsby-plugin-manifest`,
+//     options: { ...config.pwa.manifest },
+//   });
+//   plugins.push({
+//     resolve: 'gatsby-plugin-offline',
+//     options: {
+//       appendScript: require.resolve(`./src/custom-sw-code.js`),
+//     },
+//   });
+// } else {
+//   plugins.push('gatsby-plugin-remove-serviceworker');
+// }
+
+// // always remove service worker for now
+plugins.push('gatsby-plugin-remove-serviceworker');
 
 // check and remove trailing slash
 if (config.gatsby && !config.gatsby.trailingSlash) {

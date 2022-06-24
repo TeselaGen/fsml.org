@@ -12,7 +12,7 @@ The latter two methods require the use of computational resources which means th
 
 ## Links
 
-- [Inspiration](/background/inspiration)
-- [Design Principles](/background/design-principles)
+- [Inspiration](background/inspiration)
+- [Design Principles](background/design-principles)
 <!-- - [Utility Score](/model/manifest/core-sections) we need to get anchors working-->
-- [Technical Architecture](/background/technical-architecture)
+- [Technical Architecture](background/technical-architecture)

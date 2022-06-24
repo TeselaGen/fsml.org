@@ -9,7 +9,7 @@ Below is a list of examples using FSML.
 
 ## Protocol Manifest Examples
 
-* PDF Protocol with YAML [Manifest](/examples/pdf-yaml-example)
+* PDF Protocol with YAML [Manifest](examples/pdf-yaml-example)
 
 ## Protocol Run Examples
 
