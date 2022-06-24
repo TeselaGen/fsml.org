@@ -8,5 +8,5 @@ The presentation layer is set of tools and formats that render the protocol mani
 
 ### Links
 
-- [Rendering Frameworks](model/rendering-frameworks)
-- [Markdown Conversion Support](model/markdown-support)
+- [Rendering Frameworks](presentation/rendering-frameworks)
+- [Markdown Conversion Support](presentation/markdown-support)

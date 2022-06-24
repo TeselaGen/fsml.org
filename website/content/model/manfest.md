@@ -8,5 +8,5 @@ The manifest data describes the protocol source content in a way that can be eas
 
 ### Links
 
-- [Core Sections](model/core-sections)
-- [Supplemental Sections](model/supplemental-sections)
+- [Core Sections](manifest/core-sections)
+- [Supplemental Sections](manifest/supplemental-sections)
