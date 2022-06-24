@@ -65,6 +65,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "build-docs": "gatsby clean && rm -rf ../docs && mkdir ../docs && OUTPUT_DIR=../docs gatsby build",
+    "build-docs-pr": "gatsby clean && rm -rf ../docs && mkdir ../docs && OUTPUT_DIR=../docs gatsby build --prefix-paths",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "devDependencies": {

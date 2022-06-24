@@ -27,7 +27,7 @@ jobs:
         run: |
           cd ./website
           yarn
-          WEBSITE_PATH_PREFIX="$umbrellaurl/pr-$pr" yarn build-docs
+          GATSBY_PATH_PREFIX="$umbrellaurl/pr-$pr" yarn build-docs-pr
 
       - name: Deploy preview
         uses: ./.github/actions/pr-preview-action
