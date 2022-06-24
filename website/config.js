@@ -1,6 +1,6 @@
 const config = {
   gatsby: {
-    pathPrefix: '/',
+    pathPrefix: process.env.GATSBY_PATH_PREFIX || '/',
     siteUrl: 'https://fsml.org',
     gaTrackingId: null,
     trailingSlash: false,

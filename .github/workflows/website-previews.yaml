@@ -21,10 +21,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install and Build
+        env:
+          umbrellaurl: ${{ inputs.umbrella-url }}
+          pr: ${{ github.event.number }}
         run: |
           cd ./website
           yarn
-          yarn build-docs
+          WEBSITE_PATH_PREFIX="$umbrellaurl/pr-$pr" yarn build-docs
 
       - name: Deploy preview
         uses: ./.github/actions/pr-preview-action
