@@ -91,6 +91,8 @@ if (config.gatsby && !config.gatsby.trailingSlash) {
   plugins.push('gatsby-plugin-remove-trailing-slashes');
 }
 
+console.log('Path Prefix: ' + config.gatsby.pathPrefix);
+
 module.exports = {
   pathPrefix: config.gatsby.pathPrefix,
   siteMetadata: {
