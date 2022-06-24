@@ -22,12 +22,11 @@ jobs:
 
       - name: Install and Build
         env:
-          umbrellaurl: ${{ inputs.umbrella-url }}
           pr: ${{ github.event.number }}
         run: |
           cd ./website
           yarn
-          GATSBY_PATH_PREFIX="$umbrellaurl/pr-$pr" yarn build-docs-pr
+          GATSBY_PATH_PREFIX="/pr-preview/pr-$pr" yarn build-docs-pr
 
       - name: Deploy preview
         uses: ./.github/actions/pr-preview-action
