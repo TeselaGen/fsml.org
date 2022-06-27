@@ -37,6 +37,7 @@ const plugins = [
       extensions: ['.mdx', '.md'],
     },
   },
+  `gatsby-plugin-catch-links`,
   {
     resolve: `gatsby-plugin-gtag`,
     options: {

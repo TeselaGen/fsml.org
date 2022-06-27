@@ -37,3 +37,6 @@ https://fsml.org/pr-27/pr-27/background
 
 Auto Commit Workflow Changes
 https://github.com/marketplace/actions/git-auto-commit
+
+Links Transformer
+https://www.gatsbyjs.com/plugins/gatsby-plugin-catch-links/

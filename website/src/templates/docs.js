@@ -28,11 +28,11 @@ export default class MDXRuntimeTest extends Component {
     const githubIcon = require('../components/images/github.svg').default;
     const navItems = allMdx.edges
       .map(({ node }) => node.fields.slug)
-      .filter(slug => slug !== '/')
+      .filter((slug) => slug !== '/')
       .sort()
       .reduce(
         (acc, cur) => {
-          if (forcedNavOrder.find(url => url === cur)) {
+          if (forcedNavOrder.find((url) => url === cur)) {
             return { ...acc, [cur]: [cur] };
           }
 
@@ -42,7 +42,7 @@ export default class MDXRuntimeTest extends Component {
             prefix = prefix + '/';
           }
 
-          if (prefix && forcedNavOrder.find(url => url === `/${prefix}`)) {
+          if (prefix && forcedNavOrder.find((url) => url === `/${prefix}`)) {
             return { ...acc, [`/${prefix}`]: [...acc[`/${prefix}`], cur] };
           } else {
             return { ...acc, items: [...acc.items, cur] };
@@ -56,7 +56,7 @@ export default class MDXRuntimeTest extends Component {
         return acc.concat(navItems[cur]);
       }, [])
       .concat(navItems.items)
-      .map(slug => {
+      .map((slug) => {
         if (slug) {
           const { node } = allMdx.edges.find(({ node }) => node.fields.slug === slug);
 
@@ -91,13 +91,13 @@ export default class MDXRuntimeTest extends Component {
         </Helmet>
         <div className={'titleWrapper'}>
           <StyledHeading>{mdx.fields.title}</StyledHeading>
-          <Edit className={'mobileView'}>
+          {/* <Edit className={'mobileView'}>
             {docsLocation && (
               <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
                 <img src={githubIcon} alt={'Github logo'} /> Edit on GitHub
               </Link>
             )}
-          </Edit>
+          </Edit> */}
         </div>
         <StyledMainWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
@@ -111,7 +111,7 @@ export default class MDXRuntimeTest extends Component {
 }
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     site {
       siteMetadata {
         title

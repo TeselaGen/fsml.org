@@ -17,8 +17,8 @@ As mentioned in our Design Principles we’re taking a file first approach that 
 
 ### Links
 
-- [Core Sections](model/manifest/core-sections)
-- [Supplemental Sections](model/manifest/supplemental-sections)
+- [Core Sections](/model/manifest/core-sections)
+- [Supplemental Sections](manifest/supplemental-sections)
 - [An Example](../examples/pdf-yaml-example)
 
 # Presentation Layer
