@@ -4,9 +4,7 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {
-    "gatsby-plugin-catch-links": "^4.17.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@nrwl/cli": "14.1.9",
     "@nrwl/workspace": "14.1.9",
