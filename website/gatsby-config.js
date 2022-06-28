@@ -19,6 +19,7 @@ const plugins = [
       path: `${__dirname}/content/`,
     },
   },
+  `gatsby-plugin-catch-links`,
   {
     resolve: 'gatsby-plugin-mdx',
     options: {
@@ -37,7 +38,6 @@ const plugins = [
       extensions: ['.mdx', '.md'],
     },
   },
-  `gatsby-plugin-catch-links`,
   {
     resolve: `gatsby-plugin-gtag`,
     options: {
