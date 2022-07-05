@@ -10,6 +10,9 @@
     "version": {
       "type": "string"
     },
+    "type": {
+      "type": "string"
+    },
     "identifierAuthority": {
       "type": "string"
     },
@@ -632,6 +635,7 @@
     "id",
     "name",
     "version",
+    "type",
     "identifierAuthority",
     "sourceContent",
     "utilityScore",

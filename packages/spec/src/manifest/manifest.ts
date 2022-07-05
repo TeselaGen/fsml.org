@@ -1,11 +1,12 @@
 import { Type, Static } from '../deps/typebox.ts';
-import { ContentReference } from "./content-reference.ts";
-import { UtilityScoreDetails } from "./utility-score-details.ts";
+import { ContentReference } from './content-reference.ts';
+import { UtilityScoreDetails } from './utility-score-details.ts';
 
 export const Manifest = Type.Object({
   id: Type.String(),
   name: Type.String(),
   version: Type.String(),
+  type: Type.String(),
   identifierAuthority: Type.String(),
   identifierEncoding: Type.Optional(Type.String()),
   sourceContent: Type.Array(ContentReference),
@@ -26,7 +27,6 @@ export const Manifest = Type.Object({
   parameters: Type.Optional(Type.Any()),
   domainDictionary: Type.Optional(Type.Any()),
   keywords: Type.Optional(Type.Any()),
-
 });
 
 export type Manifest = Static<typeof Manifest>;
