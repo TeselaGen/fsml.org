@@ -2,6 +2,8 @@
 
 # fsml.org
 
+View current version of site: [fsml.org](https://fsml.org/)
+
 This project was generated using [Nx](https://nx.dev).
 
 ## Adding capabilities to your workspace
