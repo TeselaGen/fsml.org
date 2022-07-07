@@ -59,10 +59,11 @@
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider gatsby develop",
     "build": "gatsby build --prefix-paths",
+    "test-pr-build": "gatsby clean && GATSBY_PATH_PREFIX=\"/pr-preview/pr-01\" yarn build",
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
     "develop": "NODE_OPTIONS=--openssl-legacy-provider gatsby develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --prefix-paths --port=4444",
     "clean": "gatsby clean",
     "build-docs": "gatsby clean && rm -rf ../docs && mkdir ../docs && OUTPUT_DIR=../docs gatsby build",
     "build-docs-pr": "gatsby clean && rm -rf ../docs && mkdir ../docs && OUTPUT_DIR=../docs gatsby build --prefix-paths",
