@@ -19,7 +19,7 @@ As mentioned in our Design Principles we’re taking a file first approach that 
 
 - [Core Sections](manifest/core-sections/)
 - [Supplemental Sections](manifest/supplemental-sections)
-- [An Example](/examples/pdf-yaml-example)
+- [An Example](../examples/pdf-yaml-example)
 
 # Presentation Layer
 
