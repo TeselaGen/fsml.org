@@ -14,7 +14,7 @@ export default class MDXRuntimeTest extends Component {
   render() {
     const { data } = this.props;
 
-    if (!data) {
+    if (!data || !data.site) {
       return this.props.children;
     }
     const {
@@ -24,6 +24,7 @@ export default class MDXRuntimeTest extends Component {
         siteMetadata: { docsLocation, title },
       },
     } = data;
+    console.log(`data:`, data)
 
     const githubIcon = require('../components/images/github.svg').default;
     const navItems = allMdx.edges
@@ -113,7 +114,7 @@ export default class MDXRuntimeTest extends Component {
 }
 
 export const pageQuery = graphql`
-  query ($id: String!) {
+  query docsQuery($id: String!) {
     site {
       siteMetadata {
         title
