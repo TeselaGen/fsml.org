@@ -53,7 +53,7 @@ const config = {
     description:
       'Fermentation Systems Modeling Language built by TeselaGen in collaboration with BioMADE',
     ogImage: null,
-    docsLocation: 'https://github.com/TeselaGen/fsml.org/tree/master/content',
+    docsLocation: 'https://github.com/TeselaGen/fsml.org/tree/master/website/content',
     favicon: '/assets/favicon.svg',
   },
   pwa: {
