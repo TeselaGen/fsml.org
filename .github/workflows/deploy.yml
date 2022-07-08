@@ -21,11 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./website-docusaurus
+          cd ./website
           yarn install --frozen-lockfile
       - name: Build website
         run: |
-          cd ./website-docusaurus
+          cd ./website
           yarn build-docs
 
       # Popular action to deploy to GitHub Pages:

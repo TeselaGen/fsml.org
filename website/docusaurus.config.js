@@ -8,12 +8,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'FSML.org',
   tagline: '',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://fsml.org',
   baseUrl: process.env.DOCUSAURUS_PATH_PREFIX || '/',
   trailingSlash: true,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -40,8 +40,7 @@ const config = {
           breadcrumbs: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/TeselaGen/fsml.org/tree/main/website',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

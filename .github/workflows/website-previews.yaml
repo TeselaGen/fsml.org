@@ -4,7 +4,7 @@ name: Deploy Website PR previews
 on:
   pull_request:
     paths:
-      - "website-docusaurus/**"
+      - "website/**"
     types:
       - opened
       - reopened
@@ -24,7 +24,7 @@ jobs:
         env:
           pr: ${{ github.event.number }}
         run: |
-          cd ./website-docusaurus
+          cd ./website
           yarn
           DOCUSAURUS_PATH_PREFIX="/pr-preview/pr-$pr/" yarn build-docs
 
