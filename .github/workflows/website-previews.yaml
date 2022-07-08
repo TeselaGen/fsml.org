@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/actions/pr-preview-action
         with:
           source-dir: ./docs/
-          preview-branch: main
+          preview-branch: gh-pages
           umbrella-dir: ./docs/pr-preview
           base-url: fsml.org
           umbrella-url: pr-preview
