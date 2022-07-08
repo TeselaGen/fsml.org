@@ -33,6 +33,6 @@ jobs:
         with:
           source-dir: ./docs/
           preview-branch: gh-pages
-          umbrella-dir: ./docs/pr-preview
+          umbrella-dir: ./pr-preview
           base-url: fsml.org
           umbrella-url: pr-preview
