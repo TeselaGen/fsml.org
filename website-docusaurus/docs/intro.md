@@ -11,7 +11,7 @@ The first fermentation happened 13,000 years ago and we’re still trying to bre
 
 ## FSML
 
-TeselaGen in collaboration with BioMADE has created fsml.org (Fermentation Systems Modeling Language) to help further our ability to create the best fermentation processes through protocol modeling.
+TeselaGen in collaboration with BioMADE has created fsml.org (**F**ermentation **S**ystems **M**odeling **L**anguage) to help further our ability to create the best fermentation processes through protocol modeling.
 
 ## Relevant Links
 
