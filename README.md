@@ -4,6 +4,11 @@
 
 This project was generated using [Nx](https://nx.dev).
 
+## General Code Layout 
+Most code should go under /packages (all "importables")
+/app is a light wrapper for distributables (web server, cli tool) -> this is where any e2e tests should live
+
+
 ## Adding capabilities to your workspace
 
 Nx supports many plugins which add capabilities for developing different types of applications and different tools.
