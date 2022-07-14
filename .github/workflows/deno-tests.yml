@@ -31,7 +31,7 @@ jobs:
       #   run: deno run --reload --allow-env --allow-read ./src/main.ts
       - name: Test Deno Module
         run: deno test --coverage=coverage/
-      - run: [ -d ./coverage ] && echo Coverage Folder Exists
+      - run: '([ -d ./coverage ] && echo Coverage Folder Exists) || echo coverage folder does not exist.. zoonk'
       # This generates a report from the collected coverage in `deno test --coverage`. It is
       # stored as a .lcov file which integrates well with services such as Codecov, Coveralls and Travis CI.
       - run: deno coverage --lcov coverage/ > cov.lcov
