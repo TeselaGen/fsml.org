@@ -13,11 +13,9 @@ jobs:
     strategy:
       matrix:
         deno-version: [1.23.3]
-
     defaults:
       run:
         working-directory: ./app/cli
-
     steps:
       - name: Git Checkout Deno Module
         uses: actions/checkout@v2
@@ -40,7 +38,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           working-directory: ./app/cli
-          # directory: ./coverage/
+          directory: ./coverage/
           files: ./cov.lcov
           name: codecov-umbrella
           # fail_ci_if_error: true
