@@ -32,7 +32,14 @@ jobs:
       # - name: Build Deno Module
       #   run: deno run --reload --allow-env --allow-read ./src/main.ts
       - name: Test Deno Module
-        run: deno test --coverage=cov/
+        run: deno test --coverage=coverage/
       # This generates a report from the collected coverage in `deno test --coverage`. It is
       # stored as a .lcov file which integrates well with services such as Codecov, Coveralls and Travis CI.
-      - run: deno coverage --lcov cov/ > cov.lcov
+      - run: deno coverage --lcov coverage/ > cov.lcov
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          directory: ./coverage/
+          name: codecov-umbrella
+          # fail_ci_if_error: true
+          path_to_write_report: ./coverage/codecov_report.gz
