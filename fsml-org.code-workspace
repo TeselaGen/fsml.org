@@ -7,7 +7,7 @@
 			"path": "app/cli"
 		},
 		{
-			"path": "packages/spec"
+			"path": "packages/standard"
 		}
 	],
 	"settings": {
