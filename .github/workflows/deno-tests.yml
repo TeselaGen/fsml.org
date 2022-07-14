@@ -44,4 +44,4 @@ jobs:
           files: ./cov.lcov
           name: codecov-umbrella
           # fail_ci_if_error: true
-          path_to_write_report: working-directory
+          path_to_write_report: ./codecov_report.gz
