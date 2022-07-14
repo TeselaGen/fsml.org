@@ -1,0 +1,38 @@
+name: Test Deno Module
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.23.3]
+
+    defaults:
+      run:
+        working-directory: ./app/cli
+
+    steps:
+      - name: Git Checkout Deno Module
+        uses: actions/checkout@v2
+      - name: Use Deno Version ${{ matrix.deno-version }}
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - name: Lint Deno Module
+        run: deno fmt --check
+      - name: Lint Deno Module
+        run: deno lint --unstable
+      - name: Build Deno Module
+        run: deno run --reload --allow-env --allow-read ./src/main.ts
+      - name: Test Deno Module
+        run: deno test --coverage=cov/
+      # This generates a report from the collected coverage in `deno test --coverage`. It is
+      # stored as a .lcov file which integrates well with services such as Codecov, Coveralls and Travis CI.
+      - run: deno coverage --lcov cov/ > cov.lcov
