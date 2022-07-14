@@ -10,5 +10,8 @@
 			"path": "packages/spec"
 		}
 	],
-  "settings": {}
+	"settings": {
+		"deno.enable": true,
+		"deno.unstable": true
+	}
 }

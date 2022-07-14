@@ -5,7 +5,7 @@ yargs(Deno.args)
   .command(
     "download <files...>",
     "download a list of files",
-    (yargs: any) => {
+    (yargs: Arguments) => {
       return yargs.positional("files", {
         describe: "a list of files to do something with",
       });
