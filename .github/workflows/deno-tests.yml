@@ -43,4 +43,4 @@ jobs:
           directory: ./coverage/
           name: codecov-umbrella
           # fail_ci_if_error: true
-          path_to_write_report: ./coverage/codecov_report.gz
+          path_to_write_report: working-directory
