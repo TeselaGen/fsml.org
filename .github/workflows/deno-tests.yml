@@ -29,8 +29,8 @@ jobs:
         run: deno fmt --check
       - name: Lint Deno Module
         run: deno lint --unstable
-      - name: Build Deno Module
-        run: deno run --reload --allow-env --allow-read ./src/main.ts
+      # - name: Build Deno Module
+      #   run: deno run --reload --allow-env --allow-read ./src/main.ts
       - name: Test Deno Module
         run: deno test --coverage=cov/
       # This generates a report from the collected coverage in `deno test --coverage`. It is
