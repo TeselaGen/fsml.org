@@ -40,7 +40,8 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           working-directory: ./app/cli
-          directory: ./coverage/
+          # directory: ./coverage/
+          files: ./cov.lcov
           name: codecov-umbrella
           # fail_ci_if_error: true
           path_to_write_report: working-directory
