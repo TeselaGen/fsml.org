@@ -1,0 +1,70 @@
+
+---
+Global flags
+
+--config/-c=[./config.json,filepath] #sets flags from config file
+--stdin #reads inputs from stdin
+
+---
+
+
+
+create manifest 
+  --type=[data,protocol]
+  --parser=[...parser plugin name] 
+  --format/-f=[json,yaml,toml] 
+  --write/-w=[filepath] # required if pack set / by default all will be sent to stdout
+  --pack=[zip,tar,tgz]
+  <filepattern...>
+
+update manifest
+  --type=[data,protocol] 
+  --parser/-p=[...parser plugin name] 
+  --format/-f=[json,yaml,toml] 
+  --write/-w=[filepath] # required if pack set / by default all will be sent to stdout
+  --pack/-z=[zip,tar,tgz]
+  --patch="{}" #inline json
+  --patch-file=[filepath] #patch json file
+  --patch-type=[json,json-merge,lodash-merge]
+  <path>
+
+describe manifest
+  --output/-o=[record,json (pretty print),yaml,toml]
+  --select=[comma separated list of property paths]
+  --summary #only show summary
+  --section=[supplemental section name] #only show that section
+  <path>
+
+export manifest
+  --exporter=[...export plugin name]
+  --write/-w=[filepath] #by default all will be sent to stdout / maybe required by some exporters
+  [...--exporter flags]
+  <path>
+
+validate manifest <path>
+
+pack manifest 
+    --pack=[zip,tar,tgz]
+    <path>
+
+unpack manifest <path>
+
+install plugin <path, uri>
+
+list plugin / list plugins
+  --type=[parser,exporter]
+  --filter=[glob] 
+  --regex=[regex]
+  --sort=[asc,desc]
+
+upgrade plugin 
+  --minor / --major / --patch
+  <name>
+
+uninstall plugin <name>
+
+cache plugin <name>
+
+cache plugins
+
+run <plugin name> ...args
