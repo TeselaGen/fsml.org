@@ -64,12 +64,14 @@ const SupplementalDataExample = {
                 values: [{index: 0, value: "ug/ul" }, {index: 1, value: "ug/ul" }]
             }
         ],
+        // TBD: a way to represent how unit columns are going to be linked
+        // to value columns like meas, dimension, and potentially even descriptors.
         metadata: [
-            { index: 0, type: "SUBJECT" },
-            { index: 1, type: "DIMENSION", dimension: {name: "hours", type: "TIME"} }
-            { index: 2, type: "UNIT", unit: {value: "hours"} },
-            { index: 3, type: "MEASUREMENT", measurement: {name: "Meas A", type: "NUMERIC"} }
-            { index: 4, type: "UNIT", unit: {value: "ug/ul"} }
+            { index: 0, spec: {type: "SUBJECT", name: "subject"} },
+            { index: 1, spec: "DIMENSION", dimension: {name: "hours", type: "TIME"} }
+            { index: 2, spec: "UNIT", unit: {value: "hours"} },
+            { index: 3, spec: "MEASUREMENT", measurement: {name: "Meas A", type: "NUMERIC"} }
+            { index: 4, spec: "UNIT", unit: {value: "ug/ul"} }
         ]
       },
     ],
