@@ -1,6 +1,7 @@
 import { Type, Static } from '../../../deps/typebox.ts';
 import Subject from './subject.ts';
 import Dimension from './dimension.ts';
+import ReferenceDimension from './reference-dimension.ts';
 import Measurement from './measurement.ts';
 import Descriptor from './descriptor.ts';
 import Unit from './unit.ts';
@@ -13,7 +14,7 @@ const Spec = Type.Object({
   /**
    * The column specs (e.g, measurement, descriptor, etc.)
    */
-  spec: Type.Union([Subject, Dimension, Measurement, Descriptor, Unit]),
+  spec: Type.Union([Subject, ReferenceDimension, Dimension, Measurement, Descriptor, Unit]),
 });
 
 export default Spec;

@@ -121,6 +121,117 @@
                               "type": "object",
                               "properties": {
                                 "type": {
+                                  "const": "REFERENCE_DIMENSION",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "dimension": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "const": "DIMENSION",
+                                      "type": "string"
+                                    },
+                                    "dimensionType": {
+                                      "anyOf": [
+                                        {
+                                          "type": "string",
+                                          "const": "TIME"
+                                        },
+                                        {
+                                          "type": "string",
+                                          "const": "MASS"
+                                        },
+                                        {
+                                          "type": "string",
+                                          "const": "VOLUME"
+                                        },
+                                        {
+                                          "type": "string",
+                                          "const": "CONCENTRATION"
+                                        },
+                                        {
+                                          "type": "string",
+                                          "const": "DENSITY"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "dimensionType"
+                                  ]
+                                },
+                                "unit": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "const": "UNIT",
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "dimension": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "DIMENSION",
+                                          "type": "string"
+                                        },
+                                        "dimensionType": {
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "const": "TIME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "MASS"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "CONCENTRATION"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "DENSITY"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "dimensionType"
+                                      ]
+                                    },
+                                    "specReference": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "value",
+                                    "dimension"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "name",
+                                "dimension"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
                                   "const": "DIMENSION",
                                   "type": "string"
                                 },
@@ -278,7 +389,8 @@
                               "required": [
                                 "type",
                                 "valueType",
-                                "name"
+                                "name",
+                                "dimension"
                               ]
                             },
                             {

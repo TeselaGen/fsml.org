@@ -13,11 +13,7 @@ import Dimension from './dimension.ts';
 const ReferenceDimension = Type.Object({
   type: Type.Literal(SpecTypesEnum.REFERENCE_DIMENSION),
   name: Type.String(),
-
-  // NOTE: we could somehow make the dimension optional
-  // iff it already comes with the unit property OR
-  // another spec of type UNIT references this one.
-  dimension: Type.Optional(Dimension),
+  dimension: Dimension,
   /**
    * The ReferenceDimension Spec, could optional come with a unit.
    * If not, there's going to have to be a unit column with a unit spec.
