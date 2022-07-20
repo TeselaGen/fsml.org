@@ -1,16 +1,18 @@
 import { Type, Static } from '../../../deps/typebox.ts';
-import Measurement from "./measurement.ts"
-import Descriptor from "./descriptor.ts"
-import Dimension from "./dimension.ts"
+import Column from './column.ts';
+import Metadata from './metadata/index.ts';
 
+// To be renamed...
 const DataFrame = Type.Object({
-  // To be renamed...
   dataFrames: Type.Object({
     name: Type.String(),
-    measurements: Type.Array(Measurement),
-    descriptors: Type.Array(Descriptor),
-    dimensions: Type.Array(Dimension),
+    columns: Type.Array(Column),
+    /**
+     * - I think "metadata" could be renamed to something more clear like "columnSpecs".
+     * - It can also be optional at the expense of a lower utility score.
+     */
+    metadata: Type.Optional(Type.Array(Metadata))
   }),
 });
 
-export default DataFrame
+export default DataFrame;

@@ -1,6 +1,6 @@
 import { Type, Static } from '../../deps/typebox.ts';
 import DataGrid from './data-grid.ts';
-import DataFrame from './data-frame/index.ts';
+import DataFrame from './data-frame-one/index.ts';
 // import DataSchema from "./data-schema"
 
 export const SupplementalData = Type.Object({
@@ -8,8 +8,9 @@ export const SupplementalData = Type.Object({
   utilityScore: Type.Number(), // normalized to be between 0 and 1 inclusive
   // categoryScores: UtilityScoreDetails, // we need to design these categories
   data: Type.Union([
-    // To be renamed.
-    Type.Array(DataGrid),
+    // we may not need to support a datagrid-like format because the 'metadata'
+    // type in data-frame can be optional...
+    // Type.Array(DataGrid),
     Type.Array(DataFrame),
   ]),
 

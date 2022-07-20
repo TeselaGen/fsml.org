@@ -24,7 +24,7 @@ const SupplementalDataExample = {
 };
 
 /**
- * DataFrame-One example
+ * DataFrame example
  *
  * Subject  ; Time  ; Time Unit ; Meas A ; Meas A Unit
  * Strain A ;   0   ;  hours    ;  10.5  ;  ug/ul
@@ -73,54 +73,6 @@ const SupplementalDataExample = {
             { index: 3, spec: "MEASUREMENT", measurement: {name: "Meas A", type: "NUMERIC"} }
             { index: 4, spec: "UNIT", unit: {value: "ug/ul"} }
         ]
-      },
-    ],
-  },
-};
-
-/**
- * DataFrame-Two Example
- *
- * This format attempts to include metadata information
- * within the actual data itself. As one might appreciate,
- * this approach can become a little caotic. IMO, keeping what's data
- * and what's metadata separate as in DataFrame Format One becomes more readable
- * and less caotic to construct. Also makes it more flexibile in terms of how much
- * metadata information the user wants.
- */
-const SupplementalDataExampleTwo = {
-  type: 'data',
-  utilityScore: -1,
-  data: {
-    dataFrames: [
-      {
-        name: 'data-frame-one',
-        dimensions: {
-          name: 'Hours',
-          type: 'Time',
-        },
-        descriptors: [
-          {
-            name: 'Bioreactor Volume',
-            value: '200',
-            // optional
-            unit: {
-                value: "L",
-                dimension: {
-                    // name: "volume", // optional
-                    type: "VOLUME"
-                }
-            }
-            type: 'NUMERIC',
-          },
-        ],
-        measurements: [
-          {
-            name: 'Acetone',
-            unit: 'gl/ul',
-            value: 10.5,
-          },
-        ],
       },
     ],
   },
