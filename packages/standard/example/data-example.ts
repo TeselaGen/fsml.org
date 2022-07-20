@@ -57,6 +57,8 @@ const SupplementalDataExample = {
           spec: {
             type: 'REFERENCE_DIMENSION',
             name: 'hours',
+            // dimension could potentially be option at the expense of a lower utility score
+            // OR if there's another column spec referencing this one.
             dimension: { type: 'DIMENSION', type: 'TIME' },
           },
         },
@@ -78,6 +80,9 @@ const SupplementalDataExample = {
             type: 'MEASUREMENT',
             name: 'Meas A',
             valueType: 'NUMERIC',
+            // dimension could potentially be option at the expense of a lower utility score
+            // plus in this case, the measurement has a column-wide unit applied,
+            // and units already come with a dimension...
             dimension: { type: 'DIMENSION', type: 'CONCENTRATION' },
             unit: {
               type: 'UNIT',
