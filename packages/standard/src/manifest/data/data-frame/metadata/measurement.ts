@@ -1,9 +1,8 @@
-import { Type, Static } from '../../../deps/typebox.ts';
-import {ColumnTypesEnum} from "./index.ts"
+import { Type, Static } from '../../../../deps/typebox.ts';
 
 const Measurement = Type.Object({
-  type: Type.Literal(ColumnTypesEnum.MEASUREMENT)
-  name: Type.String()
+  type: Type.Literal('MEASUREMENT'),
+  name: Type.String(),
 });
 
-export default Measurement
+export default Measurement;

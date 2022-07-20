@@ -1,5 +1,4 @@
-import { Type, Static } from '../../../deps/typebox.ts';
-import { ColumnTypesEnum } from './index.ts';
+import { Type, Static } from '../../../../deps/typebox.ts';
 
 enum DimensionsEnum {
   TIME,
@@ -7,7 +6,7 @@ enum DimensionsEnum {
 }
 
 const Dimension = Type.Object({
-  type: Type.Literal(ColumnTypesEnum.DIMENSION),
+  type: Type.Literal('DIMENSION'),
   // might be nice to have a name as an alias for the type,
   // since type is a fixed enum.
   name: Type.Optional(Type.String()),

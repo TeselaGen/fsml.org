@@ -1,4 +1,4 @@
-import { Type, Static } from '../../../deps/typebox.ts';
+import { Type, Static } from '../../../../deps/typebox.ts';
 import Subject from './subject.ts';
 import Dimension from './dimension.ts';
 import Measurement from './measurement.ts';
@@ -6,12 +6,12 @@ import Descriptor from './descriptor.ts';
 import Unit from './unit.ts';
 
 // If we do support ranges, figure out how the descripor object would look like.
-export enum ColumnTypesEnum {
-  SUBJECT,
-  DIMENSION,
-  MEASUREMENT,
-  DESCRIPTOR,
-  UNIT,
+enum ColumnTypesEnum {
+  SUBJECT = 'SUBJECT',
+  DIMENSION = 'DIMENSION',
+  MEASUREMENT = 'MEASUREMENT',
+  DESCRIPTOR = 'DESCRIPTOR',
+  UNIT = 'UNIT',
 }
 
 const ColumnType = Type.Enum(ColumnTypesEnum);
@@ -28,3 +28,4 @@ const Metadata = Type.Object({
 });
 
 export default Metadata;
+export { ColumnTypesEnum }

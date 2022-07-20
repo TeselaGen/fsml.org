@@ -1,6 +1,6 @@
 import { Type, Static } from '../../deps/typebox.ts';
 import DataGrid from './data-grid.ts';
-import DataFrame from './data-frame-one/index.ts';
+import DataFrame from './data-frame/index.ts';
 // import DataSchema from "./data-schema"
 
 export const SupplementalData = Type.Object({

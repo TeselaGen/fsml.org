@@ -1,5 +1,4 @@
-import { Type, Static } from '../../../deps/typebox.ts';
-import {ColumnTypesEnum} from "./index.ts"
+import { Type, Static } from '../../../../deps/typebox.ts';
 
 // If we do support ranges, figure out how the descripor object would look like.
 enum ValueTypeEnum {
@@ -9,9 +8,9 @@ enum ValueTypeEnum {
 }
 
 const Descriptor = Type.Object({
-  type: Type.Literal(ColumnTypesEnum.DESCRIPTOR)
-  name: Type.String()
-  valueType: Type.Enum(ValueTypeEnum)
+  type: Type.Literal('DESCRIPTOR'),
+  name: Type.String(),
+  valueType: Type.Enum(ValueTypeEnum),
 });
 
 export default Descriptor;
