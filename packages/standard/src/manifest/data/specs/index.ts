@@ -1,11 +1,11 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
+import { Type, Static } from '../../../deps/typebox.ts';
 import Subject from './subject.ts';
 import Dimension from './dimension.ts';
 import Measurement from './measurement.ts';
 import Descriptor from './descriptor.ts';
 import Unit from './unit.ts';
 
-const Metadata = Type.Object({
+const Spec = Type.Object({
   /**
    * Index of the column this metadata object is referring to.
    */
@@ -16,4 +16,4 @@ const Metadata = Type.Object({
   spec: Type.Union([Subject, Dimension, Measurement, Descriptor, Unit]),
 });
 
-export default Metadata;
+export default Spec;
