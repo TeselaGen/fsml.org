@@ -1,9 +1,8 @@
 import { Type, Static } from '../../../../deps/typebox.ts';
-import { ColumnTypesEnum } from './index.ts';
+import { ColumnTypesEnum } from './types.ts';
 
 const Subject = Type.Object({
-  // type: Type.Literal(ColumnTypesEnum.SUBJECT), // not sure why 'ColumnTypesEnum' is undefined here.
-  type: Type.Literal('SUBJECT'),
+  type: Type.Literal(ColumnTypesEnum.SUBJECT),
   name: Type.String(),
 });
 
