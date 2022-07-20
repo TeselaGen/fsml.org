@@ -7,6 +7,9 @@ const Measurement = Type.Object({
   type: Type.Literal(SpecTypesEnum.MEASUREMENT),
   valueType: Type.Enum(ValueTypeEnum),
   name: Type.String(),
+  // NOTE: we could somehow make the dimension optional
+  // iff it already comes with the unit property OR
+  // another spec of type UNIT references this one.
   dimension: Dimension,
   /**
    * The Measurement Spec, could optional come with a unit.

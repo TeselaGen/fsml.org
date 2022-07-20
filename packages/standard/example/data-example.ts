@@ -54,7 +54,11 @@ const SupplementalDataExample = {
         { index: 0, spec: { type: 'SUBJECT', name: 'subject' } },
         {
           index: 1,
-          spec: { type: 'REFERENCE_DIMENSION', name: 'hours' },
+          spec: {
+            type: 'REFERENCE_DIMENSION',
+            name: 'hours',
+            dimension: { type: 'DIMENSION', type: 'TIME' },
+          },
         },
         // NOTE: notice here how the units are specific to each value in the column
         // referenced by specReference (i.e, column 1).
@@ -74,6 +78,7 @@ const SupplementalDataExample = {
             type: 'MEASUREMENT',
             name: 'Meas A',
             valueType: 'NUMERIC',
+            dimension: { type: 'DIMENSION', type: 'CONCENTRATION' },
             unit: {
               type: 'UNIT',
               value: 'hours',
