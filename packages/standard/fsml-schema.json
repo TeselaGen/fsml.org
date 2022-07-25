@@ -54,16 +54,13 @@
                   "name": {
                     "type": "string"
                   },
-                  "columns": {
+                  "rows": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
                         "index": {
                           "type": "number"
-                        },
-                        "name": {
-                          "type": "string"
                         },
                         "values": {
                           "type": "array",
@@ -86,12 +83,11 @@
                       },
                       "required": [
                         "index",
-                        "name",
                         "values"
                       ]
                     }
                   },
-                  "specs": {
+                  "columns": {
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -99,72 +95,478 @@
                         "index": {
                           "type": "number"
                         },
-                        "spec": {
-                          "anyOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "SUBJECT",
-                                  "type": "string"
+                        "name": {
+                          "type": "number"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "const": "IDENTIFIER"
                                 },
-                                "name": {
-                                  "type": "string"
+                                {
+                                  "type": "string",
+                                  "const": "REFERENCE"
+                                },
+                                {
+                                  "type": "string",
+                                  "const": "FACTOR"
+                                },
+                                {
+                                  "type": "string",
+                                  "const": "OBSERVATION"
                                 }
-                              },
-                              "required": [
-                                "type",
-                                "name"
                               ]
                             },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "REFERENCE_DIMENSION",
-                                  "type": "string"
+                            "valueType": {
+                              "anyOf": [
+                                {
+                                  "type": "number",
+                                  "const": 0
                                 },
-                                "name": {
-                                  "type": "string"
+                                {
+                                  "type": "number",
+                                  "const": 1
                                 },
-                                "dimension": {
+                                {
+                                  "type": "number",
+                                  "const": 2
+                                },
+                                {
+                                  "type": "number",
+                                  "const": 3
+                                },
+                                {
+                                  "type": "number",
+                                  "const": 4
+                                }
+                              ]
+                            },
+                            "class": {
+                              "anyOf": [
+                                {
                                   "type": "object",
                                   "properties": {
                                     "type": {
-                                      "const": "DIMENSION",
+                                      "const": "SUBJECT",
                                       "type": "string"
                                     },
-                                    "dimensionType": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "const": "TIME"
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "name"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "const": "REFERENCE_DIMENSION",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "dimension": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "DIMENSION",
+                                          "type": "string"
                                         },
-                                        {
-                                          "type": "string",
-                                          "const": "MASS"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "VOLUME"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "CONCENTRATION"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "DENSITY"
+                                        "dimensionType": {
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "const": "TIME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "MASS"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "LENGTH"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "TEMPERATURE"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "ENERGY"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUMETRIC_FLOW_RATE"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "CONCENTRATION"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "DENSITY"
+                                            }
+                                          ]
                                         }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "dimensionType"
+                                      ]
+                                    },
+                                    "unit": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "UNIT",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "dimension": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "const": "DIMENSION",
+                                              "type": "string"
+                                            },
+                                            "dimensionType": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string",
+                                                  "const": "TIME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "MASS"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "LENGTH"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "TEMPERATURE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "ENERGY"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUMETRIC_FLOW_RATE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "CONCENTRATION"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "DENSITY"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "dimensionType"
+                                          ]
+                                        },
+                                        "valueReference": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "value",
+                                        "dimension"
                                       ]
                                     }
                                   },
                                   "required": [
                                     "type",
-                                    "dimensionType"
+                                    "name",
+                                    "dimension"
                                   ]
                                 },
-                                "unit": {
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "const": "MEASUREMENT",
+                                      "type": "string"
+                                    },
+                                    "valueType": {
+                                      "anyOf": [
+                                        {
+                                          "type": "number",
+                                          "const": 0
+                                        },
+                                        {
+                                          "type": "number",
+                                          "const": 1
+                                        },
+                                        {
+                                          "type": "number",
+                                          "const": 2
+                                        },
+                                        {
+                                          "type": "number",
+                                          "const": 3
+                                        },
+                                        {
+                                          "type": "number",
+                                          "const": 4
+                                        }
+                                      ]
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "dimension": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "DIMENSION",
+                                          "type": "string"
+                                        },
+                                        "dimensionType": {
+                                          "anyOf": [
+                                            {
+                                              "type": "string",
+                                              "const": "TIME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "MASS"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "LENGTH"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "TEMPERATURE"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "ENERGY"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUMETRIC_FLOW_RATE"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "CONCENTRATION"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "DENSITY"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "dimensionType"
+                                      ]
+                                    },
+                                    "unit": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "UNIT",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "dimension": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "const": "DIMENSION",
+                                              "type": "string"
+                                            },
+                                            "dimensionType": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string",
+                                                  "const": "TIME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "MASS"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "LENGTH"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "TEMPERATURE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "ENERGY"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUMETRIC_FLOW_RATE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "CONCENTRATION"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "DENSITY"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "dimensionType"
+                                          ]
+                                        },
+                                        "valueReference": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "value",
+                                        "dimension"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "valueType",
+                                    "name",
+                                    "dimension"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "const": "DESCRIPTOR",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "unit": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "const": "UNIT",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "dimension": {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "const": "DIMENSION",
+                                              "type": "string"
+                                            },
+                                            "dimensionType": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string",
+                                                  "const": "TIME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "MASS"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "LENGTH"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUME"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "TEMPERATURE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "ENERGY"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "VOLUMETRIC_FLOW_RATE"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "CONCENTRATION"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "const": "DENSITY"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "dimensionType"
+                                          ]
+                                        },
+                                        "valueReference": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "value",
+                                        "dimension"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "name"
+                                  ]
+                                },
+                                {
                                   "type": "object",
                                   "properties": {
                                     "type": {
@@ -193,7 +595,23 @@
                                             },
                                             {
                                               "type": "string",
+                                              "const": "LENGTH"
+                                            },
+                                            {
+                                              "type": "string",
                                               "const": "VOLUME"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "TEMPERATURE"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "ENERGY"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "VOLUMETRIC_FLOW_RATE"
                                             },
                                             {
                                               "type": "string",
@@ -211,7 +629,7 @@
                                         "dimensionType"
                                       ]
                                     },
-                                    "specReference": {
+                                    "valueReference": {
                                       "type": "number"
                                     }
                                   },
@@ -221,338 +639,24 @@
                                     "dimension"
                                   ]
                                 }
-                              },
-                              "required": [
-                                "type",
-                                "name",
-                                "dimension"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "DIMENSION",
-                                  "type": "string"
-                                },
-                                "dimensionType": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "const": "TIME"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "const": "MASS"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "const": "VOLUME"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "const": "CONCENTRATION"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "const": "DENSITY"
-                                    }
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "dimensionType"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "MEASUREMENT",
-                                  "type": "string"
-                                },
-                                "valueType": {
-                                  "anyOf": [
-                                    {
-                                      "type": "number",
-                                      "const": 0
-                                    },
-                                    {
-                                      "type": "number",
-                                      "const": 1
-                                    },
-                                    {
-                                      "type": "number",
-                                      "const": 2
-                                    }
-                                  ]
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "dimension": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "const": "DIMENSION",
-                                      "type": "string"
-                                    },
-                                    "dimensionType": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "const": "TIME"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "MASS"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "VOLUME"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "CONCENTRATION"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "DENSITY"
-                                        }
-                                      ]
-                                    }
-                                  },
-                                  "required": [
-                                    "type",
-                                    "dimensionType"
-                                  ]
-                                },
-                                "unit": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "const": "UNIT",
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "dimension": {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "const": "DIMENSION",
-                                          "type": "string"
-                                        },
-                                        "dimensionType": {
-                                          "anyOf": [
-                                            {
-                                              "type": "string",
-                                              "const": "TIME"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "MASS"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "VOLUME"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "CONCENTRATION"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "DENSITY"
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "dimensionType"
-                                      ]
-                                    },
-                                    "specReference": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "required": [
-                                    "type",
-                                    "value",
-                                    "dimension"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "valueType",
-                                "name",
-                                "dimension"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "DESCRIPTOR",
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "valueType": {
-                                  "anyOf": [
-                                    {
-                                      "type": "number",
-                                      "const": 0
-                                    },
-                                    {
-                                      "type": "number",
-                                      "const": 1
-                                    },
-                                    {
-                                      "type": "number",
-                                      "const": 2
-                                    }
-                                  ]
-                                },
-                                "unit": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "const": "UNIT",
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "dimension": {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "const": "DIMENSION",
-                                          "type": "string"
-                                        },
-                                        "dimensionType": {
-                                          "anyOf": [
-                                            {
-                                              "type": "string",
-                                              "const": "TIME"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "MASS"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "VOLUME"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "CONCENTRATION"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "const": "DENSITY"
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "dimensionType"
-                                      ]
-                                    },
-                                    "specReference": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "required": [
-                                    "type",
-                                    "value",
-                                    "dimension"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "name",
-                                "valueType"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "const": "UNIT",
-                                  "type": "string"
-                                },
-                                "value": {
-                                  "type": "string"
-                                },
-                                "dimension": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "const": "DIMENSION",
-                                      "type": "string"
-                                    },
-                                    "dimensionType": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "const": "TIME"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "MASS"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "VOLUME"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "CONCENTRATION"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "const": "DENSITY"
-                                        }
-                                      ]
-                                    }
-                                  },
-                                  "required": [
-                                    "type",
-                                    "dimensionType"
-                                  ]
-                                },
-                                "specReference": {
-                                  "type": "number"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "value",
-                                "dimension"
                               ]
                             }
-                          ]
+                          }
                         }
                       },
                       "required": [
                         "index",
-                        "spec"
+                        "name"
                       ]
                     }
+                  },
+                  "sourceFileReference": {
+                    "type": "string"
                   }
                 },
                 "required": [
                   "name",
-                  "columns"
+                  "rows"
                 ]
               }
             }

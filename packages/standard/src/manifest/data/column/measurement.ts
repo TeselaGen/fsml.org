@@ -1,10 +1,10 @@
 import { Type, Static } from '../../../deps/typebox.ts';
-import { SpecTypesEnum, ValueTypeEnum } from './types.ts';
+import { ColumnClassEnum, ValueTypeEnum } from './types.ts';
 import Unit from './unit.ts';
 import Dimension from './dimension.ts';
 
 const Measurement = Type.Object({
-  type: Type.Literal(SpecTypesEnum.MEASUREMENT),
+  type: Type.Literal(ColumnClassEnum.MEASUREMENT),
   valueType: Type.Enum(ValueTypeEnum),
   name: Type.String(),
   // NOTE: we could somehow make the dimension optional

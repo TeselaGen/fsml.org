@@ -1,8 +1,8 @@
 import { Type, Static } from '../../../deps/typebox.ts';
-import { SpecTypesEnum, DimensionsEnum } from './types.ts';
+import { ColumnClassEnum, DimensionsEnum } from './types.ts';
 
 const Dimension = Type.Object({
-  type: Type.Literal(SpecTypesEnum.DIMENSION),
+  type: Type.Literal("DIMENSION"),
   /**
    * dimensionType is one of many possible physical dimensions
    */

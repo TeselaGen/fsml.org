@@ -1,9 +1,8 @@
 import { Type, Static } from '../../deps/typebox.ts';
 import Value from './value.ts';
 
-const Column = Type.Object({
+const Row = Type.Object({
   index: Type.Number(),
-  name: Type.String(),
   values: Type.Array(Value),
 
   /**
@@ -14,4 +13,4 @@ const Column = Type.Object({
   // spec: Type.Optional(Spec)
 });
 
-export default Column;
+export default Row;

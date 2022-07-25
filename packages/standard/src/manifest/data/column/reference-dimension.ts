@@ -1,5 +1,5 @@
 import { Type, Static } from '../../../deps/typebox.ts';
-import { SpecTypesEnum, ValueTypeEnum } from './types.ts';
+import { ColumnClassEnum, ValueTypeEnum } from './types.ts';
 import Unit from './unit.ts';
 import Dimension from './dimension.ts';
 
@@ -11,7 +11,7 @@ import Dimension from './dimension.ts';
  * across a reference dimension and usually plotted
  */
 const ReferenceDimension = Type.Object({
-  type: Type.Literal(SpecTypesEnum.REFERENCE_DIMENSION),
+  type: Type.Literal(ColumnClassEnum.REFERENCE_DIMENSION),
   name: Type.String(),
   // NOTE: we could somehow make the dimension optional
   // iff it already comes with the unit property OR
