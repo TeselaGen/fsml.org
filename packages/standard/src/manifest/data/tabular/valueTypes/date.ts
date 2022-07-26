@@ -1,5 +1,5 @@
-import { Type } from '../../../deps/typebox.ts';
-import { ValueTypeEnum } from '../types.ts';
+import { Type } from '../../../../deps/typebox.ts';
+import { ValueTypeEnum } from '../../types.ts';
 
 // NOTE: not an enum is the best here...
 const enum DateFormats {

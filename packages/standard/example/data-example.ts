@@ -14,16 +14,18 @@ const SupplementalDataExample = {
   utilityScore: -1,
   data: [
     {
-      sourceFileReference: 'some reference to manifest.sourceContent',
+      type: 'TABULAR',
+      fileReference: 'some reference to manifest.sourceContent',
       name: 'dataset',
       // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
       // delimiter?: "",
       rows: [
         {
           index: 0,
-          // sourceFileReference: 'row-specific data file ref',
-          value:
-            'Subject  ; Time  ; Time Units ; Bioreactor Volume (L) ; Meas A (ug/ul)',
+          // fileReference: 'row-specific data file ref',
+          // Figure out if Typebox has type that can specify either value or values.
+          // value:
+          //   'Subject  ; Time  ; Time Units ; Bioreactor Volume (L) ; Meas A (ug/ul)',
           values: [
             { index: 0, value: 'Strain A' },
             { index: 1, value: '0' },
@@ -135,7 +137,13 @@ const SupplementalDataExample = {
           },
         },
       },
+      metadata: {
+        delimiter: ";"
+      }
     },
+    {
+      type: 'FILE',
+    }
     // NOTE: expand on how to represent images.
     // {
     //   sourceFileReference: 'image file ref',

@@ -1,4 +1,4 @@
-import { Type, Static } from '../../deps/typebox.ts';
+import { Type, Static } from '../../../deps/typebox.ts';
 
 const Value = Type.Object({
   index: Type.Number(),

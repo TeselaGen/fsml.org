@@ -1,3 +1,8 @@
+export enum DataTypesEnum {
+  FILE = 'FILE'
+  TABULAR = 'TABULAR'
+}
+
 export enum ColumnClassEnum {
   /**
    * This corresponds to the the subjects under evaluation or the experimental units

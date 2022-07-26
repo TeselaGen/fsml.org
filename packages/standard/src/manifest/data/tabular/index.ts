@@ -1,10 +1,12 @@
-import { Type, Static } from '../../deps/typebox.ts';
+import { Type, Static } from '../../../deps/typebox.ts';
+import { DataTypesEnum } from "../types.ts"
 import Row from './row.ts';
 import Column from './column/index.ts';
 
 // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
 
-const Data = Type.Object({
+const TabularData = Type.Object({
+  type: Type.Literal(DataTypesEnum.TABULAR),
   name: Type.String(),
   /**
    * NOTE: we could go with a row-based or a column-based approach for storing data.
@@ -27,7 +29,16 @@ const Data = Type.Object({
    * This is to be a reference to the files from which this data came.
    * The actual URI for the file is to be stored in manifest.sourceContent
    */
-  sourceFileReference: Type.Optional(Type.String()),
+  fileReference: Type.Optional(Type.String()),
+  /**
+   * Extra optional metadata.
+   */
+  metadata: Type.Optional(Type.Object({
+    /**
+     * row separator/delimiter.
+     */
+    delimiter: Type.String()
+  }))
 });
 
-export default Data;
+export default TabularData;
