@@ -17,7 +17,7 @@ export enum ColumnClassEnum {
    */
   CALL = 'CALL',
   /**
-   * Computed values are a computation of other values, (e.g., the sum of two other observation columns).
+   * Computed values are a computation of other values, (e.g., the divisin of two other observation columns).
    */
   COMPUTED_VALUE = 'COMPUTED_VALUE',
   /**
@@ -101,10 +101,9 @@ export enum ValueTypeEnum {
   // NOTE: We could into more details with numeric values such as
   // differentiating between integers, floats or even deeper such as count or continous.
   NUMERIC,
+  CATEGORIC,
   // NOTE: Could be expanded to account for encoding
   TEXT,
   // NOTE: Could be expanded to account for date format
   DATE,
-  RANGE,
-  CATEGORIC,
 }

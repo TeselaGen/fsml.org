@@ -1,11 +1,15 @@
 import { Type, Static } from '../../../deps/typebox.ts';
-import { ColumnKindEnum, ValueTypeEnum } from './types.ts';
+import { ColumnKindEnum, ValueTypeEnum } from '../types.ts';
 import Subject from './subject.ts';
 import Dimension from './dimension.ts';
 import ReferenceDimension from './reference-dimension.ts';
 import Measurement from './measurement.ts';
 import Descriptor from './descriptor.ts';
 import Unit from './unit.ts';
+import NumericType from '../valueTypes/numeric.ts';
+import CategoricType from '../valueTypes/categoric.ts';
+import TextType from '../valueTypes/text.ts';
+import DateType from '../valueTypes/date.ts';
 
 const ColumnDescription = Type.Object({
   /**
@@ -21,19 +25,21 @@ const ColumnDescription = Type.Object({
    */
   description: Type.Optional(Type.String()),
   /**
+   * type of value this column stores.
+   */
+  valueType: Type.Optional(
+    Type.Union([NumericType, CategoricType, TextType, DateType])
+  ),
+  /**
    * The column's kind gives it a context
    * or meaning.
    */
   kind: Type.Optional(
     Type.Object({
       /**
-       * Tells whether the column corresponds to input or output values.
+       * The column's kind, any of ColumnKindEnum.
        */
       type: Type.Optional(Type.Enum(ColumnKindEnum)),
-      /**
-       * type of value this column stores.
-       */
-      valueType: Type.Optional(Type.Enum(ValueTypeEnum)),
       /**
        * The column class (e.g, measurement, descriptor, etc.).
        *
