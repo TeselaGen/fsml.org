@@ -12,6 +12,7 @@ yargs(Deno.args)
     },
     (argv: Arguments) => {
       console.info(argv);
+      //hey
     },
   )
   .strictCommands()
