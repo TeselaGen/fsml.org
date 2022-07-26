@@ -7,6 +7,7 @@ import Column from './column/index.ts';
 
 const TabularData = Type.Object({
   type: Type.Literal(DataTypesEnum.TABULAR),
+  index: Type.Number(),
   name: Type.String(),
   /**
    * NOTE: we could go with a row-based or a column-based approach for storing data.

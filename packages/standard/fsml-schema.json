@@ -57,6 +57,9 @@
                         "const": "FILE",
                         "type": "string"
                       },
+                      "index": {
+                        "type": "number"
+                      },
                       "name": {
                         "type": "string"
                       },
@@ -66,6 +69,7 @@
                     },
                     "required": [
                       "type",
+                      "index",
                       "reference"
                     ]
                   },
@@ -75,6 +79,9 @@
                       "type": {
                         "const": "TABULAR",
                         "type": "string"
+                      },
+                      "index": {
+                        "type": "number"
                       },
                       "name": {
                         "type": "string"
@@ -769,6 +776,7 @@
                     },
                     "required": [
                       "type",
+                      "index",
                       "name",
                       "rows"
                     ]

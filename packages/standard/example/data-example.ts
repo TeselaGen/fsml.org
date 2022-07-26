@@ -5,20 +5,15 @@
  * Strain A ;   0   ;  hours     ;        2              ;     10.5
  * Strain A ;   1   ;  hours     ;        4              ;     11.5
  */
-
-/**
- * Standard Option 1 (row-based)
- */
 const SupplementalDataExample = {
   type: 'data',
   utilityScore: -1,
   data: [
     {
       type: 'TABULAR',
-      fileReference: 'some reference to manifest.sourceContent',
+      index: 0,
+      fileReference: 'reference to file',
       name: 'dataset',
-      // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
-      // delimiter?: "",
       rows: [
         {
           index: 0,
@@ -51,8 +46,8 @@ const SupplementalDataExample = {
           name: 'Subject',
           description: 'An optional for-humans field to decribe my column',
           valueType: {
-            type: 'TEXT'
-          }
+            type: 'TEXT',
+          },
           kind: {
             type: 'IDENTIFIER',
             class: { type: 'SUBJECT', name: 'subject' },
@@ -62,7 +57,7 @@ const SupplementalDataExample = {
           index: 1,
           name: 'Time',
           valueType: {
-            type: 'NUMERIC'
+            type: 'NUMERIC',
           },
           kind: {
             type: 'REFERENCE',
@@ -96,7 +91,7 @@ const SupplementalDataExample = {
           name: 'Bioreactor Volume (L)',
           valueType: {
             type: 'NUMERIC',
-            range: [2, 4]
+            range: [2, 4],
           },
           kind: {
             type: 'FACTOR',
@@ -119,7 +114,7 @@ const SupplementalDataExample = {
           kind: {
             type: 'OBSERVATION',
             valueType: {
-              type: 'NUMERIC'
+              type: 'NUMERIC',
             },
             class: {
               type: 'MEASUREMENT',
@@ -137,13 +132,17 @@ const SupplementalDataExample = {
           },
         },
       },
+      // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
       metadata: {
-        delimiter: ";"
-      }
+        delimiter: ';',
+      },
     },
     {
       type: 'FILE',
-    }
+      index: 1,
+      name: 'data.csv',
+      reference: 'reference to file',
+    },
     // NOTE: expand on how to represent images.
     // {
     //   sourceFileReference: 'image file ref',
