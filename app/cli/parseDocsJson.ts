@@ -46,9 +46,8 @@ async function handleDocs() {
       fun.jsDoc.tags.forEach((tag) => {
         markdown += "\n\n";
         if (tag.kind === "unsupported") {
-          markdown += tag.value
+          markdown += tag.value;
         } else {
-
           markdown += `**${tag.kind}** ${tag.name || ""} ${tag.doc || ""}`;
         }
       });
