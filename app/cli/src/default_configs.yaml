@@ -1,0 +1,22 @@
+configs: ./configs.yaml
+
+manifest:
+  # common maniftes defaults
+  # author: 'email@domain.com' # this one should be set, can't really be defaulted
+  format: 'yaml'
+  write: './' # defaults to writing the manifest relative to where the command was called
+  pack: null # defaults to sending the output to stdout
+  unpack: false # default to not unpacking the manifest after a fetch
+
+  # describe manifest defaults
+  output: 'yaml'
+  summary: false
+
+plugin:
+  cache: false # defaults to not caching plugins. Plugins will only be downloaded when used
+  sort: 'asc'
+  latest: true # defaults to always use the latest version for install/updagre commands
+
+registry:
+  platform: 'git'
+  properties: ''
