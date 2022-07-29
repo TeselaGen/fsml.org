@@ -24,7 +24,7 @@ jobs:
         with:
           deno-version: ${{ matrix.deno-version }}
       - name: Lint Deno Module
-        run: deno fmt --check
+        run: deno fmt --check src/
       - name: Lint Deno Module
         run: deno lint --unstable
       # - name: Build Deno Module
