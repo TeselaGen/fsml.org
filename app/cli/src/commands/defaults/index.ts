@@ -51,8 +51,11 @@ async function reset({ key }) {
     await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile)
 }
 
-async function resetAll() {
-    await Deno.writeTextFile(USER_CONFIG_FILEPATH, "")
+async function resetAll({ confirm }) {
+    if (confirm) await Deno.writeTextFile(USER_CONFIG_FILEPATH, "")
+    else {
+        // TODO: request user confirmation
+    }
 }
 
 const defaults = {
