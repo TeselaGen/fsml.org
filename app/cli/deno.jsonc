@@ -1,7 +1,7 @@
 {
   "tasks": {
     "start": "deno run --allow-read --allow-env src/main.ts",
-    "test": "deno test --import-map=import_map.json --coverage=./cov_profile/ --allow-read --allow-env",
+    "test": "deno test --coverage=./cov_profile/ --allow-read --allow-env",
     "coverage": "deno coverage ./cov_profile --lcov --output=cov_profile.lcov"
   }
 }
