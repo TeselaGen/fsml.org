@@ -33,7 +33,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
+cov_profile
+cov_profile.lcov
 # System Files
 .DS_Store
 Thumbs.db
