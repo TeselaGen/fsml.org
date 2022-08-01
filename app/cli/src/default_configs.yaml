@@ -1,4 +1,6 @@
-configs: ./configs.yaml
+defaults:
+  filepath: ./configs.yaml
+  format: 'yaml'
 
 manifest:
   # common maniftes defaults

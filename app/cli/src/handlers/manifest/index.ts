@@ -33,17 +33,15 @@ async function pack({ pack, path }) {}
 
 async function unpack({ path }) {}
 
-const manifest = {
+export {
+  _export as export,
+  _import as import,
   create,
-  update,
-  fetch,
-  import: _import,
   describe,
-  score,
-  export: _export,
-  validate,
+  fetch,
   pack,
+  score,
   unpack,
+  update,
+  validate,
 };
-
-export default manifest;

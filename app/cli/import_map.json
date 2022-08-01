@@ -1,5 +1,7 @@
 {
   "imports": {
-    "src/": "./src/"
+    "src/": "./src/",
+    "handlers/": "./src/handlers/",
+    "plugins/": "./src/plugins/"
   }
 }
