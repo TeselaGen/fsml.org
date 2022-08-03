@@ -6,7 +6,7 @@ manifest:
   # common maniftes defaults
   # author: 'email@domain.com' # this one should be set, can't really be defaulted
   format: 'yaml'
-  write: './' # defaults to writing the manifest relative to where the command was called
+  write: './fsml-manifest' # defaults to writing the manifest relative to where the command was called
   pack: null # defaults to sending the output to stdout
   unpack: false # default to not unpacking the manifest after a fetch
 

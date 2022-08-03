@@ -9,14 +9,19 @@ async function getDefaultConfigs() {
   return await yaml.parse(defaultConfigsText);
 }
 
-async function getConfigs() {
+async function getConfigs({ section }) {
   const defaultConfigs = await getDefaultConfigs();
 
   const configsText = await Deno.readTextFile(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);
 
-  return lodash.merge(defaultConfigs, configs || {});
+  const finalConfigs = lodash.merge(defaultConfigs, configs || {});
+
+  if (section)
+    return finalConfigs[section]
+
+  return finalConfigs
 }
 
 async function setConfigs(newConfigs) {

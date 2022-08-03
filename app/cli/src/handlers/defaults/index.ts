@@ -15,24 +15,7 @@ async function list({ format } = {}) {
   const configs = await getConfigs();
   const _format = format || configs?.defaults?.format;
 
-  let stdout_text: string;
-  switch (_format) {
-    case "yaml":
-      stdout_text = await yaml.stringify(configs);
-      break;
-
-    case "json":
-      stdout_text = await JSON.stringify(configs, null, 2);
-      break;
-
-    case "toml":
-      console.error("output format not implemented.");
-      break;
-
-    default:
-      console.error("output format not supported.");
-      break;
-  }
+  const stdout_text: string = await jsonToText({ format: _format, content: configs })
   await toStdOut(stdout_text);
 }
 
