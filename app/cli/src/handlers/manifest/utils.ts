@@ -1,5 +1,5 @@
 import { Manifest } from '@fsml.org/standard/mod.ts';
-import { fs, path } from "src/deps.ts";
+import { fs, path, typebox } from "src/deps.ts";
 import { jsonToText, toFile, packFiles, expandGlobPaths } from "../../utils.ts"
 
 const FSML_MANIFEST_FILENAME = "fsml"
@@ -9,7 +9,8 @@ const FSML_MANIFEST_FILENAME = "fsml"
 export async function generateManifest({ parser, filepattern }) {
     const dataFiles = await expandGlobPaths(filepattern)
     const parsedData = await parseDataFiles({ parser, dataFiles })
-    const manifest = Value.Create(Manifest)
+    const manifest = typebox.Value.Create(Manifest)
+    validateManifest({ manifest: {} })
     return manifest
 }
 
@@ -30,3 +31,10 @@ export async function packManifest({ pack, filepattern, archiveName, manifestFil
 }
 
 async function parseDataFiles({ parser, dataFiles }) { }
+
+function validateManifest({ manifest }) {
+    const ManifestCompiler = typebox.TypeCompiler.Compile(Manifest)
+    const manifestCheck = ManifestCompiler.Check(manifest)
+    const manifestErrors = [...ManifestCompiler.Errors(manifest)]
+    return manifestCheck
+}
