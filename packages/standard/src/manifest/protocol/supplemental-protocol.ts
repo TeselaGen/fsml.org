@@ -1,4 +1,4 @@
-import { Type, Static } from '../deps/typebox.ts';
+import { Type, Static } from '../../deps/typebox.ts';
 import { UtilityScoreDetails } from "./utility-score-details.ts";
 
 export const SupplementalProtocol = Type.Object({
@@ -6,7 +6,7 @@ export const SupplementalProtocol = Type.Object({
   utilityScore: Type.Number(), // normalized to be between 0 and 1 inclusive
   categoryScores: UtilityScoreDetails,
 
-  //supplemental sections
+  // supplemental protocol sections
   provenance: Type.Optional(Type.Any()),
   classification: Type.Optional(Type.Any()),
   usage: Type.Optional(Type.Any()),
