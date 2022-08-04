@@ -1,7 +1,1 @@
-export { Manifest } from "./manifest/manifest.ts"
-
-
-
-
-
-
+export { Manifest } from './manifest/manifest.ts';

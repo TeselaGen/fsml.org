@@ -50,6 +50,15 @@ export async function packFiles({ pack, filepaths, archiveName }) {
   }
 }
 
+export async function expandGlobPaths(filepattern) {
+  const filepaths = []
+  for await (const file of fs.expandGlob(filepattern)) {
+    const filepath = path.parse(file.path)
+    filepaths.push(filepath.base)
+  }
+  return filepaths
+}
+
 async function compressFiles({ compressor, filepaths, archiveName, opts }) {
   const archivePath = `${archiveName}.${compressor}`
   // NOTE: refer to src/deps.ts as to why "zip" compressor is treated differently at the moment.

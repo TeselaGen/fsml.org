@@ -4,7 +4,7 @@ import { generateManifest, writeManifest, packManifest } from "./utils.ts";
 async function create(
   { type, parser, format, write, pack, author, filepattern },
 ) {
-  const manifest = await generateManifest({})
+  const manifest = await generateManifest({ parser, filepattern })
   if (write) {
     const manifestFilepath = await writeManifest({ format, manifest })
     if (pack) {
