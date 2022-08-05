@@ -10,7 +10,7 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve --dir=../docs --port=5555",
-    "save-previews": "git checkout origin/gh-pages -- ../pr-preview  && git restore --staged ../pr-preview/*",
+    "save-previews": "git branch && git checkout origin/gh-pages -- ../pr-preview  && git restore --staged ../pr-preview/*",
     "restore-previews": "mv ../pr-preview ../docs/pr-preview",
     "build-docs": "yarn save-previews && yarn clear && docusaurus build --out-dir ../docs && yarn restore-previews",
     "write-translations": "docusaurus write-translations",
