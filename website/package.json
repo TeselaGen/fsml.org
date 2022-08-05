@@ -10,9 +10,7 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve --dir=../docs --port=5555",
-    "save-previews": "[ -d '../docs/pr-preview' ] && mv ../docs/pr-preview ../tmp-preview",
-    "restore-previews": "[ -d '../tmp-preview' ] && mv ../tmp-preview ../docs/pr-preview",
-    "build-docs": "yarn save-previews && yarn clear && docusaurus build --out-dir ../docs && yarn restore-previews",
+    "build-docs": "yarn clear && docusaurus build --out-dir ../docs",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
   },
