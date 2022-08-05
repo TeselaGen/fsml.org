@@ -1,8 +1,8 @@
-import { yaml } from "src/deps.ts";
-import { lodash } from "src/deps.ts";
+import { yaml, lodash, path } from "src/deps.ts";
 
-const DEFAULT_CONFIG_FILEPATH = "./src/default_configs.yaml";
-const USER_CONFIG_FILEPATH = "./src/configs.yaml";
+const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+const DEFAULT_CONFIG_FILEPATH = path.normalize(path.join(__dirname, "../../default_configs.yaml"));
+const USER_CONFIG_FILEPATH = path.normalize(path.join(__dirname, "../../configs.yaml"));
 
 async function getDefaultConfigs() {
   const defaultConfigsText = await Deno.readTextFile(DEFAULT_CONFIG_FILEPATH);
@@ -11,7 +11,6 @@ async function getDefaultConfigs() {
 
 async function getConfigs({ section }) {
   const defaultConfigs = await getDefaultConfigs();
-
   const configsText = await Deno.readTextFile(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);

@@ -22,21 +22,27 @@ const SupplementalDataExample = {
           // value:
           //   'Subject  ; Time  ; Time Units ; Bioreactor Volume (L) ; Meas A (ug/ul)',
           values: [
-            { index: 0, value: 'Strain A' },
-            { index: 1, value: '0' },
-            { index: 2, value: 'hours' },
-            { index: 3, value: '10.5' },
+            { index: 0, value: 'Subject' },
+            { index: 1, value: 'Time' },
+            { index: 2, value: 'Time Units' },
+            { index: 3, value: 'Bioreactor Volume (L)' },
+            { index: 4, value: 'Meas A' },
           ],
         },
         {
           index: 1,
+          // fileReference: 'row-specific data file ref',
+          // Figure out if Typebox has type that can specify either value or values.
+          // value:
+          //   'Subject  ; Time  ; Time Units ; Bioreactor Volume (L) ; Meas A (ug/ul)',
           values: [
             { index: 0, value: 'Strain A' },
-            { index: 1, value: '1' },
+            { index: 1, value: '0' },
             { index: 2, value: 'hours' },
-            { index: 3, value: '11.5' },
+            { index: 3, value: '2' },
+            { index: 4, value: '10.5' },
           ],
-        },
+        }
       ],
       // columnDefinitions would correspond to the 'mapping' or 'specifications'
       // explaining and giving meaning to each column.

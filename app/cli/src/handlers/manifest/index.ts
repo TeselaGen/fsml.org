@@ -8,7 +8,7 @@ async function create(
   if (write) {
     const manifestFilepath = await writeManifest({ format, manifest })
     if (pack) {
-      const success = await packManifest({ pack, filepattern, archiveName: write, manifestFilepath })
+      const success = await packManifest({ pack, filepattern, writePath: write, manifestFilepath })
       if (success) await remove(manifestFilepath)
     }
   }
