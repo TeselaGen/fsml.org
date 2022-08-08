@@ -3,7 +3,7 @@ import { yargs } from "@cli/deps.ts";
 
 async function applyDefaults(yargs: yargs.Yargs) {
   const argv = yargs.argv;
-  const model = argv._[1];
+  const model = argv._[0];
   const modelConfigs = await getConfigs({ section: model });
   Object.keys(modelConfigs).forEach((configKey) =>
     yargs.default(configKey, modelConfigs[configKey])

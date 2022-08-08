@@ -66,11 +66,9 @@ function handler({
   create({ type, parser, format, write, pack, author, filepattern });
 }
 
-const manifest = {
-  command: "manifest <filepattern>",
+export default {
+  command: "create <filepattern>",
   describe: "Creates an FSML manifest",
   builder,
   handler,
 };
-
-export default manifest;

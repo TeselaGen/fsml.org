@@ -13,11 +13,9 @@ function handler(argv: yargs.Arguments) {
   list({ format: argv.format });
 }
 
-const defaults = {
-  command: "defaults",
+export default {
+  command: "list",
   describe: "Lists default configs",
   builder,
   handler,
 };
-
-export default defaults;

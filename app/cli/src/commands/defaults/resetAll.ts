@@ -12,11 +12,9 @@ function handler(argv: yargs.Arguments) {
   resetAll({ confirm: argv.confirm });
 }
 
-const defaults = {
-  command: "defaults",
+export default {
+  command: "reset-all",
   describe: "Resets the value of all configs.",
   builder,
   handler,
 };
-
-export default defaults;

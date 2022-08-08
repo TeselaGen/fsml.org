@@ -16,11 +16,9 @@ function handler(argv: yargs.Arguments) {
   set({ key, value });
 }
 
-const defaults = {
-  command: "defaults <key> <value>",
+export default {
+  command: "set <key> <value>",
   describe: "Sets a new default value for a config key",
   builder,
   handler,
 };
-
-export default defaults;

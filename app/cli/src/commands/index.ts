@@ -1,17 +1,9 @@
-import edit from "./edit/index.ts";
-import list from "./list/index.ts";
-import set from "./set/index.ts";
-import reset from "./reset/index.ts";
-import resetAll from "./resetAll/index.ts";
-import create from "./create/index.ts";
+import defaults from "./defaults/mod.ts";
+import manifest from "./manifest/mod.ts";
 
 const commands = [
-  edit,
-  list,
-  set,
-  reset,
-  resetAll,
-  create,
+  defaults,
+  manifest,
 ];
 
 export default commands;

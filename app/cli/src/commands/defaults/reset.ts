@@ -12,11 +12,9 @@ function handler(argv: yargs.Arguments) {
   reset({ key: argv.key });
 }
 
-const defaults = {
-  command: "defaults <key>",
+export default {
+  command: "reset <key>",
   describe: "Resets the value of a config key.",
   builder,
   handler,
 };
-
-export default defaults;
