@@ -10,7 +10,3 @@
     "compileWindows": "deno compile --target x86_64-pc-windows-msvc --allow-read --allow-env --output ./cli_executableWindows ./src/main.ts"
   }
 }
-
-
-
-
