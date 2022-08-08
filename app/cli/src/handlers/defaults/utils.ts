@@ -51,8 +51,19 @@ function editConfigs({ configs, parentPath } = {}) {
   }
 }
 
+// TODO: Switch to using a prompter that allows typing,
+// for instance, https://deno.land/x/ask@1.0.5.
 function parseConfigValue(value) {
-  return value === 'null' ? null : value
+  switch (value) {
+    case "null":
+      return null
+    case "true":
+      return true
+    case "false":
+      return false
+    default:
+      return value
+  }
 }
 
 async function validateConfigs(configs) {
@@ -67,4 +78,4 @@ async function validateConfigs(configs) {
   return isValid
 }
 
-export { editConfigs, getConfigs, getDefaultConfigs, saveConfigs, parseConfigValue};
+export { editConfigs, getConfigs, getDefaultConfigs, saveConfigs, parseConfigValue };
