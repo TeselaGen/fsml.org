@@ -1,5 +1,5 @@
 import { Manifest } from "@fsml.org/standard/mod.ts";
-import { Data } from "@fsml.org/standard/manifest/data/supplemental-data.ts";
+import { SupplementalData as Data } from "@fsml.org/standard/manifest/data/supplemental-data.ts";
 import { typebox } from "@cli/deps.ts";
 
 export type TManifest = typebox.Static<typeof Manifest>;

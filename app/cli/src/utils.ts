@@ -16,9 +16,11 @@ export async function toFile(args: { filepath: string; content: string }) {
   await Deno.writeTextFile(filepath, content);
 }
 
-export async function jsonToText(args: { format: string; content: string }) {
+export async function jsonToText(
+  args: { format: string; content: string },
+): Promise<string> {
   const { format, content } = args;
-  let text;
+  let text: string;
   switch (format || "json") {
     case "yaml":
       text = await yaml.stringify(content);
@@ -29,11 +31,18 @@ export async function jsonToText(args: { format: string; content: string }) {
       break;
 
     case "toml":
+      text = JSON.stringify(content, null, 2);
+      console.error(
+        `output format '${format}' not implemented. Defaulting to 'json'`,
+      );
       console.error("output format not implemented.");
       break;
 
     default:
-      console.error("output format not supported.");
+      text = JSON.stringify(content, null, 2);
+      console.error(
+        `output format '${format}' not supported. Defaulting to 'json'`,
+      );
       break;
   }
   return text;

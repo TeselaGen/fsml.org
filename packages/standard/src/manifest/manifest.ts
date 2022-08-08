@@ -14,4 +14,4 @@ export const Manifest = Type.Object({
   supplementalInfo: Type.Union([SupplementalData, SupplementalProtocol]),
 });
 
-export type Manifest = Static<typeof Manifest>;
+export type TManifest = Static<typeof Manifest>;
