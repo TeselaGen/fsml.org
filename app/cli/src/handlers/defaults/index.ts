@@ -1,14 +1,14 @@
 import { yaml } from "src/deps.ts";
 import { lodash } from "src/deps.ts";
 import { toStdOut } from "../../utils.ts";
-import { editConfigs, getConfigs, setConfigs } from "./utils.ts";
+import { editConfigs, getConfigs, updateConfig, saveConfigs, parseConfigValue } from "./utils.ts";
 
 /** CLI Commmands for "defaults" **/
 async function edit({ section } = {}) {
   const configs = await getConfigs();
   const configsToBeSet = section ? configs[section] : configs;
   editConfigs({ configs: configsToBeSet });
-  await setConfigs(configs);
+  await saveConfigs(configs);
 }
 
 async function list({ format } = {}) {
@@ -21,8 +21,8 @@ async function list({ format } = {}) {
 
 async function set({ key, value }) {
   const configs = await getConfigs();
-  lodash.set(configs, key, value);
-  await setConfigs(configs);
+  lodash.set(configs, key, parseConfigValue(value));
+  await saveConfigs(configs);
 }
 
 async function reset({ key }) {
@@ -32,14 +32,14 @@ async function reset({ key }) {
   // we could remove the parent in these cases or not, either way the config is reset.
   lodash.unset(configs, key);
 
-  await setConfigs(configs);
+  await saveConfigs(configs);
 }
 
 async function resetAll({ confirm: confirmOverride } = {}) {
   const _confirmed = confirmOverride ||
     confirm("Do you confirm reseting all defaults?");
   if (_confirmed) {
-    await setConfigs({});
+    await saveConfigs({});
     console.info("All config defaults have been reset.");
   } else {
     console.info("Command cancelled.");

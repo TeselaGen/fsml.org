@@ -1,4 +1,6 @@
-import { yaml, lodash, path } from "src/deps.ts";
+import { yaml, lodash, path, typebox } from "src/deps.ts";
+import { jsonToText, toStdOut } from "../../utils.ts"
+import { Configs } from "types/configs.ts"
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const DEFAULT_CONFIG_FILEPATH = path.normalize(path.join(__dirname, "../../default_configs.yaml"));
@@ -23,9 +25,11 @@ async function getConfigs({ section } = {}) {
   return finalConfigs
 }
 
-async function setConfigs(newConfigs) {
-  const newConfigTextFile = await yaml.stringify(newConfigs);
-  await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
+async function saveConfigs(newConfigs) {
+  if (await validateConfigs(newConfigs)) {
+    const newConfigTextFile = await yaml.stringify(newConfigs);
+    await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
+  }
 }
 
 function editConfigs({ configs, parentPath } = {}) {
@@ -41,10 +45,26 @@ function editConfigs({ configs, parentPath } = {}) {
         editConfigs({ configs: currentConfig, parentPath: `${key}.` });
       } else continue;
     } else {
-      const newValue = prompt(`${currentPath}:`);
-      lodash.set(configs, key, newValue || currentConfig);
+      const newValue = parseConfigValue(prompt(`${currentPath}:`, currentConfig));
+      lodash.set(configs, key, newValue);
     }
   }
 }
 
-export { editConfigs, getConfigs, getDefaultConfigs, setConfigs };
+function parseConfigValue(value) {
+  return value === 'null' ? null : value
+}
+
+async function validateConfigs(configs) {
+  const ConfigsCompiler = typebox.TypeCompiler.Compile(Configs)
+  const isValid = ConfigsCompiler.Check(configs)
+  // NOTE: these config error messages may be too verbose
+  // typebox documentation also references ajv for validation: https://deno.land/x/typebox@0.24.27#validation
+  const configsErrors = [...ConfigsCompiler.Errors(configs)]
+  if (!isValid) {
+    configsErrors.forEach(async error => toStdOut(await jsonToText({ format: "json", content: error })))
+  }
+  return isValid
+}
+
+export { editConfigs, getConfigs, getDefaultConfigs, saveConfigs, parseConfigValue};

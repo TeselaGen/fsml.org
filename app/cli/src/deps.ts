@@ -30,16 +30,17 @@ const compress = {
   tar, tgz
 }
 
-// NOTE: typebox API cant be directly imported in deno, one solution was
+// NOTE: not all of typebox API can be directly imported in deno, one solution was
 // to use esm.sh. https://github.com/sinclairzx81/typebox/issues/216
+import * as TypeBox from 'https://deno.land/x/typebox@0.24.27/src/typebox.ts';
 import { Value } from "https://esm.sh/@sinclair/typebox@0.24.27/value";
 import { TypeCompiler } from "https://esm.sh/@sinclair/typebox@0.24.27/compiler";
 
 const typebox = {
+  ...TypeBox
   Value,
-  TypeCompiler
+  TypeCompiler,
 }
-
 
 export * as path from "https://deno.land/std@0.149.0/path/mod.ts";
 export * as conversion from "https://deno.land/std@0.150.0/streams/conversion.ts";

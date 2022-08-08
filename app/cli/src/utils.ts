@@ -17,7 +17,7 @@ export async function toFile({ filepath, content }) {
 
 export async function jsonToText({ format, content }) {
   let text;
-  switch (format) {
+  switch (format || "json") {
     case "yaml":
       text = await yaml.stringify(content);
       break;
