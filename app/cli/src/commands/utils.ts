@@ -1,17 +1,32 @@
 import { getConfigs } from "handlers/defaults/utils.ts";
+import { yargs } from "src/deps.ts";
 
-async function applyDefaults(yargs) {
-    const argv = yargs.argv
-    const model = argv._[1]
-    const modelConfigs = await getConfigs({ section: model })
-    Object.keys(modelConfigs).forEach(configKey => yargs.default(configKey, modelConfigs[configKey]))
-    return yargs
+async function applyDefaults(yargs: yargs.Yargs) {
+  const argv = yargs.argv;
+  const model = argv._[1];
+  const modelConfigs = await getConfigs({ section: model });
+  Object.keys(modelConfigs).forEach((configKey) =>
+    yargs.default(configKey, modelConfigs[configKey])
+  );
+  return yargs;
 }
 
-export function commandFactory({ command, subCommands }) {
-    return {
-        command,
-        builder: async (yargs) => (await applyDefaults(yargs)).command([...subCommands]),
-        handler: () => { }
-    }
+export function commandFactory({
+  command,
+  subCommands,
+}: {
+  command: string;
+  subCommands: {
+    command: string;
+    describe?: string;
+    builder: (yargs: yargs.Yargs) => void;
+    handler: (args: yargs.Arguments) => void;
+  }[];
+}) {
+  return {
+    command,
+    builder: async (yargs: yargs.Yargs) =>
+      (await applyDefaults(yargs)).command([...subCommands]),
+    handler: () => {},
+  };
 }

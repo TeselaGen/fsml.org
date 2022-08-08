@@ -1,61 +1,58 @@
-import { toStdOut, remove } from "../../utils.ts"
-import { generateManifest, writeManifest, packManifest } from "./utils.ts";
+import { ManifestArgs } from "types/manifest.ts";
+import { remove, toStdOut } from "../../utils.ts";
+import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 
-async function create(
-  { type, parser, format, write, pack, author, filepattern },
-) {
-  const manifest = await generateManifest({ parser, filepattern })
+async function create(args: ManifestArgs) {
+  const { type, parser, format, write, pack, author, filepattern } = args;
+  const manifest = await generateManifest({
+    parser,
+    type,
+    filepattern,
+    author,
+  });
   if (write) {
-    const manifestFilepath = await writeManifest({ format, manifest })
+    const manifestFilepath = await writeManifest({ format, manifest });
     if (pack) {
-      const success = await packManifest({ pack, filepattern, writePath: write, manifestFilepath })
-      if (success) await remove(manifestFilepath)
+      const success = await packManifest({
+        pack,
+        filepattern,
+        writePath: write,
+        manifestFilepath,
+      });
+      if (success) await remove(manifestFilepath);
     }
+  } else {
+    await toStdOut(manifest);
   }
-  else
-    await toStdOut(manifest)
 }
 
-async function update(
-  {
-    type,
-    parser,
-    format,
-    write,
-    pack,
-    patch,
-    patchFile,
-    patchType,
-    author,
-    path,
-  },
-) { }
+// async function update(args: ManifestArgs) {}
 
-async function fetch({ registry: { name, uri }, format, unpack, write, id }) { }
+// async function fetch(args: ManifestArgs) {}
 
-async function _import({ from, to, id }) { }
+// async function _import(args: ManifestArgs) {}
 
-async function describe({ output, write, select, summary, section, path }) { }
+// async function describe(args: ManifestArgs) {}
 
-async function score({ formula, dryRun, author, path }) { }
+// async function score(args: ManifestArgs) {}
 
-async function _export({ exporter: { name, flags }, write, path }) { }
+// async function _export(args: ManifestArgs) {}
 
-async function validate({ path }) { }
+// async function validate(args: ManifestArgs) {}
 
-async function pack({ pack, path }) { }
+// async function pack(args: ManifestArgs) {}
 
-async function unpack({ path }) { }
+// async function unpack(args: ManifestArgs) {}
 
 export {
-  _export as export,
-  _import as import,
+  // _export as export,
+  // _import as import,
   create,
-  describe,
-  fetch,
-  pack,
-  score,
-  unpack,
-  update,
-  validate,
+  // describe,
+  // fetch,
+  // pack,
+  // score,
+  // unpack,
+  // update,
+  // validate,
 };

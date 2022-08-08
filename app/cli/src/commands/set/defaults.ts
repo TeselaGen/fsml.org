@@ -1,6 +1,7 @@
+import { yargs } from "src/deps.ts";
 import { set } from "handlers/defaults/index.ts";
 
-function builder(yargs) {
+function builder(yargs: yargs.Yargs) {
   yargs.positional("key", {
     type: "string",
     describe: "Config key path",
@@ -10,7 +11,8 @@ function builder(yargs) {
   });
 }
 
-function handler({ key, value }) {
+function handler(argv: yargs.Arguments) {
+  const { key, value } = argv;
   set({ key, value });
 }
 
