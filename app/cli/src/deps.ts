@@ -32,8 +32,8 @@ const compress = {
 
 // NOTE: typebox API cant be directly imported in deno, one solution was
 // to use esm.sh. https://github.com/sinclairzx81/typebox/issues/216
-import { Value } from "https://esm.sh/@sinclair/typebox@0.24.27/value/value?target=deno";
-import { TypeCompiler } from "https://esm.sh/@sinclair/typebox@0.24.27/compiler/compiler?target=deno";
+import { Value } from "https://esm.sh/@sinclair/typebox@0.24.27/value";
+import { TypeCompiler } from "https://esm.sh/@sinclair/typebox@0.24.27/compiler";
 
 const typebox = {
   Value,

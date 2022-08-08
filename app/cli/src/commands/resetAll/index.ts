@@ -1,9 +1,4 @@
 import defaults from "./defaults.ts";
+import { commandFactory } from "../utils.ts"
 
-const resetAll = {
-  command: "reset-all <command>",
-  builder: (yargs) => yargs.command([defaults]),
-  handler: () => {},
-};
-
-export default resetAll;
+export default commandFactory({ command: "reset-all <command>", subCommands: [defaults] });

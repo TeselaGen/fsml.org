@@ -1,10 +1,6 @@
 import defaults from "./defaults.ts";
 import plugins from "./plugins.ts";
+import { commandFactory } from "../utils.ts"
 
-const list = {
-  command: "list <command>",
-  builder: (yargs) => yargs.command([defaults, plugins]),
-  handler: () => {},
-};
+export default commandFactory({ command: "list <command>", subCommands: [defaults, plugins] });
 
-export default list;

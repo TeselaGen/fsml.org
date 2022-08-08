@@ -1,9 +1,4 @@
 import defaults from "./defaults.ts";
+import { commandFactory } from "../utils.ts"
 
-const edit = {
-  command: "edit <command>",
-  builder: (yargs) => yargs.command([defaults]),
-  handler: () => {},
-};
-
-export default edit;
+export default commandFactory({ command: "edit <command>", subCommands: [defaults] });

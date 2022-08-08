@@ -9,7 +9,7 @@ async function getDefaultConfigs() {
   return await yaml.parse(defaultConfigsText);
 }
 
-async function getConfigs({ section }) {
+async function getConfigs({ section } = {}) {
   const defaultConfigs = await getDefaultConfigs();
   const configsText = await Deno.readTextFile(USER_CONFIG_FILEPATH);
 
@@ -33,7 +33,7 @@ function editConfigs({ configs, parentPath } = {}) {
   for (const key of configKeys) {
     const currentPath = parentPath ? `${parentPath}${key}` : key;
     const currentConfig = configs[key];
-    if (typeof currentConfig === "object") {
+    if (!lodash.isNil(currentConfig) && typeof currentConfig === "object") {
       const enterSectionConfirmation = confirm(
         `Set defaults for config section '${currentPath}'?`,
       );
@@ -42,9 +42,7 @@ function editConfigs({ configs, parentPath } = {}) {
       } else continue;
     } else {
       const newValue = prompt(`${currentPath}:`);
-      lodash.isNil(newValue)
-        ? lodash.unset(configs, key)
-        : lodash.set(configs, key, newValue);
+      lodash.set(configs, key, newValue || currentConfig);
     }
   }
 }

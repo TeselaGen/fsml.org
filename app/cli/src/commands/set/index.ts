@@ -1,9 +1,4 @@
 import defaults from "./defaults.ts";
+import { commandFactory } from "../utils.ts"
 
-const set = {
-  command: "set <command>",
-  builder: (yargs) => yargs.command([defaults]),
-  handler: () => {},
-};
-
-export default set;
+export default commandFactory({ command: "set <command>", subCommands: [defaults] });
