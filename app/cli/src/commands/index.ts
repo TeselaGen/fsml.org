@@ -11,7 +11,7 @@ const commands = [
   set,
   reset,
   resetAll,
-  create
+  create,
 ];
 
 export default commands;

@@ -1,11 +1,11 @@
-import { lodash } from 'src/deps.ts';
-import { toStdOut, jsonToText } from '../../utils.ts';
+import { lodash } from "src/deps.ts";
+import { jsonToText, toStdOut } from "../../utils.ts";
 import {
   editConfigs,
   getConfigs,
-  saveConfigs,
   parseConfigValue,
-} from './utils.ts';
+  saveConfigs,
+} from "./utils.ts";
 
 /** CLI Commmands for "defaults" **/
 async function edit({ section }: { section?: string } = {}) {
@@ -45,13 +45,13 @@ async function reset({ key }: { key: string }) {
 async function resetAll({
   confirm: confirmOverride,
 }: { confirm?: string } = {}) {
-  const _confirmed =
-    confirmOverride || confirm('Do you confirm reseting all defaults?');
+  const _confirmed = confirmOverride ||
+    confirm("Do you confirm reseting all defaults?");
   if (_confirmed) {
     await saveConfigs({});
-    console.info('All config defaults have been reset.');
+    console.info("All config defaults have been reset.");
   } else {
-    console.info('Command cancelled.');
+    console.info("Command cancelled.");
   }
 }
 

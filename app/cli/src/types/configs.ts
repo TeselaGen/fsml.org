@@ -1,5 +1,5 @@
-import { typebox } from 'src/deps.ts';
-import { FormatTypes, PackTypes } from 'types/enums.ts';
+import { typebox } from "src/deps.ts";
+import { FormatTypes, PackTypes } from "types/enums.ts";
 
 const { Type } = typebox;
 
