@@ -1,6 +1,6 @@
-import { lodash, path, typebox, yaml } from "src/deps.ts";
+import { lodash, path, typebox, yaml } from "@cli/deps.ts";
 import { jsonToText, toStdOut } from "../../utils.ts";
-import { Configs, TConfigs } from "types/configs.ts";
+import { Configs, TConfigs } from "@cli/types/configs.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const DEFAULT_CONFIG_FILEPATH = path.normalize(

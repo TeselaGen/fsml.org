@@ -1,4 +1,4 @@
-import { ManifestArgs } from "types/manifest.ts";
+import { ManifestArgs } from "@cli/types/manifest.ts";
 import { remove, toStdOut } from "../../utils.ts";
 import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 

@@ -1,7 +1,7 @@
-import { yargs } from "src/deps.ts";
-import { FormatTypes, ManifestTypes, PackTypes } from "types/enums.ts";
-import { ManifestCreate } from "types/manifest.ts";
-import { create } from "handlers/manifest/index.ts";
+import { yargs } from "@cli/deps.ts";
+import { FormatTypes, ManifestTypes, PackTypes } from "@cli/types/enums.ts";
+import { ManifestCreate } from "@cli/types/manifest.ts";
+import { create } from "@cli/handlers/manifest/index.ts";
 
 const OPTIONS = {
   type: {

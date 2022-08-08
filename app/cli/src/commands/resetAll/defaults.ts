@@ -1,14 +1,15 @@
-import { resetAll } from "handlers/defaults/index.ts";
+import { yargs } from "@cli/deps.ts";
+import { resetAll } from "@cli/handlers/defaults/index.ts";
 
-function builder(yargs) {
+function builder(yargs: yargs.Yargs) {
   yargs.option("confirm", {
     type: "string",
     describe: "Overrides confirmation prompt",
   });
 }
 
-function handler({ confirm }) {
-  resetAll({ confirm });
+function handler(argv: yargs.Arguments) {
+  resetAll({ confirm: argv.confirm });
 }
 
 const defaults = {

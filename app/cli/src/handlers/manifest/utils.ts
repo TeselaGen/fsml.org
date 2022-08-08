@@ -1,9 +1,9 @@
 import { Manifest } from "@fsml.org/standard/mod.ts";
-import { path, typebox } from "src/deps.ts";
+import { path, typebox } from "@cli/deps.ts";
 import {
   TManifest,
   // TManifestData
-} from "types/manifest.ts";
+} from "@cli/types/manifest.ts";
 import { expandGlobPaths, jsonToText, packFiles, toFile } from "../../utils.ts";
 
 const FSML_MANIFEST_FILEPATH = (format: string) =>

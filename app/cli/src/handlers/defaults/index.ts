@@ -1,4 +1,4 @@
-import { lodash } from "src/deps.ts";
+import { lodash } from "@cli/deps.ts";
 import { jsonToText, toStdOut } from "../../utils.ts";
 import {
   editConfigs,

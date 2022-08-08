@@ -1,6 +1,7 @@
-import { list } from "handlers/plugins/index.ts";
+import { yargs } from "@cli/deps.ts";
+import { list } from "@cli/handlers/plugins/index.ts";
 
-function builder(yargs) {
+function builder(yargs: yargs.Yargs) {
   yargs.option("format", {
     type: "string",
     describe: "stdout format for configs",
@@ -8,8 +9,8 @@ function builder(yargs) {
   });
 }
 
-function handler({ format }) {
-  list({ format });
+function handler(argv: yargs.Arguments) {
+  list({ format: argv.format });
 }
 
 const defaults = {

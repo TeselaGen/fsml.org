@@ -1,5 +1,5 @@
-import { getConfigs } from "handlers/defaults/utils.ts";
-import { yargs } from "src/deps.ts";
+import { getConfigs } from "@cli/handlers/defaults/utils.ts";
+import { yargs } from "@cli/deps.ts";
 
 async function applyDefaults(yargs: yargs.Yargs) {
   const argv = yargs.argv;

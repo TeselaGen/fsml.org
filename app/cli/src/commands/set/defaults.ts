@@ -1,5 +1,5 @@
-import { yargs } from "src/deps.ts";
-import { set } from "handlers/defaults/index.ts";
+import { yargs } from "@cli/deps.ts";
+import { set } from "@cli/handlers/defaults/index.ts";
 
 function builder(yargs: yargs.Yargs) {
   yargs.positional("key", {

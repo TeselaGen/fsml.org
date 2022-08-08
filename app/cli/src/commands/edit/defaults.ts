@@ -1,5 +1,5 @@
-import { yargs } from "src/deps.ts";
-import { edit } from "handlers/defaults/index.ts";
+import { yargs } from "@cli/deps.ts";
+import { edit } from "@cli/handlers/defaults/index.ts";
 
 function builder(yargs: yargs.Yargs) {
   yargs.option("section", {
