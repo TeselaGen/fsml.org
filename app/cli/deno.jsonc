@@ -7,7 +7,7 @@
     "compileLinux": "deno compile --target x86_64-unknown-linux-gnu --allow-read --allow-env --output ./cli_executableLinux ./src/main.ts",
     "compileMac": "deno compile --target aarch64-apple-darwin --allow-read --allow-env --output ./cli_executableMac ./src/main.ts",
     "compileMacM1": "deno compile --target x86_64-apple-darwin --allow-read --allow-env --output ./cli_executableMacM1 ./src/main.ts",
-    "compileWindows": "deno compile --target x86_64-pc-windows-msvc --allow-read --allow-env --output ./cli_executableWindows ./src/main.ts",
+    "compileWindows": "deno compile --target x86_64-pc-windows-msvc --allow-read --allow-env --output ./cli_executableWindows ./src/main.ts"
   }
 }
 
