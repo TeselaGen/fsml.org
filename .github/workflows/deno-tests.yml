@@ -48,8 +48,9 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./app/cli/cli_executable
+          file: ./app/cli/cli_executable*
           asset_name: cli_executable
           tag: ${{ github.ref }}
           overwrite: true
+          file_glob: true
           body: "Unix/mac compatible cli_executable for the CLI tool"
