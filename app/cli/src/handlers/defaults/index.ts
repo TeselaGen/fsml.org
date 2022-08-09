@@ -1,4 +1,4 @@
-import { lodash } from "@fsml/cli/deps.ts";
+import { set as _set, unset } from "@fsml/cli/deps/lodash.ts";
 import { jsonToText, toStdOut } from "../../utils.ts";
 import {
   editConfigs,
@@ -28,7 +28,7 @@ async function list({ format }: { format?: string } = {}) {
 
 async function set({ key, value }: { key: string; value: string }) {
   const configs = await getConfigs();
-  lodash.set(configs, key, parseConfigValue(value));
+  _set(configs, key, parseConfigValue(value));
   await saveConfigs(configs);
 }
 
@@ -37,7 +37,7 @@ async function reset({ key }: { key: string }) {
 
   // If the key is nested, this might leave the parent childless,
   // we could remove the parent in these cases or not, either way the config is reset.
-  lodash.unset(configs, key);
+  unset(configs, key);
 
   await saveConfigs(configs);
 }

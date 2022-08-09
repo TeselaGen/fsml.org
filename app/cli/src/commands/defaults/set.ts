@@ -1,7 +1,7 @@
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { set } from "@fsml/cli/handlers/defaults/index.ts";
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.positional("key", {
     type: "string",
     describe: "Config key path",
@@ -11,7 +11,7 @@ function builder(yargs: yargs.Yargs) {
   });
 }
 
-function handler(argv: yargs.Arguments) {
+function handler(argv: Arguments) {
   const { key, value } = argv;
   set({ key, value });
 }

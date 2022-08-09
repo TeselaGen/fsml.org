@@ -1,7 +1,7 @@
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { list } from "@fsml/cli/handlers/defaults/index.ts";
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.option("format", {
     type: "string",
     describe: "stdout format for configs",
@@ -9,7 +9,7 @@ function builder(yargs: yargs.Yargs) {
   });
 }
 
-function handler(argv: yargs.Arguments) {
+function handler(argv: Arguments) {
   list({ format: argv.format });
 }
 

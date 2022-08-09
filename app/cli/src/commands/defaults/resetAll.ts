@@ -1,14 +1,14 @@
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { resetAll } from "@fsml/cli/handlers/defaults/index.ts";
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.option("confirm", {
     type: "string",
     describe: "Overrides confirmation prompt",
   });
 }
 
-function handler(argv: yargs.Arguments) {
+function handler(argv: Arguments) {
   resetAll({ confirm: argv.confirm });
 }
 

@@ -1,8 +1,7 @@
-import { ManifestArgs } from "@fsml/cli/types/manifest.ts";
 import { remove, toStdOut } from "../../utils.ts";
 import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 
-async function create(args: ManifestArgs) {
+async function create(args: any) {
   const { type, parser, format, write, pack, author, filepattern } = args;
   const manifest = await generateManifest({
     parser,

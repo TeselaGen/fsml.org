@@ -1,7 +1,5 @@
-import { typebox } from "@fsml/cli/deps.ts";
+import { Static, Type } from "@fsml/cli/deps/typebox.ts";
 import { FormatTypes, PackTypes } from "@fsml/cli/types/enums.ts";
-
-const { Type } = typebox;
 
 // TODO: extend for all missing configs.
 export const Configs = Type.Object({
@@ -14,4 +12,4 @@ export const Configs = Type.Object({
   }),
 });
 
-export type TConfigs = typebox.Static<typeof Configs>;
+export type TConfigs = Static<typeof Configs>;

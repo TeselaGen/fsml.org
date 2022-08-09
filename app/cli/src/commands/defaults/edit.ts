@@ -1,14 +1,14 @@
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { edit } from "@fsml/cli/handlers/defaults/index.ts";
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.option("section", {
     type: "string",
     describe: "Config section",
   });
 }
 
-function handler(argv: yargs.Arguments) {
+function handler(argv: Arguments) {
   edit({ section: argv.section });
 }
 

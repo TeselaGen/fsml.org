@@ -1,5 +1,6 @@
 import { Manifest } from "@fsml/packages/standard/mod.ts";
-import { path, typebox } from "@fsml/cli/deps.ts";
+import { path } from "@fsml/cli/deps/mod.ts";
+import { TypeCompiler, Value } from "@fsml/cli/deps/typebox.ts";
 import {
   TManifest,
   // TManifestData
@@ -18,7 +19,7 @@ export function generateManifest(
     author: string;
     filepattern: string;
   },
-) {
+): any {
   // const {
   //   author,
   //   type,
@@ -27,7 +28,9 @@ export function generateManifest(
   // } = args;
   // const dataFiles = await expandGlobPaths(filepattern);
   // const parsedData = await parseDataFiles({ parser, dataFiles });
-  const manifest = typebox.Value.Create(Manifest);
+
+  //@ts-ignore:next-line : This seems like an issue with typebox types.
+  const manifest = Value.Create(Manifest);
   validateManifest({ manifest: {} });
   return manifest;
 }
@@ -63,8 +66,9 @@ export async function packManifest(
 
 // async function parseDataFiles(args: any) {}
 
-function validateManifest({ manifest }: { manifest: TManifest }) {
-  const ManifestCompiler = typebox.TypeCompiler.Compile(Manifest);
+function validateManifest({ manifest }: any) {
+  //@ts-ignore:next-line : This seems like an issue with typebox types.
+  const ManifestCompiler = TypeCompiler.Compile(Manifest);
   const manifestCheck = ManifestCompiler.Check(manifest);
   // const manifestErrors = [...ManifestCompiler.Errors(manifest)];
   return manifestCheck;

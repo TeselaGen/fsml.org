@@ -1,9 +1,9 @@
+import { Static } from "@fsml/cli/deps/typebox.ts";
 import { Manifest } from "@fsml/packages/standard/mod.ts";
 import { SupplementalData as Data } from "@fsml/packages/standard/manifest/data/supplemental-data.ts";
-import { typebox } from "@fsml/cli/deps.ts";
 
-export type TManifest = typebox.Static<typeof Manifest>;
-export type TManifestData = typebox.Static<typeof Data>;
+export type TManifest = Static<typeof Manifest>;
+export type TManifestData = Static<typeof Data>;
 
 export type ManifestArgs = {
   type?: string;

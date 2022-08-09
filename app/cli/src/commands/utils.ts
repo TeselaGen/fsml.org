@@ -1,7 +1,7 @@
 import { getConfigs } from "@fsml/cli/handlers/defaults/utils.ts";
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 
-async function applyDefaults(yargs: yargs.Yargs) {
+async function applyDefaults(yargs: any) {
   const argv = yargs.argv;
   const model = argv._[0];
   const modelConfigs = await getConfigs({ section: model });
@@ -19,13 +19,13 @@ export function commandFactory({
   subCommands: {
     command: string;
     describe?: string;
-    builder: (yargs: yargs.Yargs) => void;
-    handler: (args: yargs.Arguments) => void;
+    builder: (yargs: any) => void;
+    handler: (args: Arguments) => void;
   }[];
 }) {
   return {
     command,
-    builder: async (yargs: yargs.Yargs) =>
+    builder: async (yargs: any) =>
       (await applyDefaults(yargs)).command([...subCommands]),
     handler: () => {},
   };

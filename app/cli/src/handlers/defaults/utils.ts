@@ -1,6 +1,8 @@
-import { lodash, path, typebox, yaml } from "@fsml/cli/deps.ts";
+import { path, yaml } from "@fsml/cli/deps/mod.ts";
+import { isNil, merge, set } from "@fsml/cli/deps/lodash.ts";
+import { TypeCompiler } from "@fsml/cli/deps/typebox.ts";
 import { jsonToText, toStdOut } from "../../utils.ts";
-import { Configs, TConfigs } from "@fsml/cli/types/configs.ts";
+import { Configs } from "@fsml/cli/types/configs.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const DEFAULT_CONFIG_FILEPATH = path.normalize(
@@ -21,16 +23,16 @@ async function getConfigs({ section }: { section?: string } = {}) {
 
   const configs = await yaml.parse(configsText);
 
-  const finalConfigs = lodash.merge(defaultConfigs, configs || {});
+  const finalConfigs = merge(defaultConfigs, configs || {});
 
   if (section) return finalConfigs[section];
 
   return finalConfigs;
 }
 
-async function saveConfigs(newConfigs: TConfigs) {
-  if (await validateConfigs(newConfigs)) {
-    const newConfigTextFile = await yaml.stringify(newConfigs);
+async function saveConfigs(newConfigs: { [key: string]: any }) {
+  if (validateConfigs(newConfigs)) {
+    const newConfigTextFile = yaml.stringify(newConfigs);
     await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
   }
 }
@@ -39,14 +41,14 @@ function editConfigs({
   configs,
   parentPath,
 }: {
-  configs: TConfigs;
+  configs: { [key: string]: any };
   parentPath?: string;
 }) {
   const configKeys = Object.keys(configs);
   for (const key of configKeys) {
     const currentPath = parentPath ? `${parentPath}${key}` : key;
-    const currentConfig = configs[key];
-    if (!lodash.isNil(currentConfig) && typeof currentConfig === "object") {
+    const currentConfig: string = configs[key];
+    if (!isNil(currentConfig) && typeof currentConfig === "object") {
       const enterSectionConfirmation = confirm(
         `Set defaults for config section '${currentPath}'?`,
       );
@@ -57,14 +59,14 @@ function editConfigs({
       const newValue = parseConfigValue(
         prompt(`${currentPath}:`, currentConfig),
       );
-      lodash.set(configs, key, newValue);
+      set(configs, key, newValue);
     }
   }
 }
 
 // TODO: Switch to using a prompter that allows typing,
 // for instance, https://deno.land/x/ask@1.0.5.
-function parseConfigValue(value: string) {
+function parseConfigValue(value: string | null) {
   switch (value) {
     case "null":
       return null;
@@ -77,15 +79,16 @@ function parseConfigValue(value: string) {
   }
 }
 
-function validateConfigs(configs: TConfigs) {
-  const ConfigsCompiler = typebox.TypeCompiler.Compile(Configs);
+function validateConfigs(configs: { [key: string]: any }) {
+  //@ts-ignore:next-line : This seems like an issue with typebox types.
+  const ConfigsCompiler = TypeCompiler.Compile(Configs);
   const isValid = ConfigsCompiler.Check(configs);
   // NOTE: these config error messages may be too verbose
   // typebox documentation also references ajv for validation: https://deno.land/x/typebox@0.24.27#validation
   const configsErrors = [...ConfigsCompiler.Errors(configs)];
   if (!isValid) {
-    configsErrors.forEach(async (error) =>
-      toStdOut(await jsonToText({ format: "json", content: error }))
+    configsErrors.forEach((error) =>
+      toStdOut(jsonToText({ format: "json", content: error }))
     );
   }
   return isValid;

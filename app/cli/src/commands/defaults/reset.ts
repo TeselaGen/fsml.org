@@ -1,14 +1,14 @@
-import { yargs } from "@fsml/cli/deps.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { reset } from "@fsml/cli/handlers/defaults/index.ts";
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.positional("key", {
     type: "string",
     describe: "Config key path",
   });
 }
 
-function handler(argv: yargs.Arguments) {
+function handler(argv: Arguments) {
   reset({ key: argv.key });
 }
 

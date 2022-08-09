@@ -1,6 +1,5 @@
-import { compress, conversion, fs, path, yaml } from "@fsml/cli/deps.ts";
-
-const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+import { conversion, fs, path, yaml } from "@fsml/cli/deps/mod.ts";
+import compress from "@fsml/cli/deps/compress.ts";
 
 export async function remove(filepath: string, opts?: Deno.RemoveOptions) {
   return await Deno.remove(filepath, opts);
@@ -16,14 +15,14 @@ export async function toFile(args: { filepath: string; content: string }) {
   await Deno.writeTextFile(filepath, content);
 }
 
-export async function jsonToText(
-  args: { format: string; content: string },
-): Promise<string> {
+export function jsonToText(
+  args: { format: string; content: any },
+): string {
   const { format, content } = args;
   let text: string;
   switch (format || "json") {
     case "yaml":
-      text = await yaml.stringify(content);
+      text = yaml.stringify(content);
       break;
 
     case "json":

@@ -1,6 +1,9 @@
-import { yargs } from "@fsml/cli/deps.ts";
-import { FormatTypes, ManifestTypes, PackTypes } from "@fsml/cli/types/enums.ts";
-import { ManifestCreate } from "@fsml/cli/types/manifest.ts";
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
+import {
+  FormatTypes,
+  ManifestTypes,
+  PackTypes,
+} from "@fsml/cli/types/enums.ts";
 import { create } from "@fsml/cli/handlers/manifest/index.ts";
 
 const OPTIONS = {
@@ -47,22 +50,23 @@ const OPTIONS = {
   },
 };
 
-function builder(yargs: yargs.Yargs) {
+function builder(yargs: any) {
   yargs.options(OPTIONS).positional("filepattern", {
     describe: "Glob pattern for files to be included in the manifest.",
     type: "string",
   });
 }
 
-function handler({
-  type,
-  parser,
-  format,
-  write,
-  pack,
-  author,
-  filepattern,
-}: ManifestCreate) {
+function handler(argv: Arguments) {
+  const {
+    type,
+    parser,
+    format,
+    write,
+    pack,
+    author,
+    filepattern,
+  } = argv;
   create({ type, parser, format, write, pack, author, filepattern });
 }
 
