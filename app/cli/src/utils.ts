@@ -16,6 +16,7 @@ export async function toFile(args: { filepath: string; content: string }) {
 }
 
 export function jsonToText(
+  // deno-lint-ignore no-explicit-any
   args: { format: string; content: any },
 ): string {
   const { format, content } = args;

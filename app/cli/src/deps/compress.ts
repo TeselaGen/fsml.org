@@ -8,6 +8,7 @@ import {
 } from "https://deno.land/x/zip@v1.2.3/mod.ts";
 
 const compress: {
+  // deno-lint-ignore no-explicit-any
   [key: string]: { compress: any; uncompress: any };
 } = {
   zip: {

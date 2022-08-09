@@ -1,4 +1,4 @@
-import { Arguments } from "@fsml/cli/deps/yargs.ts";
+import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
 import {
   FormatTypes,
   ManifestTypes,
@@ -50,7 +50,7 @@ const OPTIONS = {
   },
 };
 
-function builder(yargs: any) {
+function builder(yargs: Yargs) {
   yargs.options(OPTIONS).positional("filepattern", {
     describe: "Glob pattern for files to be included in the manifest.",
     type: "string",
