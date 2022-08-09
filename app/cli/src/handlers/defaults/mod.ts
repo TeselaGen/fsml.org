@@ -1,5 +1,6 @@
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { set as _set, unset } from "@fsml/cli/deps/lodash.ts";
-import { jsonToText, toStdOut } from "../../utils.ts";
+import { jsonToText, toStdOut } from "@fsml/cli/utils.ts";
 import {
   editConfigs,
   getConfigs,
@@ -7,15 +8,17 @@ import {
   saveConfigs,
 } from "./utils.ts";
 
-/** CLI Commmands for "defaults" **/
-async function edit({ section }: { section?: string } = {}) {
+/** CLI "defaults" commmand handlers **/
+async function edit(args: Arguments) {
+  const { section } = args;
   const configs = await getConfigs();
   const configsToBeSet = section ? configs[section] : configs;
   editConfigs({ configs: configsToBeSet });
   await saveConfigs(configs);
 }
 
-async function list({ format }: { format?: string } = {}) {
+async function list(args: Arguments) {
+  const { format } = args;
   const configs = await getConfigs();
   const _format = format || configs?.defaults?.format;
 
@@ -26,13 +29,15 @@ async function list({ format }: { format?: string } = {}) {
   await toStdOut(stdout_text);
 }
 
-async function set({ key, value }: { key: string; value: string }) {
+async function set(args: Arguments) {
+  const { key, value } = args;
   const configs = await getConfigs();
   _set(configs, key, parseConfigValue(value));
   await saveConfigs(configs);
 }
 
-async function reset({ key }: { key: string }) {
+async function reset(args: Arguments) {
+  const { key } = args;
   const configs = await getConfigs();
 
   // If the key is nested, this might leave the parent childless,
@@ -42,9 +47,8 @@ async function reset({ key }: { key: string }) {
   await saveConfigs(configs);
 }
 
-async function resetAll({
-  confirm: confirmOverride,
-}: { confirm?: string } = {}) {
+async function resetAll(args: Arguments) {
+  const {confirm: confirmOverride} = args
   const _confirmed = confirmOverride ||
     confirm("Do you confirm reseting all defaults?");
   if (_confirmed) {

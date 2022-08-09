@@ -1,10 +1,10 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
+import { Yargs } from "@fsml/cli/deps/yargs.ts";
 import {
   FormatTypes,
   ManifestTypes,
   PackTypes,
 } from "@fsml/cli/types/enums.ts";
-import { create } from "@fsml/cli/handlers/manifest/index.ts";
+import { create } from "@fsml/cli/handlers/manifest/mod.ts";
 
 const OPTIONS = {
   type: {
@@ -57,22 +57,9 @@ function builder(yargs: Yargs) {
   });
 }
 
-function handler(argv: Arguments) {
-  const {
-    type,
-    parser,
-    format,
-    write,
-    pack,
-    author,
-    filepattern,
-  } = argv;
-  create({ type, parser, format, write, pack, author, filepattern });
-}
-
 export default {
   command: "create <filepattern>",
   describe: "Creates an FSML manifest",
   builder,
-  handler,
+  handler: create,
 };

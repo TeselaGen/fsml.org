@@ -1,5 +1,5 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
-import { resetAll } from "@fsml/cli/handlers/defaults/index.ts";
+import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { resetAll } from "@fsml/cli/handlers/defaults/mod.ts";
 
 function builder(yargs: Yargs) {
   yargs.option("confirm", {
@@ -8,13 +8,9 @@ function builder(yargs: Yargs) {
   });
 }
 
-function handler(argv: Arguments) {
-  resetAll({ confirm: argv.confirm });
-}
-
 export default {
   command: "reset-all",
   describe: "Resets the value of all configs.",
   builder,
-  handler,
+  handler: resetAll,
 };

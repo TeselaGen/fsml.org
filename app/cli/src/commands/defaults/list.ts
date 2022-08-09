@@ -1,5 +1,5 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
-import { list } from "@fsml/cli/handlers/defaults/index.ts";
+import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { list } from "@fsml/cli/handlers/defaults/mod.ts";
 
 function builder(yargs: Yargs) {
   yargs.option("format", {
@@ -9,13 +9,9 @@ function builder(yargs: Yargs) {
   });
 }
 
-function handler(argv: Arguments) {
-  list({ format: argv.format });
-}
-
 export default {
   command: "list",
   describe: "Lists default configs",
   builder,
-  handler,
+  handler: list,
 };

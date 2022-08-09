@@ -1,5 +1,5 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
-import { set } from "@fsml/cli/handlers/defaults/index.ts";
+import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { set } from "@fsml/cli/handlers/defaults/mod.ts";
 
 function builder(yargs: Yargs) {
   yargs.positional("key", {
@@ -11,14 +11,9 @@ function builder(yargs: Yargs) {
   });
 }
 
-function handler(argv: Arguments) {
-  const { key, value } = argv;
-  set({ key, value });
-}
-
 export default {
   command: "set <key> <value>",
   describe: "Sets a new default value for a config key",
   builder,
-  handler,
+  handler: set,
 };

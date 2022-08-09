@@ -1,5 +1,5 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
-import { edit } from "@fsml/cli/handlers/defaults/index.ts";
+import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { edit } from "@fsml/cli/handlers/defaults/mod.ts";
 
 function builder(yargs: Yargs) {
   yargs.option("section", {
@@ -7,14 +7,9 @@ function builder(yargs: Yargs) {
     describe: "Config section",
   });
 }
-
-function handler(argv: Arguments) {
-  edit({ section: argv.section });
-}
-
 export default {
   command: "edit",
   describe: "Interactive mode to edit config defaults",
   builder,
-  handler,
+  handler: edit,
 };

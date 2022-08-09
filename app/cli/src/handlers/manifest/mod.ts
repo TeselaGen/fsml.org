@@ -1,7 +1,10 @@
+import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { remove, toStdOut } from "../../utils.ts";
 import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 
-async function create(args: any) {
+/** CLI "manifest" commmand handlers **/
+
+async function create(args: Arguments) {
   const { type, parser, format, write, pack, author, filepattern } = args;
   const manifest = await generateManifest({
     parser,
@@ -29,7 +32,9 @@ async function create(args: any) {
 
 // async function fetch(args: ManifestArgs) {}
 
-// async function _import(args: ManifestArgs) {}
+function _import(args: Arguments) {
+  const { to, from } = args;
+}
 
 // async function describe(args: ManifestArgs) {}
 
@@ -45,7 +50,7 @@ async function create(args: any) {
 
 export {
   // _export as export,
-  // _import as import,
+  _import as import,
   create,
   // describe,
   // fetch,
