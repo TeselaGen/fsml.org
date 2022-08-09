@@ -1,5 +1,5 @@
-import { yargs } from "@cli/deps.ts";
-import { reset } from "@cli/handlers/defaults/index.ts";
+import { yargs } from "@fsml/cli/deps.ts";
+import { reset } from "@fsml/cli/handlers/defaults/index.ts";
 
 function builder(yargs: yargs.Yargs) {
   yargs.positional("key", {

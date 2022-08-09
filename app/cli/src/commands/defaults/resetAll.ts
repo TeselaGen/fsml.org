@@ -1,5 +1,5 @@
-import { yargs } from "@cli/deps.ts";
-import { resetAll } from "@cli/handlers/defaults/index.ts";
+import { yargs } from "@fsml/cli/deps.ts";
+import { resetAll } from "@fsml/cli/handlers/defaults/index.ts";
 
 function builder(yargs: yargs.Yargs) {
   yargs.option("confirm", {

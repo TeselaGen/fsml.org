@@ -1,4 +1,4 @@
-import { compress, conversion, fs, path, yaml } from "@cli/deps.ts";
+import { compress, conversion, fs, path, yaml } from "@fsml/cli/deps.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 

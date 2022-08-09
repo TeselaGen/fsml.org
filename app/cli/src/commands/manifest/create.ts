@@ -1,7 +1,7 @@
-import { yargs } from "@cli/deps.ts";
-import { FormatTypes, ManifestTypes, PackTypes } from "@cli/types/enums.ts";
-import { ManifestCreate } from "@cli/types/manifest.ts";
-import { create } from "@cli/handlers/manifest/index.ts";
+import { yargs } from "@fsml/cli/deps.ts";
+import { FormatTypes, ManifestTypes, PackTypes } from "@fsml/cli/types/enums.ts";
+import { ManifestCreate } from "@fsml/cli/types/manifest.ts";
+import { create } from "@fsml/cli/handlers/manifest/index.ts";
 
 const OPTIONS = {
   type: {

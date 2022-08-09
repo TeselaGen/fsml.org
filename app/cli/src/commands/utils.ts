@@ -1,5 +1,5 @@
-import { getConfigs } from "@cli/handlers/defaults/utils.ts";
-import { yargs } from "@cli/deps.ts";
+import { getConfigs } from "@fsml/cli/handlers/defaults/utils.ts";
+import { yargs } from "@fsml/cli/deps.ts";
 
 async function applyDefaults(yargs: yargs.Yargs) {
   const argv = yargs.argv;

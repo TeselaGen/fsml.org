@@ -1,17 +1,20 @@
 {
   "folders": [
-		{
-			"path": "../fsml.org"
-		},
-		{
-			"path": "app/cli"
-		},
-		{
-			"path": "packages/standard"
-		}
-	],
-	"settings": {
-		"deno.enable": true,
-		"deno.unstable": true
-	}
+    {
+      "path": "../fsml.org"
+    },
+    {
+      "name": "cli",
+      "path": "app/cli"
+    },
+    {
+      "name": "standard",
+      "path": "packages/standard"
+    }
+  ],
+  "settings": {
+    "deno.enable": true,
+    "deno.unstable": true,
+    "deno.importMap": "./import_map.json"
+  }
 }

@@ -1,9 +1,0 @@
-{
-  "imports": {
-    "@cli/": "./src/",
-    "@cli/types/": "./src/types/",
-    "@cli/handlers/": "./src/handlers/",
-    "@cli/plugins/": "./src/plugins/",
-    "@fsml.org/standard/": "../../packages/standard/src/"
-  }
-}

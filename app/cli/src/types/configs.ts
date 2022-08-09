@@ -1,5 +1,5 @@
-import { typebox } from "@cli/deps.ts";
-import { FormatTypes, PackTypes } from "@cli/types/enums.ts";
+import { typebox } from "@fsml/cli/deps.ts";
+import { FormatTypes, PackTypes } from "@fsml/cli/types/enums.ts";
 
 const { Type } = typebox;
 
