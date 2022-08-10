@@ -3,11 +3,10 @@ defaults:
   format: 'yaml'
 
 manifest:
-  # common maniftes defaults
   author: null
   format: 'yaml'
-  write: './fsml-manifest' # defaults to writing the manifest relative to where the command was called
-  pack: null # defaults to sending the output to stdout
+  write: null # defaults to sending the manifest to stdout.
+  pack: null
   unpack: false # default to not unpacking the manifest after a fetch
 
   # describe manifest defaults

@@ -1,6 +1,6 @@
 import { Type, Static } from '../../deps/typebox.ts';
-import FileData from './file/index.ts';
-import TabularData from './tabular/index.ts';
+import FileData from './file-data.ts';
+import TabularData from './tabular/mod.ts';
 
 export const SupplementalData = Type.Object({
   type: Type.Literal('data'),
@@ -10,4 +10,6 @@ export const SupplementalData = Type.Object({
   // suplemental data sections.
 });
 
-export type SupplementalData = Static<typeof SupplementalData>;
+export type TSupplementalData = Static<typeof SupplementalData>;
+export default SupplementalData
+

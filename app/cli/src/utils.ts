@@ -1,8 +1,14 @@
+import { TSchema, Value } from "@fsml/cli/deps/typebox.ts";
 import { conversion, fs, path, yaml } from "@fsml/cli/deps/mod.ts";
 import compress from "@fsml/cli/deps/compress.ts";
 
 export async function remove(filepath: string, opts?: Deno.RemoveOptions) {
   return await Deno.remove(filepath, opts);
+}
+
+export async function read(filepath: string) {
+  const text = await Deno.readTextFile(filepath);
+  return text;
 }
 
 export async function toStdOut(str: string) {
@@ -17,7 +23,7 @@ export async function toFile(args: { filepath: string; content: string }) {
 
 export function jsonToText(
   // deno-lint-ignore no-explicit-any
-  args: { format: string; content: any },
+  args: { format?: string; content: any },
 ): string {
   const { format, content } = args;
   let text: string;
@@ -49,21 +55,21 @@ export function jsonToText(
 }
 
 export async function packFiles(
-  args: { pack: string; filepaths: string[]; writePath: string },
+  args: { pack: string; filepaths: string[]; write: string },
 ) {
-  const { pack, filepaths, writePath } = args;
+  const { pack, filepaths, write } = args;
   switch (pack) {
     case "zip":
       return await compressFiles({
         compressor: "zip",
         filepaths,
-        writePath,
+        write,
         opts: { overwrite: true },
       });
     case "tar":
-      return await compressFiles({ compressor: "tar", filepaths, writePath });
+      return await compressFiles({ compressor: "tar", filepaths, write });
     case "tgz":
-      return await compressFiles({ compressor: "tgz", filepaths, writePath });
+      return await compressFiles({ compressor: "tgz", filepaths, write });
     default:
       console.error(`Compressor ${pack} not implemented.`);
       break;
@@ -78,22 +84,26 @@ export async function expandGlobPaths(filepattern: string) {
   return filepaths;
 }
 
+export function createValueForType(type: TSchema) {
+  //@ts-ignore:next-line : This seems like an issue with typebox types.
+  return Value.Create(type);
+}
 /**
  * Uses one of the available compressors to compress 'filepaths'
- * into 'writePath'
+ * into the 'write' path.
  */
 async function compressFiles(
   args: {
     compressor: string;
     filepaths: string[];
-    writePath: string;
+    write: string;
     opts?: { overwrite: boolean };
   },
 ) {
-  const { compressor, filepaths, writePath, opts } = args;
+  const { compressor, filepaths, write, opts } = args;
   // archivePath is the absolute path where the files to be compressed will be put.
-  // 'writePath' is relative to the working directory.
-  const archivePath = path.join(Deno.cwd(), writePath);
+  // 'write' is relative to the working directory.
+  const archivePath = path.join(Deno.cwd(), write);
 
   // archiveName: name of the compressed file
   const archiveName = `${archivePath}.${compressor}`;

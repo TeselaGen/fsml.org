@@ -1,12 +1,12 @@
-import { Type, Static } from '../../../deps/typebox.ts';
-import { DataTypesEnum } from "../types.ts"
-import Row from './row.ts';
-import Column from './column/index.ts';
-import FileData from "../file/index.ts"
+import { Static, Type } from "../../../deps/typebox.ts";
+import { DataTypesEnum } from "../types.ts";
+import Row from "./row.ts";
+import Column from "./column/mod.ts";
+import FileData from "../file-data.ts";
 
 // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
 
-const TabularData = Type.Object({
+export const TabularData = Type.Object({
   type: Type.Literal(DataTypesEnum.TABULAR),
   index: Type.Number(),
   name: Type.String(),
@@ -40,8 +40,9 @@ const TabularData = Type.Object({
     /**
      * row separator/delimiter.
      */
-    delimiter: Type.String()
-  }))
+    delimiter: Type.String(),
+  })),
 });
 
+export type TTabularData = Static<typeof TabularData>;
 export default TabularData;
