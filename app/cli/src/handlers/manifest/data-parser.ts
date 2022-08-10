@@ -1,7 +1,7 @@
 /** NOTE: We might move this into a monorepo "package" and maybe refactor it so it follows
  * whatever interface we end up designing for data parsers. **/
 import { PluginTypes } from "@fsml/cli/types/enums.ts";
-import { createValueForType } from "@fsml/cli/utils.ts";
+import { createValueForType } from "@fsml/packages/utils/mod.ts";
 import {
   TabularData,
   TTabularData,

@@ -1,7 +1,7 @@
 import { uuid } from "@fsml/cli/deps/mod.ts";
 import { set } from "@fsml/cli/deps/lodash.ts";
 import { ManifestTypes } from "@fsml/cli/types/enums.ts";
-import { createValueForType, jsonToText, read } from "@fsml/cli/utils.ts";
+import { createValueForType, jsonToText, read } from "@fsml/packages/utils/mod.ts";
 import { selectParser } from "./utils.ts";
 
 import {

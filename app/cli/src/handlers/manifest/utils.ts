@@ -7,7 +7,7 @@ import {
   remove,
   toFile,
   toStdOut,
-} from "@fsml/cli/utils.ts";
+} from "@fsml/packages/utils/mod.ts";
 import { DataFileFormats, ManifestTypes } from "@fsml/cli/types/enums.ts";
 import {
   Manifest,

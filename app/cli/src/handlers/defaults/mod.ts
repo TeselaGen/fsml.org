@@ -1,6 +1,6 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { set as _set, unset } from "@fsml/cli/deps/lodash.ts";
-import { jsonToText, toStdOut } from "@fsml/cli/utils.ts";
+import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
 import {
   editConfigs,
   getConfigs,

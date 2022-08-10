@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "start": "deno run --allow-read --allow-env src/main.ts",
+    "fsml": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run src/mod.ts",
     "test": "deno test --coverage=./cov_profile/ --allow-read --allow-env",
     "coverage": "deno coverage ./cov_profile --lcov --output=cov_profile.lcov"
   },

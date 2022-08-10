@@ -1,7 +1,7 @@
 import { path, yaml } from "@fsml/cli/deps/mod.ts";
 import { isNil, merge, set } from "@fsml/cli/deps/lodash.ts";
 import { TypeCompiler } from "@fsml/cli/deps/typebox.ts";
-import { jsonToText, toStdOut } from "@fsml/cli/utils.ts";
+import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
 import { Configs } from "@fsml/cli/types/configs.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));

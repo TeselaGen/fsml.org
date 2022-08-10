@@ -6,6 +6,7 @@
     "@fsml/cli/plugins/": "./app/cli/src/plugins/",
 
     "@fsml/packages/standard/": "./packages/standard/src/",
-    "@fsml/packages/standard/data/": "./packages/standard/src/manifest/data/"
+    "@fsml/packages/standard/data/": "./packages/standard/src/manifest/data/",
+    "@fsml/packages/utils/": "./packages/utils/src/"
   }
 }

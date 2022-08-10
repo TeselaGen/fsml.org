@@ -1,5 +1,5 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
-import { jsonToText, remove, toStdOut } from "@fsml/cli/utils.ts";
+import { jsonToText, remove, toStdOut } from "@fsml/packages/utils/mod.ts";
 import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 
 /** CLI "manifest" commmand handlers **/
