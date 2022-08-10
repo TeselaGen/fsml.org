@@ -48,7 +48,7 @@ async function reset(args: Arguments) {
 }
 
 async function resetAll(args: Arguments) {
-  const {confirm: confirmOverride} = args
+  const { confirm: confirmOverride } = args;
   const _confirmed = confirmOverride ||
     confirm("Do you confirm reseting all defaults?");
   if (_confirmed) {

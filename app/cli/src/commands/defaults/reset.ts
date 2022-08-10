@@ -8,7 +8,6 @@ function builder(yargs: Yargs) {
   });
 }
 
-
 export default {
   command: "reset <key>",
   describe: "Resets the value of a config key.",
