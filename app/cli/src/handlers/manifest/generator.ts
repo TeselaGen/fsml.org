@@ -13,6 +13,10 @@ import {
   TManifest,
 } from "@fsml/packages/standard/manifest/manifest.ts";
 import {
+  Provenance,
+  TProvenance,
+} from "@fsml/packages/standard/manifest/provenance.ts";
+import {
   SupplementalData,
   TSupplementalData,
 } from "@fsml/packages/standard/manifest/data/supplemental-data.ts";
@@ -38,9 +42,10 @@ const ManifestGenerator = (
   // Make an instance of the manifest if none is passed.
   const manifest = _manifest || <TManifest> createValueForType(Manifest);
 
-  function author(author: string): TManifest {
-    set(manifest, "identifierAuthority", author);
-    return manifest;
+  function author(author: string): TProvenance {
+    const provenanceObject = <TProvenance> createValueForType(Provenance);
+    set(provenanceObject, "author", author);
+    return provenanceObject;
   }
 
   /**
@@ -58,7 +63,7 @@ const ManifestGenerator = (
   async function data(
     filepath: string,
     parser?: string | string[],
-  ): Promise<TManifest> {
+  ): Promise<TSupplementalData> {
     const parserPlugin = await selectParser(filepath, parser);
 
     const SupplementalDataObject = <TSupplementalData> (
@@ -81,9 +86,7 @@ const ManifestGenerator = (
     }
     SupplementalDataObject.data.push(dataObject);
 
-    set(manifest, "supplementalInfo", SupplementalDataObject);
-
-    return manifest;
+    return SupplementalDataObject;
   }
 
   async function generate(args: {
@@ -92,9 +95,14 @@ const ManifestGenerator = (
     parser: string | string[];
   }): Promise<TManifest> {
     const { author: _author, filepath, parser } = args;
-    author(_author);
-    await data(filepath, parser);
+    const provenanceObject = author(_author);
+    const SupplementalDataObject = await data(filepath, parser);
+
+    set(SupplementalDataObject, "provenance", provenanceObject);
+    set(manifest, "supplementalInfo", SupplementalDataObject);
+
     await id();
+
     return manifest;
   }
 
