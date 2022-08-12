@@ -8,12 +8,12 @@ import {
   TTabularData,
 } from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
 import {
+  Class,
   Column,
   Kind,
-  Class,
+  TClass,
   TColumn,
   TKind,
-  TClass
 } from "@fsml/packages/standard/manifest/data/tabular/column/mod.ts";
 import { IParser } from "@fsml/cli/handlers/plugins/utils.ts";
 
