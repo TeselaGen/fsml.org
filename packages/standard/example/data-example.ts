@@ -72,7 +72,7 @@ const SupplementalDataExample = {
               name: 'hours',
               // dimension could potentially be optional at the expense of a lower utility score
               // OR if there's another column definition referencing this one.
-              dimension: { type: 'DIMENSION', type: 'TIME' },
+              dimension: { type: 'DIMENSION', dimensionType: 'TIME' },
             },
           },
           // NOTE: notice here how the refdim units are specific to each value in the column
@@ -86,7 +86,7 @@ const SupplementalDataExample = {
             class: {
               type: 'UNIT',
               value: 'hours',
-              dimension: { type: 'DIMENSION', type: 'TIME' },
+              dimension: { type: 'DIMENSION', dimensionType: 'TIME' },
               // reference to this unit's values.
               valueReference: 1,
             },
@@ -104,11 +104,11 @@ const SupplementalDataExample = {
             class: {
               type: 'DESCRIPTOR',
               name: 'Bioreactor Volume',
-              dimension: { type: 'DIMENSION', type: 'VOLUME' },
+              dimension: { type: 'DIMENSION', dimensionType: 'VOLUME' },
               unit: {
                 type: 'UNIT',
                 value: 'L',
-                dimension: { type: 'DIMENSION', type: 'VOLUME' },
+                dimension: { type: 'DIMENSION', dimensionType: 'VOLUME' },
               },
             },
           },
@@ -128,11 +128,11 @@ const SupplementalDataExample = {
               // dimension could potentially be option at the expense of a lower utility score
               // plus in this case, the measurement has a column-wide unit applied,
               // and units already come with a dimension...
-              dimension: { type: 'DIMENSION', type: 'CONCENTRATION' },
+              dimension: { type: 'DIMENSION', dimensionType: 'CONCENTRATION' },
               unit: {
                 type: 'UNIT',
                 value: 'hours',
-                dimension: { type: 'DIMENSION', type: 'CONCENTRATION' },
+                dimension: { type: 'DIMENSION', dimensionType: 'CONCENTRATION' },
               },
             },
           },
