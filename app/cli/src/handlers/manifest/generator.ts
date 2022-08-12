@@ -1,7 +1,11 @@
 import { uuid } from "@fsml/cli/deps/mod.ts";
 import { set } from "@fsml/cli/deps/lodash.ts";
 import { ManifestTypes } from "@fsml/cli/types/enums.ts";
-import { createValueForType, jsonToText, read } from "@fsml/packages/utils/mod.ts";
+import {
+  createValueForType,
+  jsonToText,
+  read,
+} from "@fsml/packages/utils/mod.ts";
 import { selectParser } from "./utils.ts";
 
 import {
@@ -32,9 +36,7 @@ const ManifestGenerator = (
   _opts?: ManifestGeneratorOpts,
 ) => {
   // Make an instance of the manifest if none is passed.
-  const manifest = _manifest || <TManifest> createValueForType(
-    Manifest,
-  );
+  const manifest = _manifest || <TManifest> createValueForType(Manifest);
 
   function author(author: string): TManifest {
     set(manifest, "identifierAuthority", author);
@@ -59,8 +61,8 @@ const ManifestGenerator = (
   ): Promise<TManifest> {
     const parserPlugin = await selectParser(filepath, parser);
 
-    const SupplementalDataObject = <TSupplementalData> createValueForType(
-      SupplementalData,
+    const SupplementalDataObject = <TSupplementalData> (
+      createValueForType(SupplementalData)
     );
 
     let dataObject: TFileData | TTabularData;
@@ -70,11 +72,9 @@ const ManifestGenerator = (
     if (!parserPlugin) {
       dataObject = <TFileData> createValueForType(FileData);
     } else {
-      const result = await parserPlugin.parse(
-        filepath,
-      );
-      dataObject =
-        (result.data || createValueForType(TabularData)) as TTabularData;
+      const result = await parserPlugin.parse(filepath);
+      dataObject = (result.data ||
+        createValueForType(TabularData)) as TTabularData;
       if (!result.data && result.filepath) {
         dataObject = JSON.parse(await read(result.filepath));
       }
@@ -86,9 +86,11 @@ const ManifestGenerator = (
     return manifest;
   }
 
-  async function generate(
-    args: { author: string; filepath: string; parser: string | string[] },
-  ): Promise<TManifest> {
+  async function generate(args: {
+    author: string;
+    filepath: string;
+    parser: string | string[];
+  }): Promise<TManifest> {
     const { author: _author, filepath, parser } = args;
     author(_author);
     await data(filepath, parser);
