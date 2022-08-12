@@ -5,7 +5,7 @@ import {
 
 export interface IPlugin {
   // Design plugin interface. The current plan is to
-  // make them npm packages that can be dynamically imported in deno.
+  // make them publishable packages that can be dynamically imported in deno.
   name: string;
   type: PluginTypes;
 }
