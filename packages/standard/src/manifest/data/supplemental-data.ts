@@ -10,6 +10,7 @@ export const SupplementalData = Type.Object({
   data: Type.Array(Type.Union([FileData, TabularData])),
   // suplemental data sections.
 
+  // NOTE: This could be moved up a level.
   provenance: Type.Optional(Provenance),
 });
 

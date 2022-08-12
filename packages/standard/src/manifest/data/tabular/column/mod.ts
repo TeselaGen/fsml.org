@@ -10,7 +10,33 @@ import CategoricType from "../valueTypes/categoric.ts";
 import TextType from "../valueTypes/text.ts";
 import DateType from "../valueTypes/date.ts";
 
-export const ColumnDescription = Type.Object({
+export const Class = Type.Optional(
+  Type.Union([
+    Subject,
+    ReferenceDimension,
+    Measurement,
+    Descriptor,
+    Unit,
+  ]),
+);
+
+export const Kind = Type.Optional(
+  Type.Object({
+    /**
+     * The column's kind, any of ColumnKindEnum.
+     */
+    type: Type.Enum(ColumnKindEnum),
+    /**
+     * The column class (e.g, measurement, descriptor, etc.).
+     *
+     * Classifying columns give them a more detailed description
+     * of its meaning.
+     */
+    class: Class,
+  }),
+);
+
+export const Column = Type.Object({
   /**
    * Index of the column this metadata object is referring to.
    */
@@ -33,30 +59,11 @@ export const ColumnDescription = Type.Object({
    * The column's kind gives it a context
    * or meaning.
    */
-  kind: Type.Optional(
-    Type.Object({
-      /**
-       * The column's kind, any of ColumnKindEnum.
-       */
-      type: Type.Optional(Type.Enum(ColumnKindEnum)),
-      /**
-       * The column class (e.g, measurement, descriptor, etc.).
-       *
-       * Classifying columns give them a more detailed description
-       * of its meaning.
-       */
-      class: Type.Optional(
-        Type.Union([
-          Subject,
-          ReferenceDimension,
-          Measurement,
-          Descriptor,
-          Unit,
-        ]),
-      ),
-    }),
-  ),
+  kind: Kind,
 });
 
-export default ColumnDescription;
-export type TColumn = Static<typeof ColumnDescription>;
+export default Column;
+
+export type TColumn = Static<typeof Column>;
+export type TKind = Static<typeof Kind>;
+export type TClass = Static<typeof Class>;
