@@ -3,7 +3,7 @@ defaults:
   format: 'yaml'
 
 manifest:
-  author: null
+  # author: null
   format: 'yaml'
   write: null # defaults to sending the manifest to stdout.
   pack: null

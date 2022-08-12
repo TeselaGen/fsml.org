@@ -181,6 +181,7 @@ function validateManifest(manifest: TManifest): boolean {
   const isValid = ManifestCompiler.Check(manifest);
   const manifestErrors = [...ManifestCompiler.Errors(manifest)];
   if (!isValid) {
+    toStdOut("Error in Manifest: \n")
     manifestErrors.forEach((error) =>
       // NOTE: Maybe extend it so that these errors can be written
       // into a log file.

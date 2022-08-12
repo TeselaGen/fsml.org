@@ -20,7 +20,7 @@ const DefaultDataParser: IParser = {
 
   isApplicable: async (filepath: string) => {
     console.info(`Checking if ${filepath} can be parsed...`);
-    return await Promise.resolve(true);
+    return await Promise.resolve(false);
   },
 };
 

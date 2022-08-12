@@ -1,4 +1,4 @@
-import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { Options, Yargs } from "@fsml/cli/deps/yargs.ts";
 import {
   FormatTypes,
   ManifestTypes,
@@ -6,7 +6,7 @@ import {
 } from "@fsml/cli/types/enums.ts";
 import { create } from "@fsml/cli/handlers/manifest/mod.ts";
 
-const OPTIONS = {
+const OPTIONS: { [key: string]: Options } = {
   type: {
     alias: "t",
     type: "string",
