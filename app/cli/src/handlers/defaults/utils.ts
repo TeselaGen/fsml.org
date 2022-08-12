@@ -1,8 +1,8 @@
 import { path, yaml } from "@fsml/cli/deps/mod.ts";
-import { isNil, merge, set } from "@fsml/cli/deps/lodash.ts";
+import { merge, set } from "@fsml/cli/deps/lodash.ts";
 import { TypeCompiler } from "@fsml/cli/deps/typebox.ts";
 import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
-import { Configs } from "@fsml/cli/types/configs.ts";
+import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const DEFAULT_CONFIG_FILEPATH = path.normalize(
@@ -30,7 +30,9 @@ async function getConfigs({ section }: { section?: string } = {}) {
   return finalConfigs;
 }
 
-async function saveConfigs(newConfigs: { [key: string]: any }) {
+async function saveConfigs(
+  newConfigs: Partial<TConfigs>,
+) {
   if (validateConfigs(newConfigs)) {
     const newConfigTextFile = yaml.stringify(newConfigs);
     await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
@@ -41,14 +43,12 @@ function editConfigs({
   configs,
   parentPath,
 }: {
-  configs: { [key: string]: any };
+  configs: { [key: string]: TConfigValue };
   parentPath?: string;
 }) {
-  const configKeys = Object.keys(configs);
-  for (const key of configKeys) {
+  for (const [key, currentConfig] of Object.entries(configs)) {
     const currentPath = parentPath ? `${parentPath}${key}` : key;
-    const currentConfig: string = configs[key];
-    if (!isNil(currentConfig) && typeof currentConfig === "object") {
+    if (typeof currentConfig === "object" && currentConfig !== null) {
       const enterSectionConfirmation = confirm(
         `Set defaults for config section '${currentPath}'?`,
       );
@@ -57,7 +57,7 @@ function editConfigs({
       } else continue;
     } else {
       const newValue = parseConfigValue(
-        prompt(`${currentPath}:`, currentConfig),
+        prompt(`${currentPath}:`, currentConfig?.toString()),
       );
       set(configs, key, newValue);
     }
@@ -79,7 +79,7 @@ function parseConfigValue(value: string | null) {
   }
 }
 
-function validateConfigs(configs: { [key: string]: any }) {
+function validateConfigs(configs: Partial<TConfigs>) {
   //@ts-ignore:next-line : This seems like an issue with typebox types.
   const ConfigsCompiler = TypeCompiler.Compile(Configs);
   const isValid = ConfigsCompiler.Check(configs);

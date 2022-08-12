@@ -22,3 +22,12 @@ export const Configs = Type.Object({
 export type TManifestConfigs = Static<typeof ManifestConfigs>;
 export type TDefaultsConfigs = Static<typeof DefaultsConfigs>;
 export type TConfigs = Static<typeof Configs>;
+
+// TODO: Once all configs are defined
+// replace this generic config value with a more specific one.
+export type TConfigValue =
+  | string
+  | null
+  | number
+  | boolean
+  | { [x: string]: TConfigValue };

@@ -150,12 +150,15 @@ async function getDataFilepath(
   let isPack = false;
   if (path.isGlob(filepattern)) {
     const filepaths = await expandGlobPaths(filepattern);
-    const dataFilepaths = filepaths.filter((filepath) =>
-      (<any> Object).values(DataFileFormats).includes(
+    const dataFilepaths = filepaths.filter((filepath) => {
+      const acceptableDataFileFormats: string[] = Object.values(
+        DataFileFormats,
+      );
+      acceptableDataFileFormats.includes(
         // extname returns extension with leading period
         path.extname(filepath).slice(1),
-      )
-    );
+      );
+    });
     if (dataFilepaths.length > 1) {
       datafilepath = Deno.cwd();
       isPack = true;
