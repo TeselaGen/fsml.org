@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
+    paths:
+      - "website/**"
+      - "packages/standard/src/**" # for schema generation
     branches:
       - main
     # Review gh actions docs if you want to further define triggers, paths, etc
@@ -13,6 +16,8 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
+      - name: Generate Schema
+        uses: ./.github/actions/generate-schema-action
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:

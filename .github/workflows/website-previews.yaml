@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "website/**"
+      - "packages/standard/src/**" # for schema generation
     types:
       - opened
       - reopened
@@ -17,6 +18,8 @@ jobs:
   deploy-preview:
     runs-on: ubuntu-20.04
     steps:
+      - name: Generate Schema
+        uses: ./.github/actions/generate-schema-action
       - name: Checkout
         uses: actions/checkout@v2
 

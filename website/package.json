@@ -20,8 +20,10 @@
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.21",
     "@docusaurus/preset-classic": "2.0.0-beta.21",
+    "@material-ui/core": "^4.12.4",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
+    "material-ui-json-schema-viewer": "^2.0.0",
     "prism-react-renderer": "^1.3.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

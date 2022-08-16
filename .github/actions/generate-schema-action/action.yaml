@@ -1,0 +1,12 @@
+name: Generate Website Schema
+description: >
+  Generate website schema and move to website folder
+
+runs:
+  using: composite
+  steps:
+    - name: Generate and copy schema to website
+      run: |
+        sh packages/standard/generate-schema.sh
+        cp packages/standard/fsml-schema.json website/src/components/JsonSchemaViewer/fsml.schema.json
+      shell: bash
