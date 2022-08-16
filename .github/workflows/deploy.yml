@@ -16,13 +16,13 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Schema
-        uses: ./.github/actions/generate-schema-action
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: yarn
+      - name: Generate Schema
+        uses: ./.github/actions/generate-schema-action
 
       - name: Install dependencies
         run: |
