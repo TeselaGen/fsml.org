@@ -10,7 +10,7 @@ runs:
       with:
         deno-version: ${{ matrix.deno-version }}
     - name: Generate schema
-      run: ./packages/standard/generate-schema
+      run: packages/standard/generate-schema.sh
       shell: bash
     - name: copy schema to website
       run: cp packages/standard/fsml-schema.json website/src/components/JsonSchemaViewer/fsml.schema.json
