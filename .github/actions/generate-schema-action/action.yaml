@@ -9,11 +9,8 @@ runs:
       uses: denolib/setup-deno@v2
       with:
         deno-version: ${{ matrix.deno-version }}
-    - name: Generate schema
+    - name: Generate and copy schema to website
       run: |
-        chmod +x packages/standard/generate-schema.sh
         sh packages/standard/generate-schema.sh
-      shell: bash
-    - name: copy schema to website
-      run: cp packages/standard/fsml-schema.json website/src/components/JsonSchemaViewer/fsml.schema.json
+        cp packages/standard/fsml-schema.json website/src/components/JsonSchemaViewer/fsml.schema.json
       shell: bash
