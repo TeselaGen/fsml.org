@@ -1,5 +1,5 @@
 export enum DataTypesEnum {
-  FILE = 'FILE'
+  FILE = 'FILE',
   TABULAR = 'TABULAR'
 }
 

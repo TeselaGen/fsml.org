@@ -1,1 +1,1 @@
-export * from 'https://deno.land/x/typebox@0.23.4/src/typebox.ts';
+export * from 'https://deno.land/x/typebox@0.24.27/src/typebox.ts';
