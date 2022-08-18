@@ -1,0 +1,22 @@
+defaults:
+  filepath: ./configs.yaml
+  format: 'yaml'
+
+manifest:
+  author: null
+  format: 'yaml'
+  write: null # defaults to sending the manifest to stdout.
+  pack: null
+  unpack: false # default to not unpacking the manifest after a fetch
+
+  # describe manifest defaults
+  summary: false
+
+plugin:
+  cache: false # defaults to not caching plugins. Plugins will only be downloaded when used
+  sort: 'asc'
+  latest: true # defaults to always use the latest version for install/updagre commands
+
+registry:
+  platform: 'git'
+  properties: ''
