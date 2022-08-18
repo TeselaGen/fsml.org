@@ -173,8 +173,6 @@ async function getDataFilepath(
   return { filepath: datafilepath, isPack };
 }
 
-// async function parseDataFiles(args: any) {}
-
 function validateManifest(manifest: TManifest): boolean {
   //@ts-ignore:next-line : This seems like an issue with typebox types.
   const ManifestCompiler = TypeCompiler.Compile(Manifest);
@@ -190,3 +188,7 @@ function validateManifest(manifest: TManifest): boolean {
   }
   return isValid;
 }
+
+
+// async function parseDataFiles(args: any) {}
+

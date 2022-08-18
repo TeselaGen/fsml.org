@@ -16,7 +16,8 @@ const OPTIONS: { [key: string]: Options } = {
   },
   parser: {
     alias: "p",
-    // NOTE: Yargs doesnt seem to support specifying the type of the array elements.
+    // NOTE: Yargs doesnt seem to support specifying the
+    // type of the array elements.
     type: "array",
     demandOption: false,
     // choices: INSTALLED_PLUGINS,
