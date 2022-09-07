@@ -1,0 +1,9 @@
+{
+    "executors": {
+        "rollup": {
+            "implementation": "./impl",
+            "schema": "./schema.json",
+            "description": "Builds with rollup"
+        }
+    }
+}

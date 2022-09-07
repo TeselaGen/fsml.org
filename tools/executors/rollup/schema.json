@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "cli": "nx",
+    "properties": {
+        "rollupConfig": {
+            "type": "string",
+            "description": "Rollup config file"
+        }
+    },
+    "required": [
+        "rollupConfig"
+    ]
+}
