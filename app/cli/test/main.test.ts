@@ -1,5 +1,5 @@
-import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
-import helperFn from "../src/helperFn.ts";
+import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts" ;
+import helperFn from "../src/helperFn" ;
 
 Deno.test("url test", () => {
   const res = helperFn("world");

@@ -1,25 +1,29 @@
-import { path, yaml } from "@fsml/cli/deps/mod.ts";
-import { merge, set } from "@fsml/cli/deps/lodash.ts";
-import { TypeCompiler } from "@fsml/cli/deps/typebox.ts";
-import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
-import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
+import * as yaml from 'yaml';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { merge, set } from 'lodash-es';
+import { TypeCompiler } from '@sinclair/typebox/compiler/index.js';
+import { jsonToText, toStdOut, read, toFile } from '@fsml.org/utils';
+import { Configs, TConfigs, TConfigValue } from '../../types/configs';
 
-const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const DEFAULT_CONFIG_FILEPATH = path.normalize(
-  path.join(__dirname, "../../default_configs.yaml"),
+  path.join(__dirname, '../../default_configs.yaml')
 );
 const USER_CONFIG_FILEPATH = path.normalize(
-  path.join(__dirname, "../../configs.yaml"),
+  path.join(__dirname, '../../configs.yaml')
 );
 
 async function getDefaultConfigs() {
-  const defaultConfigsText = await Deno.readTextFile(DEFAULT_CONFIG_FILEPATH);
+  const defaultConfigsText = read(DEFAULT_CONFIG_FILEPATH);
   return await yaml.parse(defaultConfigsText);
 }
 
 async function getConfigs({ section }: { section?: string } = {}) {
   const defaultConfigs = await getDefaultConfigs();
-  const configsText = await Deno.readTextFile(USER_CONFIG_FILEPATH);
+  const configsText = read(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);
 
@@ -30,12 +34,10 @@ async function getConfigs({ section }: { section?: string } = {}) {
   return finalConfigs;
 }
 
-async function saveConfigs(
-  newConfigs: Partial<TConfigs>,
-) {
+async function saveConfigs(newConfigs: Partial<TConfigs>) {
   if (validateConfigs(newConfigs)) {
     const newConfigTextFile = yaml.stringify(newConfigs);
-    await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
+    toFile({ filepath: USER_CONFIG_FILEPATH, content: newConfigTextFile });
   }
 }
 
@@ -48,16 +50,16 @@ function editConfigs({
 }) {
   for (const [key, currentConfig] of Object.entries(configs)) {
     const currentPath = parentPath ? `${parentPath}${key}` : key;
-    if (typeof currentConfig === "object" && currentConfig !== null) {
+    if (typeof currentConfig === 'object' && currentConfig !== null) {
       const enterSectionConfirmation = confirm(
-        `Set defaults for config section '${currentPath}'?`,
+        `Set defaults for config section '${currentPath}'?`
       );
       if (enterSectionConfirmation) {
         editConfigs({ configs: currentConfig, parentPath: `${key}.` });
       } else continue;
     } else {
       const newValue = parseConfigValue(
-        prompt(`${currentPath}:`, currentConfig?.toString()),
+        prompt(`${currentPath}:`, currentConfig?.toString())
       );
       set(configs, key, newValue);
     }
@@ -68,11 +70,11 @@ function editConfigs({
 // for instance, https://deno.land/x/ask@1.0.5.
 function parseConfigValue(value: string | null) {
   switch (value) {
-    case "null":
+    case 'null':
       return null;
-    case "true":
+    case 'true':
       return true;
-    case "false":
+    case 'false':
       return false;
     default:
       return value;
@@ -80,7 +82,6 @@ function parseConfigValue(value: string | null) {
 }
 
 function validateConfigs(configs: Partial<TConfigs>) {
-  //@ts-ignore:next-line : This seems like an issue with typebox types.
   const ConfigsCompiler = TypeCompiler.Compile(Configs);
   const isValid = ConfigsCompiler.Check(configs);
   // NOTE: these config error messages may be too verbose
@@ -88,7 +89,7 @@ function validateConfigs(configs: Partial<TConfigs>) {
   const configsErrors = [...ConfigsCompiler.Errors(configs)];
   if (!isValid) {
     configsErrors.forEach((error) =>
-      toStdOut(jsonToText({ format: "json", content: error }))
+      toStdOut(jsonToText({ format: 'json', content: error }))
     );
   }
   return isValid;

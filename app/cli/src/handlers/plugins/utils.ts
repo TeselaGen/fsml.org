@@ -1,7 +1,5 @@
-import { PluginTypes } from "@fsml/cli/types/enums.ts";
-import {
-  TTabularData,
-} from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
+import { PluginTypes } from '../../types/enums';
+import { TTabularData } from '@fsml/packages/standard/src/manifest/data/tabular/index';
 
 export interface IPlugin {
   // Design plugin interface. The current plan is to
@@ -13,9 +11,7 @@ export interface IPlugin {
 // TODO: determine what the interface for parser should be.
 export interface IParser extends IPlugin {
   /** Receives filepath as input and returns filepath as output or along with the parsed data as optional */
-  parse: (
-    filepath: string,
-  ) => Promise<
+  parse: (filepath: string) => Promise<
     Partial<{
       filepath: string;
       data: TTabularData;
@@ -35,12 +31,12 @@ async function pluginNameToUri(pluginName: string) {
 // as an additional check.
 // Or convert the IParser Interface to an abstract class and then use "instanceof"
 function isParser(plugin: IPlugin | IParser | undefined): plugin is IParser {
-  const parser = (plugin as IParser);
-  return "isApplicable" in parser && "parse" in parser;
+  const parser = plugin as IParser;
+  return 'isApplicable' in parser && 'parse' in parser;
 }
 
 async function importPlugin(
-  pluginName: string, // TODO: it could either be a plugin name or URI.,
+  pluginName: string // TODO: it could either be a plugin name or URI.,
 ): Promise<IParser | IPlugin> {
   const uri = await pluginNameToUri(pluginName);
   const plugin = await import(uri);

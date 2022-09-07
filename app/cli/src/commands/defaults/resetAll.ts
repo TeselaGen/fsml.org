@@ -1,16 +1,16 @@
-import { Yargs } from "@fsml/cli/deps/yargs.ts";
-import { resetAll } from "@fsml/cli/handlers/defaults/mod.ts";
+import { Argv } from 'yargs';
+import { resetAll } from '../../handlers/defaults';
 
-function builder(yargs: Yargs) {
-  yargs.option("confirm", {
-    type: "string",
-    describe: "Overrides confirmation prompt",
+function builder(yargs: Argv) {
+  return yargs.option('confirm', {
+    type: 'string',
+    describe: 'Overrides confirmation prompt',
   });
 }
 
 export default {
-  command: "reset-all",
-  describe: "Resets the value of all configs.",
+  command: 'reset-all',
+  describe: 'Resets the value of all configs.',
   builder,
   handler: resetAll,
 };

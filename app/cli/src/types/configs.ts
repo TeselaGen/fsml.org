@@ -1,5 +1,5 @@
-import { Static, Type } from "@fsml/cli/deps/typebox.ts";
-import { FormatTypes, PackTypes } from "@fsml/cli/types/enums.ts";
+import { Static, Type } from "@sinclair/typebox" ;
+import { FormatTypes, PackTypes } from "@fsml/cli/types/enums" ;
 
 const DefaultsConfigs = Type.Object({
   filepath: Type.String(),

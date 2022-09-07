@@ -1,5 +1,36 @@
 {
-  "root": "./",
-  "sourceRoot": "./src",
-  "projectType": "application"
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app/cli/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "./tools/executors/rollup:rollup",
+      "options": {
+        "entrypoint": "app/cli/src/index.ts",
+        "rollupConfig": "app/cli/rollup.config.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "app/cli/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/app/cli"
+      ],
+      "options": {
+        "jestConfig": "app/cli/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
 }

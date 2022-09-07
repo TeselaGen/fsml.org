@@ -1,16 +1,16 @@
-import { Yargs } from "@fsml/cli/deps/yargs.ts";
-import { reset } from "@fsml/cli/handlers/defaults/mod.ts";
+import { Argv } from 'yargs';
+import { reset } from '../../handlers/defaults';
 
-function builder(yargs: Yargs) {
-  yargs.positional("key", {
-    type: "string",
-    describe: "Config key path",
+function builder(yargs: Argv) {
+  return yargs.positional('key', {
+    type: 'string',
+    describe: 'Config key path',
   });
 }
 
 export default {
-  command: "reset <key>",
-  describe: "Resets the value of a config key.",
+  command: 'reset <key>',
+  describe: 'Resets the value of a config key.',
   builder,
   handler: reset,
 };

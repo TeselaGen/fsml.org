@@ -1,13 +1,13 @@
-import { Arguments, Yargs } from "@fsml/cli/deps/yargs.ts";
-import { getConfigs } from "@fsml/cli/handlers/defaults/utils.ts";
+import { get } from 'lodash-es';
+import { Argv, CommandModule } from 'yargs';
+import { getConfigs } from '../handlers/defaults/utils';
 
-async function applyDefaults(yargs: Yargs): Promise<Yargs> {
+async function applyDefaults(yargs: Argv): Promise<Argv> {
   const argv = yargs.argv;
   // NOTE: the first argument in the command matches the model or section
   // in the configs file.
-  // @ts-ignore:next-line : I think typescript assumes "_" properties are private
   // and cant be read
-  const model = argv._[0];
+  const model = get(argv, '_')[0];
   const modelConfigs = await getConfigs({ section: model });
   Object.keys(modelConfigs).forEach((configKey) =>
     yargs.default(configKey, modelConfigs[configKey])
@@ -20,18 +20,18 @@ export function commandFactory({
   subCommands,
 }: {
   command: string;
-  subCommands: {
-    command: string;
-    describe?: string;
-    builder: (yargs: Yargs) => void;
-    handler: (args: Arguments) => void;
-  }[];
-}) {
+  subCommands: CommandModule[];
+}): CommandModule {
   return {
     command,
-    builder: async (yargs: Yargs) =>
-      // @ts-ignore:next-line : harmless signature type mismatch for handler function.
-      (await applyDefaults(yargs)).command([...subCommands]),
+    builder: async (yargs: Argv) => {
+      let _yargs = await applyDefaults(yargs);
+      subCommands.forEach((subCommand) => {
+        _yargs = _yargs.command(subCommand);
+      });
+      return _yargs;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     handler: () => {},
   };
 }
