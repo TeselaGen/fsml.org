@@ -1,5 +1,5 @@
-import { Type, Static } from '../../deps/typebox.ts';
-import { UtilityScoreDetails } from "./utility-score-details.ts";
+import { Type, Static } from '@sinclair/typebox';
+import { UtilityScoreDetails } from "./utility-score-details";
 
 export const SupplementalProtocol = Type.Object({
   type: Type.Literal('protocol'),

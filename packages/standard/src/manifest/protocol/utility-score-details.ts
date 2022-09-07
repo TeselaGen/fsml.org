@@ -1,5 +1,5 @@
-import { Type, Static } from '../../deps/typebox.ts';
-import { UtilityScoreCategory } from "../utility-score-category.ts";
+import { Type, Static } from '@sinclair/typebox';
+import { UtilityScoreCategory } from "../utility-score-category";
 
 export const UtilityScoreDetails = Type.Object({
   readable: UtilityScoreCategory,

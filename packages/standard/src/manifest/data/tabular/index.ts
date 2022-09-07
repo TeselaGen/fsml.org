@@ -1,8 +1,8 @@
-import { Static, Type } from "../../../deps/typebox.ts";
-import { DataTypesEnum } from "../types.ts";
-import Row from "./row.ts";
-import Column from "./column/mod.ts";
-import FileData from "../file-data.ts";
+import { Static, Type } from '@sinclair/typebox';
+import { DataTypesEnum } from "../types";
+import Row from "./row";
+import Column from "./column";
+import FileData from "../file-data";
 
 // NOTE: it could be useful to store some optional metadata such as the delimiter used to parse rows into columns.
 

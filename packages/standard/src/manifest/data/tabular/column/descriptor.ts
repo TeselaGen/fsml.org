@@ -1,6 +1,6 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
-import { ColumnClassEnum } from '../../types.ts';
-import Unit from './unit.ts';
+import { Type } from '@sinclair/typebox';
+import { ColumnClassEnum } from '../../types';
+import Unit from './unit';
 
 const Descriptor = Type.Object({
   type: Type.Literal(ColumnClassEnum.DESCRIPTOR),

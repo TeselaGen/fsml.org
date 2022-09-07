@@ -1,5 +1,5 @@
-import { Type } from '../../../../deps/typebox.ts';
-import { ValueTypeEnum } from '../../types.ts';
+import { Type } from '@sinclair/typebox';
+import { ValueTypeEnum } from '../../types';
 
 enum TextEncodings {
   utf8 = 'utf8',

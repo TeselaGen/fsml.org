@@ -1,6 +1,6 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
-import { ColumnClassEnum } from '../../types.ts';
-import Dimension from './dimension.ts';
+import { Type } from '@sinclair/typebox';
+import { ColumnClassEnum } from '../../types';
+import Dimension from './dimension';
 
 const Unit = Type.Object({
   type: Type.Literal(ColumnClassEnum.UNIT),

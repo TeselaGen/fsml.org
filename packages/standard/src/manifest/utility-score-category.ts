@@ -1,4 +1,4 @@
-import { Type, Static } from '../deps/typebox.ts';
+import { Type, Static } from '@sinclair/typebox';
 
 export const UtilityScoreCategory = Type.Object({
   score: Type.Number(),
@@ -9,4 +9,3 @@ export const UtilityScoreCategory = Type.Object({
 });
 
 export type UtilityScoreCategory = Static<typeof UtilityScoreCategory>;
-

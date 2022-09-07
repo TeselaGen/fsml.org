@@ -1,8 +1,8 @@
-import { Type } from '../../../../deps/typebox.ts';
-import { ValueTypeEnum } from '../../types.ts';
+import { Type } from '@sinclair/typebox';
+import { ValueTypeEnum } from '../../types';
 
 // NOTE: not an enum is the best here...
-const enum DateFormats {
+enum DateFormats {
   'dd-mm-yyyy' = 'dd-mm-yyyy',
   'mm-dd-yyyy' = 'mm-dd-yyyy',
   'dd/mm/yyyy' = 'dd/mm/yyyy',

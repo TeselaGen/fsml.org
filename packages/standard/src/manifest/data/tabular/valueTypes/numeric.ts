@@ -1,5 +1,5 @@
-import { Type } from '../../../../deps/typebox.ts';
-import { ValueTypeEnum } from '../../types.ts';
+import { Type } from '@sinclair/typebox';
+import { ValueTypeEnum } from '../../types';
 
 const NumericType = Type.Object({
   type: Type.Literal(ValueTypeEnum.NUMERIC),

@@ -1,5 +1,5 @@
-import { Type } from '../../../../deps/typebox.ts';
-import { DimensionsEnum } from '../../types.ts';
+import { Type } from '@sinclair/typebox';
+import { DimensionsEnum } from '../../types';
 
 const Dimension = Type.Object({
   type: Type.Literal("DIMENSION"),

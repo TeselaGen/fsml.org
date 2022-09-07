@@ -1,5 +1,5 @@
-import { Type, Static } from '../../../deps/typebox.ts';
-import Value from './value.ts';
+import { Type } from '@sinclair/typebox';
+import Value from './value';
 
 // NOTE: we might want to add a property specific to the row
 // referencing its data file.

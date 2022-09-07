@@ -1,7 +1,7 @@
-import { Static, Type } from "../deps/typebox.ts";
-import { ContentReference } from "./content-reference.ts";
-import { SupplementalData } from "./data/supplemental-data.ts";
-import { SupplementalProtocol } from "./protocol/supplemental-protocol.ts";
+import { Static, Type } from '@sinclair/typebox';
+import { ContentReference } from './content-reference';
+import { SupplementalData } from './data/supplemental-data';
+import { SupplementalProtocol } from './protocol/supplemental-protocol';
 
 export const Manifest = Type.Object({
   id: Type.String(),

@@ -1,7 +1,7 @@
-import { Static, Type } from "../../deps/typebox.ts";
-import FileData from "./file-data.ts";
-import TabularData from "./tabular/mod.ts";
-import Provenance from "../provenance.ts";
+import { Static, Type } from '@sinclair/typebox';
+import FileData from "./file-data";
+import TabularData from "./tabular";
+import Provenance from "../provenance";
 
 export const SupplementalData = Type.Object({
   type: Type.Literal("data"),

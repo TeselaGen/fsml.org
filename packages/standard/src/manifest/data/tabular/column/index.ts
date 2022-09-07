@@ -1,14 +1,14 @@
-import { Static, Type } from "../../../../deps/typebox.ts";
-import { ColumnKindEnum } from "../../types.ts";
-import Subject from "./subject.ts";
-import ReferenceDimension from "./reference-dimension.ts";
-import Measurement from "./measurement.ts";
-import Descriptor from "./descriptor.ts";
-import Unit from "./unit.ts";
-import NumericType from "../valueTypes/numeric.ts";
-import CategoricType from "../valueTypes/categoric.ts";
-import TextType from "../valueTypes/text.ts";
-import DateType from "../valueTypes/date.ts";
+import { Static, Type } from '@sinclair/typebox';
+import { ColumnKindEnum } from "../../types";
+import Subject from "./subject";
+import ReferenceDimension from "./reference-dimension";
+import Measurement from "./measurement";
+import Descriptor from "./descriptor";
+import Unit from "./unit";
+import NumericType from "../valueTypes/numeric";
+import CategoricType from "../valueTypes/categoric";
+import TextType from "../valueTypes/text";
+import DateType from "../valueTypes/date";
 
 export const Class = Type.Optional(
   Type.Union([

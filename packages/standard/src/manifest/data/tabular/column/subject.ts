@@ -1,5 +1,5 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
-import { ColumnClassEnum } from '../../types.ts';
+import { Type } from '@sinclair/typebox';
+import { ColumnClassEnum } from '../../types';
 
 const Subject = Type.Object({
   type: Type.Literal(ColumnClassEnum.SUBJECT),
