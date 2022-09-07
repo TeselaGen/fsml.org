@@ -8,13 +8,20 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "esnext",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fsml.org/standard": ["packages/standard/src/index.ts"],
+      "@fsml.org/utils": ["packages/utils/src/index.ts"],
+      "@fsml/cli/*": ["app/cli/src/*"],
+      "@fsml/cli/handlers/*": ["app/cli/src/handlers/*"],
+      "@fsml/cli/plugins/*": ["app/cli/src/plugins/*"],
+      "@fsml/cli/types/*": ["app/cli/src/types/*"],
+      "@fsml/packages/standard/*": ["packages/standard/src/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -12,13 +12,13 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
-  }
+  },
+  "workspaceLayout": {
+    "appsDir": "app",
+    "libsDir": "packages"
+  },
+  "defaultProject": "cli"
 }

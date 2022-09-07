@@ -15,10 +15,5 @@
       "name": "utils",
       "path": "packages/utils"
     }
-  ],
-  "settings": {
-    "deno.enable": true,
-    "deno.unstable": true,
-    "deno.importMap": "./import_map.json"
-  }
+  ]
 }
