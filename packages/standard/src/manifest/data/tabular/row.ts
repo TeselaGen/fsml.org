@@ -1,4 +1,4 @@
-import { Type, Static } from '../../../deps/typebox.ts';
+import { Type } from '../../../deps/mod.ts';
 import Value from './value.ts';
 
 // NOTE: we might want to add a property specific to the row

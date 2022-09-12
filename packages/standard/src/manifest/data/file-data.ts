@@ -1,4 +1,4 @@
-import { Static, Type } from "@fsml/packages/standard/deps/typebox.ts";
+import { Static, Type } from "@fsml/packages/standard/deps/mod.ts";
 import { DataTypesEnum } from "@fsml/packages/standard/data/types.ts";
 
 export const FileData = Type.Object({

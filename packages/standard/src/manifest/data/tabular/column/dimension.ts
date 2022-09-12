@@ -1,4 +1,4 @@
-import { Type } from '../../../../deps/typebox.ts';
+import { Type } from '../../../../deps/mod.ts';
 import { DimensionsEnum } from '../../types.ts';
 
 const Dimension = Type.Object({
