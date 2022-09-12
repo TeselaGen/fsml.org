@@ -8,7 +8,6 @@ import {
   IParser,
   IPlugin,
   IPluginHandlerOptions,
-  PluginTypes,
   TPluginModuleRegistry,
 } from "./types.ts";
 import { defaulResolver, defaultCacher } from "./utils.ts";
@@ -27,13 +26,13 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return "isApplicable" in parser && "parse" in parser;
   }
 
-  async function importPlugin(
-    module: TPluginModuleRegistry,
-  ): Promise<IParser | IPlugin> {
-    const plugin: IPlugin = await import(module.url);
-    if (isParser(plugin)) plugin.type = PluginTypes.PARSER;
+  async function _import(): Promise<IPlugin> {
+    const pluginRegistry = await getRegisteredModule(pluginBaseModule);
+    const plugin: IPlugin = await import(pluginRegistry.url);
     return plugin;
   }
+
+
 
   async function cache(): Promise<boolean> {
     const moduleRegistry = await getRegisteredModule(pluginBaseModule);
@@ -69,7 +68,7 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return true;
   }
 
-  return { install, uninstall, cache, importPlugin };
+  return { install, uninstall, cache, import: _import, isParser };
 };
 
 export default PluginHandler;

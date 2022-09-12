@@ -18,6 +18,7 @@ async function applyDefaults(yargs: Yargs): Promise<Yargs> {
 export function commandFactory({
   command,
   subCommands,
+  describe,
 }: {
   command: string;
   subCommands: {
@@ -26,9 +27,11 @@ export function commandFactory({
     builder: (yargs: Yargs) => void;
     handler: (args: Arguments) => void;
   }[];
+  describe?: string;
 }) {
   return {
     command,
+    describe,
     builder: async (yargs: Yargs) =>
       // @ts-ignore:next-line : harmless signature type mismatch for handler function.
       (await applyDefaults(yargs)).command([...subCommands]),

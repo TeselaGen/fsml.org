@@ -1,7 +1,7 @@
-import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { Options, Yargs } from "@fsml/cli/deps/yargs.ts";
 import { import as _import } from "@fsml/cli/handlers/manifest/mod.ts";
 
-const OPTIONS = {
+const OPTIONS: { [key: string]: Options } = {
   to: {
     alias: "t",
     type: "string",

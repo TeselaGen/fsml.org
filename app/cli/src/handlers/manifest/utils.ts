@@ -25,7 +25,7 @@ const FSML_MANIFEST_FILEPATH = (format: string) =>
 // and data to be parsed.
 export async function generateManifest(
   args: {
-    parser: string[];
+    parser: string;
     type: ManifestTypes;
     author: string;
     filepattern: string;
