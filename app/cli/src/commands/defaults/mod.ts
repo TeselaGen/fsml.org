@@ -6,6 +6,7 @@ import resetAll from "./resetAll.ts";
 import { commandFactory } from "../utils.ts";
 
 export default commandFactory({
-  command: "defaults <command>",
+  command: "defaults <subcommand>",
+  describe: "Configures default values for CLI flags",
   subCommands: [edit, list, set, reset, resetAll],
 });

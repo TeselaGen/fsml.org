@@ -1,10 +1,3 @@
-// TODO: This will be clearer once the Plugin Interface
-// design is complete.
-export enum PluginTypes {
-  PARSER = "parser",
-  GENERIC = "generic",
-}
-
 export enum ManifestTypes {
   PROTOCOL = "protocol",
   DATA = "data",

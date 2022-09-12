@@ -1,4 +1,4 @@
-import { Type, Static } from '../../../deps/typebox.ts';
+import { Type } from '../../../deps/mod.ts';
 
 const Value = Type.Object({
   /**

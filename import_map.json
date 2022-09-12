@@ -3,10 +3,10 @@
     "@fsml/cli/": "./app/cli/src/",
     "@fsml/cli/types/": "./app/cli/src/types/",
     "@fsml/cli/handlers/": "./app/cli/src/handlers/",
-    "@fsml/cli/plugins/": "./app/cli/src/plugins/",
 
     "@fsml/packages/standard/": "./packages/standard/src/",
     "@fsml/packages/standard/data/": "./packages/standard/src/manifest/data/",
-    "@fsml/packages/utils/": "./packages/utils/src/"
+    "@fsml/packages/utils/": "./packages/utils/src/",
+    "@fsml/packages/plugins/": "./packages/plugins/src/"
   }
 }

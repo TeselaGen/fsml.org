@@ -1,50 +1,45 @@
-import { PluginTypes } from "@fsml/cli/types/enums.ts";
-import {
-  TTabularData,
-} from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
+import { IParser, TBasePluginModule } from "@fsml/packages/plugins/types.ts";
+import { toStdOut } from "@fsml/packages/utils/mod.ts";
+import PluginHandler from "@fsml/packages/plugins/mod.ts";
+import DefaultParser from "./default-parser.ts";
 
-export interface IPlugin {
-  // Design plugin interface. The current plan is to
-  // make them publishable packages that can be dynamically imported in deno.
-  name: string;
-  type: PluginTypes;
+const MODULE_VERSION_SEPARATOR = "@";
+
+function moduleParser(module: string): TBasePluginModule {
+  const [name, version = "latest"] = module.split(MODULE_VERSION_SEPARATOR);
+  const pluginModule = { name, version };
+  return pluginModule;
 }
 
-// TODO: determine what the interface for parser should be.
-export interface IParser extends IPlugin {
-  /** Receives filepath as input and returns filepath as output or along with the parsed data as optional */
-  parse: (
-    filepath: string,
-  ) => Promise<
-    Partial<{
-      filepath: string;
-      data: TTabularData;
-    }>
-  >;
-  isApplicable: (filepath: string) => Promise<boolean>;
+function hasVersion(module: string): boolean {
+  const [, version] = module.split(MODULE_VERSION_SEPARATOR);
+  return !!version;
 }
 
-async function pluginNameToUri(pluginName: string) {
-  // TODO: implement a way to search the plugin name in the registries and get its URI.
-  const getPluginUri = (pluginName: string) => Promise.resolve(pluginName);
+/**
+ * @param filepath input data filepath
+ * @param parser one or many potential parsers for input file
+ * @returns The selected parser.
+ */
+async function selectParser(
+  filepath: string,
+  parser?: string,
+): Promise<IParser | void> {
+  if (parser) {
+    const pluginModule = moduleParser(parser);
+    const { import: _import, isParser } = PluginHandler({ module: pluginModule });
 
-  return await getPluginUri(pluginName);
+    const plugin = await _import();
+
+    if (isParser(plugin)) {
+      if (!await plugin.isApplicable(filepath)) return plugin;
+    }
+  }
+  // If no parser is provided use the default parser if applicable.
+  if (await DefaultParser.isApplicable(filepath)) return DefaultParser;
+
+  toStdOut(`No applicable parser found for '${filepath}'\n`);
+  return;
 }
 
-// TODO: maybe add "type: PluginTypes" into the IPlugin interface
-// as an additional check.
-// Or convert the IParser Interface to an abstract class and then use "instanceof"
-function isParser(plugin: IPlugin | IParser | undefined): plugin is IParser {
-  const parser = (plugin as IParser);
-  return "isApplicable" in parser && "parse" in parser;
-}
-
-async function importPlugin(
-  pluginName: string, // TODO: it could either be a plugin name or URI.,
-): Promise<IParser | IPlugin> {
-  const uri = await pluginNameToUri(pluginName);
-  const plugin = await import(uri);
-  return plugin;
-}
-
-export { importPlugin, isParser };
+export { hasVersion, moduleParser, selectParser };

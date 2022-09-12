@@ -1,4 +1,4 @@
-import { Static, Type } from "../../deps/typebox.ts";
+import { Static, Type } from "../../deps/mod.ts";
 import FileData from "./file-data.ts";
 import TabularData from "./tabular/mod.ts";
 import Provenance from "../provenance.ts";

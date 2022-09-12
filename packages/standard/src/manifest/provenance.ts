@@ -1,4 +1,4 @@
-import { Static, Type } from "../deps/typebox.ts";
+import { Static, Type } from "../deps/mod.ts";
 
 // TODO: implement based on https://fsml.org/model/manifest/supplemental-sections/
 export const Provenance = Type.Object({

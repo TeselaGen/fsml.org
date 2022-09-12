@@ -1,4 +1,4 @@
-import { Type } from '../../../../deps/typebox.ts';
+import { Type } from '../../../../deps/mod.ts';
 import { ValueTypeEnum } from '../../types.ts';
 
 // NOTE: not an enum is the best here...
