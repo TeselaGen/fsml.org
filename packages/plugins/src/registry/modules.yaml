@@ -1,0 +1,4 @@
+- name: lodash
+  version: latest
+  url: 'https://esm.sh/lodash@latest?bundle'
+  uriScheme: https
