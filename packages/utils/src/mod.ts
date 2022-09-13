@@ -12,7 +12,7 @@ export async function read(filepath: string) {
 }
 
 export async function toStdOut(str: string) {
-  const text = new TextEncoder().encode(str);
+  const text = new TextEncoder().encode(`${str}\n`);
   await conversion.writeAll(Deno.stdout, text);
 }
 

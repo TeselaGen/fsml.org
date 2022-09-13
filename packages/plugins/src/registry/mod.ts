@@ -1,13 +1,12 @@
 import path from "https://deno.land/std@0.148.0/node/path.ts";
-import { yaml } from "../../../utils/src/deps/mod.ts";
+import { yaml } from "@fsml/packages/utils/deps/mod.ts";
+import { isNil, set } from "@fsml/packages/utils/deps/lodash.ts";
+import { read, toFile } from "@fsml/packages/utils/mod.ts";
 import {
-  find,
-  isUndefined,
-  omitBy,
-  uniqBy,
-} from "../../../utils/src/deps/lodash.ts";
-import { read, toFile } from "../../../utils/src/mod.ts";
-import { TBasePluginModule, TPluginModuleRegistry } from "../types.ts";
+  TBasePluginModule,
+  TPluginRegistry,
+  TPluginsRegistry,
+} from "../types/mod.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 export const MODULE_REGISTRY_DIR = path.resolve(__dirname);
@@ -17,25 +16,23 @@ const PLUGINS_REGISTRY_FILEPATH = path.join(
 );
 
 async function addModuleToRegistry(
-  module: TPluginModuleRegistry,
+  module: TPluginRegistry,
 ): Promise<boolean> {
+  const { name } = module;
   const pluginsRegistry = await getPluginRegistry();
 
-  const cleanModule = omitBy(
-    module,
-    isUndefined,
-  ) as TPluginModuleRegistry;
+  const doesModuleExist = pluginsRegistry.plugins[name];
 
-  pluginsRegistry.push(cleanModule);
+  if (doesModuleExist) {
+    return false;
+  }
 
-  const pluginsRegistry_updated = uniqBy(
-    pluginsRegistry,
-    (module: { name: string; version: string }) =>
-      `${module.name}@${module.version}`,
-  );
+  set(pluginsRegistry, "plugins", { [name]: module });
 
   // @ts-ignore <yaml.stringify input type is not very well defined>
-  const pluginsRegistryString_updated = yaml.stringify(pluginsRegistry_updated);
+  const pluginsRegistryString_updated = yaml.stringify(
+    pluginsRegistry,
+  );
 
   await toFile({
     filepath: PLUGINS_REGISTRY_FILEPATH,
@@ -46,32 +43,24 @@ async function addModuleToRegistry(
 }
 
 async function updateModuleRegistry(
-  module: TPluginModuleRegistry,
+  module: TPluginRegistry,
 ): Promise<boolean> {
   await removeModuleFromRegistry(module);
-
   await addModuleToRegistry(module);
 
   return true;
 }
 
 async function removeModuleFromRegistry(
-  module: TBasePluginModule | TPluginModuleRegistry,
-  opts?: {
-    allVersions: boolean;
-  },
+  module: TBasePluginModule | TPluginRegistry,
 ): Promise<boolean> {
+  const { name } = module;
   const pluginsRegistry = await getPluginRegistry();
 
-  const pluginsRegistry_updated = pluginsRegistry.filter((_module) => {
-    const check = _module.name === module.name &&
-      (opts?.allVersions || !module.version ||
-        _module.version === module.version);
-    return !check;
-  });
+  delete pluginsRegistry.plugins[name];
 
   // @ts-ignore <yaml.stringify input type is not very well defined>
-  const pluginsRegistryString_updated = yaml.stringify(pluginsRegistry_updated);
+  const pluginsRegistryString_updated = yaml.stringify(pluginsRegistry);
 
   await toFile({
     filepath: PLUGINS_REGISTRY_FILEPATH,
@@ -81,25 +70,23 @@ async function removeModuleFromRegistry(
   return true;
 }
 
-async function getPluginRegistry(): Promise<TPluginModuleRegistry[]> {
+async function getPluginRegistry(): Promise<TPluginsRegistry> {
   const pluginsRegistryString = await read(PLUGINS_REGISTRY_FILEPATH);
   const pluginsRegistry =
-    (await yaml.parse(pluginsRegistryString) as TPluginModuleRegistry[]);
+    (await yaml.parse(pluginsRegistryString) as TPluginsRegistry);
+
+  if (isNil(pluginsRegistry.plugins)) set(pluginsRegistry, "plugins", {});
 
   return pluginsRegistry;
 }
 
 async function getRegisteredModule(
   module: TBasePluginModule,
-): Promise<TPluginModuleRegistry> {
-  const { name, version } = module;
+): Promise<TPluginRegistry> {
+  const { name } = module;
   const pluginsRegistry = await getPluginRegistry();
 
-  const moduleRegistry: TPluginModuleRegistry = find(
-    pluginsRegistry,
-    (module: TPluginModuleRegistry) =>
-      module.name === name && module.version === version,
-  );
+  const moduleRegistry = pluginsRegistry.plugins[name];
 
   return moduleRegistry;
 }

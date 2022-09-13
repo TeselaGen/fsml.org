@@ -1,3 +1,4 @@
+import { TManifest } from "../../standard/src/manifest/manifest.ts";
 import {
   addModuleToRegistry,
   getRegisteredModule,
@@ -5,25 +6,33 @@ import {
   updateModuleRegistry,
 } from "./registry/mod.ts";
 import {
+  IExporter,
   IParser,
   IPlugin,
   IPluginHandlerOptions,
-  TPluginModuleRegistry,
-} from "./types.ts";
-import { defaulResolver, defaultCacher } from "./utils.ts";
+  PluginTypes,
+  TPluginRegistry,
+} from "./types/mod.ts";
+import {
+  defaultCacher,
+  defaultResolver,
+  defaultVersionResolver,
+} from "./utils.ts";
 
 const PluginHandler = (opts: IPluginHandlerOptions) => {
   const {
     module: pluginBaseModule,
-    urlResolver = defaulResolver,
+    versionResolver = defaultVersionResolver,
+    urlResolver = defaultResolver,
     moduleCacher = defaultCacher,
   } = opts;
-  // TODO: maybe add "type: PluginTypes" into the IPlugin interface
-  // as an additional check.
-  // Or convert the IParser Interface to an abstract class and then use "instanceof"
-  function isParser(plugin: IPlugin | IParser | undefined): plugin is IParser {
-    const parser = (plugin as IParser);
-    return "isApplicable" in parser && "parse" in parser;
+
+  function isParser(plugin: IPlugin | IParser): plugin is IParser {
+    return plugin.type === PluginTypes.PARSER;
+  }
+
+  function isExporter(plugin: IPlugin | IExporter): plugin is IExporter {
+    return plugin.type === PluginTypes.EXPORTER;
   }
 
   async function _import(): Promise<IPlugin> {
@@ -32,28 +41,41 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return plugin;
   }
 
-
-
   async function cache(): Promise<boolean> {
     const moduleRegistry = await getRegisteredModule(pluginBaseModule);
-    const isCached = await moduleCacher(moduleRegistry);
-    if (isCached) {
-      await updateModuleRegistry({
-        ...moduleRegistry,
-        cached: true,
-      });
+    let isCached = false;
+    try {
+      isCached = await moduleCacher(moduleRegistry);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      if (isCached) {
+        await updateModuleRegistry({
+          ...moduleRegistry,
+          cached: true,
+        });
+      }
     }
     return isCached;
   }
 
-  async function install(): Promise<TPluginModuleRegistry> {
-    const { url, uriScheme } = await urlResolver(pluginBaseModule);
+  async function install(): Promise<TPluginRegistry> {
+    const resolvedVersion = await versionResolver({
+      ...pluginBaseModule,
+      version: pluginBaseModule.version || "latest",
+    });
 
-    const newModule: TPluginModuleRegistry = {
+    const { url, uriScheme } = await urlResolver({
+      ...pluginBaseModule,
+      version: resolvedVersion,
+    });
+
+    const newModule: TPluginRegistry = {
       name: pluginBaseModule.name,
-      version: pluginBaseModule.version,
+      version: resolvedVersion,
       url,
       uriScheme,
+      cached: false,
     };
 
     await addModuleToRegistry(newModule);
@@ -61,14 +83,55 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return newModule;
   }
 
-  async function uninstall(opts = { allVersions: false }): Promise<boolean> {
-    await removeModuleFromRegistry(pluginBaseModule, {
-      allVersions: opts.allVersions,
-    });
+  async function uninstall(): Promise<boolean> {
+    await removeModuleFromRegistry(pluginBaseModule);
     return true;
   }
 
-  return { install, uninstall, cache, import: _import, isParser };
+  async function upgrade(version: string): Promise<TPluginRegistry> {
+    const moduleRegistry = await getRegisteredModule(pluginBaseModule);
+
+    const resolvedVersion = await versionResolver({
+      ...pluginBaseModule,
+      version,
+    });
+
+    const { url, uriScheme } = await urlResolver({
+      ...pluginBaseModule,
+      version: resolvedVersion,
+    });
+
+    const moduleRegsitry_updated = {
+      ...moduleRegistry,
+      url,
+      uriScheme,
+      version: resolvedVersion,
+    };
+
+    await updateModuleRegistry(moduleRegsitry_updated);
+
+    return moduleRegsitry_updated;
+  }
+
+  async function run(args: Record<string, unknown>): Promise<unknown> {
+    const plugin = await _import();
+
+    if (isParser(plugin)) {
+      const filepath = args.filepath as string;
+      const result = await plugin.run(filepath);
+      return result;
+    }
+
+    if (isExporter(plugin)) {
+      const manifest = args.manifest as TManifest;
+      const result = await plugin.run(manifest);
+      return result;
+    }
+
+    return `Error running plugin '${plugin.name}': Unrecognized plugin type.`;
+  }
+
+  return { install, uninstall, cache, import: _import, upgrade, run, isParser };
 };
 
 export default PluginHandler;

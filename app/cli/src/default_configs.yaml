@@ -15,7 +15,7 @@ manifest:
 plugin:
   cache: false # defaults to not caching plugins. Plugins will only be downloaded when used
   sort: 'asc'
-  latest: true # defaults to always use the latest version for install/updagre commands
+  latest: true # defaults to always use the latest version for install/upgrade commands
 
 registry:
   platform: 'git'

@@ -9,6 +9,7 @@ import omitBy from "https://deno.land/x/lodash@4.17.15-es/omitBy.js";
 import isUndefined from "https://deno.land/x/lodash@4.17.15-es/isUndefined.js";
 import uniqBy from "https://deno.land/x/lodash@4.17.15-es/uniqBy.js";
 import find from "https://deno.land/x/lodash@4.17.15-es/find.js";
+import sortBy from "https://deno.land/x/lodash@4.17.15-es/sortBy.js";
 export {
   find,
   get,
@@ -20,4 +21,5 @@ export {
   set,
   uniqBy,
   unset,
+  sortBy
 };

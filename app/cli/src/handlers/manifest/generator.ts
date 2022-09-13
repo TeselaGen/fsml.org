@@ -77,7 +77,7 @@ const ManifestGenerator = (
     if (!parserPlugin) {
       dataObject = <TFileData> createValueForType(FileData);
     } else {
-      const result = await parserPlugin.parse(filepath);
+      const result = await parserPlugin.run(filepath);
       dataObject = (result.data ||
         createValueForType(TabularData)) as TTabularData;
       if (!result.data && result.filepath) {
