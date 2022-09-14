@@ -1,10 +1,5 @@
 import { TManifest } from "@fsml/packages/standard/manifest/manifest.ts";
-import {
-  IExporter,
-  IParser,
-  IPlugin,
-  PluginTypes,
-} from "@fsml/packages/plugins/types.ts";
+import { IPlugin, isExporter, isParser } from "@fsml/packages/plugins/mod.ts";
 import {
   addModuleToRegistry,
   getRegisteredModule,
@@ -29,14 +24,6 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     urlResolver = defaultResolver,
     moduleCacher = defaultCacher,
   } = opts;
-
-  function isParser(plugin: IPlugin | IParser): plugin is IParser {
-    return plugin.type === PluginTypes.PARSER;
-  }
-
-  function isExporter(plugin: IPlugin | IExporter): plugin is IExporter {
-    return plugin.type === PluginTypes.EXPORTER;
-  }
 
   async function _import(): Promise<IPlugin> {
     const pluginRegistry = await getRegisteredModule(pluginBaseModule);
@@ -134,7 +121,7 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return `Error running plugin '${plugin.name}': Unrecognized plugin type.`;
   }
 
-  return { install, uninstall, cache, import: _import, upgrade, run, isParser };
+  return { install, uninstall, cache, import: _import, upgrade, run };
 };
 
 export default PluginHandler;

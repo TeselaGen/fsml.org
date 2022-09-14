@@ -1,6 +1,6 @@
 import { toStdOut } from "@fsml/packages/utils/mod.ts";
 import { omitBy, sortBy } from "@fsml/packages/utils/deps/lodash.ts";
-import { IParser } from "@fsml/packages/plugins/types.ts";
+import { IParser, isParser } from "@fsml/packages/plugins/mod.ts";
 import {
   TBasePluginModule,
   TPluginRegistry,
@@ -38,7 +38,7 @@ async function selectParser(
 ): Promise<IParser | null> {
   if (parser) {
     const pluginModule = moduleParser(parser);
-    const { import: _import, isParser } = PluginHandler({
+    const { import: _import } = PluginHandler({
       module: pluginModule,
     });
 
