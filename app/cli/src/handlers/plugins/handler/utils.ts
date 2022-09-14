@@ -22,8 +22,8 @@ const defaultVersionResolver = async (
   const versionRegex = new RegExp(VERSION_REGEX);
 
   const resp = await fetch(url);
-  if(!resp.ok) {
-    throw new Error(`Error resolving module '${module.name}@${version}'`)
+  if (!resp.ok) {
+    throw new Error(`Error resolving module '${module.name}@${version}'`);
   }
   if (resp.redirected) {
     const match = resp.url.match(versionRegex);

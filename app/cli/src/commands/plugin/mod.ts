@@ -16,6 +16,6 @@ export default commandFactory({
     upgrade,
     cache,
     // uncache,
-    run
+    run,
   ],
 });

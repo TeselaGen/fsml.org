@@ -135,6 +135,4 @@ function validateManifest(manifest: TManifest): boolean {
   return isValid;
 }
 
-
 // async function parseDataFiles(args: any) {}
-
