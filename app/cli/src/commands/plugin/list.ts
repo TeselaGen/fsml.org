@@ -1,6 +1,6 @@
 import { Options, Yargs } from "@fsml/cli/deps/yargs.ts";
 import { list } from "@fsml/cli/handlers/plugins/mod.ts";
-import { PluginTypes } from "@fsml/packages/plugins/types/mod.ts";
+import { PluginTypes } from "@fsml/packages/plugins/types.ts";
 
 const OPTIONS: { [key: string]: Options } = {
   type: {

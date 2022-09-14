@@ -1,4 +1,8 @@
-import { TBasePluginModule, TPluginRegistry, URISchemes } from "./types/mod.ts";
+import {
+  TBasePluginModule,
+  TPluginRegistry,
+  URISchemes,
+} from "../../../types/plugin.ts";
 
 const DEFAULT_CDN_PROVIDER = "https://esm.sh";
 const DEFAULT_CDN_QUERY_PARAMS = "?bundle";
@@ -18,6 +22,9 @@ const defaultVersionResolver = async (
   const versionRegex = new RegExp(VERSION_REGEX);
 
   const resp = await fetch(url);
+  if(!resp.ok) {
+    throw new Error(`Error resolving module '${module.name}@${version}'`)
+  }
   if (resp.redirected) {
     const match = resp.url.match(versionRegex);
     if (match) {
@@ -26,6 +33,13 @@ const defaultVersionResolver = async (
   }
 
   return version;
+};
+
+const defaultCacher = async (
+  moduleRegistry: TPluginRegistry,
+): Promise<boolean> => {
+  const { url } = moduleRegistry;
+  return !!(await import(url));
 };
 
 const defaultResolver = (
@@ -42,13 +56,6 @@ const defaultResolver = (
     url,
     uriScheme: URISchemes.HTTPS,
   };
-};
-
-const defaultCacher = async (
-  moduleRegistry: TPluginRegistry,
-): Promise<boolean> => {
-  const { url } = moduleRegistry;
-  return !!(await import(url));
 };
 
 export { defaultCacher, defaultResolver, defaultVersionResolver };

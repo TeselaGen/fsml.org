@@ -24,7 +24,7 @@ import {
 const DefaultDataParser: IParser = {
   name: "defaultDataParser",
   type: PluginTypes.PARSER,
-  parse: async (filepath: string) => {
+  run: async (filepath: string) => {
     console.info(`Parsing file '${filepath}'...`);
     const tabularDataObject = <TTabularData> createValueForType(TabularData);
     const columnObject = <TColumn> createValueForType(Column);

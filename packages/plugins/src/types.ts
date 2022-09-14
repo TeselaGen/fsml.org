@@ -17,7 +17,7 @@ export interface IPlugin {
 }
 
 // deno-lint-ignore no-explicit-any
-export abstract class CPlugin<RunFunction extends (...args: any[]) => void>
+export abstract class Plugin<RunFunction extends (...args: any[]) => void>
   implements IPlugin {
   name: string;
   type: PluginTypes;
@@ -38,7 +38,7 @@ type ParserRun = (
     data: TTabularData;
   }>
 >;
-export interface IParser extends CPlugin<ParserRun> {
+export interface IParser extends Plugin<ParserRun> {
   /**
    * Receives filepath as input and returns
    * a filepath as an output and/or along with the parsed data
@@ -51,7 +51,7 @@ export interface IParser extends CPlugin<ParserRun> {
 type ExporterRun = (
   manifest: TManifest,
 ) => Promise<Partial<{ filepath: string; data: unknown }>>;
-export interface IExporter extends CPlugin<ExporterRun> {
+export interface IExporter extends Plugin<ExporterRun> {
   /**
    * Receives an fsml manifest and returns a
    * filepath as an output and/or along with

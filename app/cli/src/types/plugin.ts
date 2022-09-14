@@ -1,4 +1,4 @@
-import { PluginTypes } from "./plugin.ts";
+import { PluginTypes } from "@fsml/packages/plugins/types.ts";
 
 export type TBasePluginModule = {
   name: string;

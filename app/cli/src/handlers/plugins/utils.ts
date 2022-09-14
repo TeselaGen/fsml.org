@@ -1,14 +1,13 @@
+import { toStdOut } from "@fsml/packages/utils/mod.ts";
 import { omitBy, sortBy } from "@fsml/packages/utils/deps/lodash.ts";
+import { IParser } from "@fsml/packages/plugins/types.ts";
 import {
-  IParser,
   TBasePluginModule,
   TPluginRegistry,
   TPluginsRegistry,
-} from "@fsml/packages/plugins/types/mod.ts";
-import { toStdOut } from "@fsml/packages/utils/mod.ts";
-import PluginHandler from "@fsml/packages/plugins/mod.ts";
+} from "../../types/plugin.ts";
+import PluginHandler from "./handler/mod.ts";
 import DefaultParser from "./default-parser.ts";
-import { getPluginRegistry } from "@fsml/packages/plugins/registry/mod.ts";
 
 const MODULE_VERSION_SEPARATOR = "@";
 
@@ -56,16 +55,15 @@ async function selectParser(
   return null;
 }
 
-async function listPlugins(
+function filterPlugins(
+  pluginsRegistry: TPluginsRegistry,
   opts: { type: string; regex: string; sort: string },
-): Promise<TPluginsRegistry["plugins"]> {
+): TPluginsRegistry["plugins"] {
   const {
     type,
     regex,
     sort,
   } = opts;
-
-  const pluginsRegistry = await getPluginRegistry();
 
   const plugins_filtered = omitBy(
     pluginsRegistry.plugins,
@@ -95,12 +93,12 @@ function versionBumpTemplate(currentVersion: string, opts: {
 }): string {
   const [major, minor] = currentVersion.split(".");
 
+  if (opts.patch) return `${major}.${minor}.x`;
+  if (opts.minor) return `${major}.x.x`;
   if (opts.version) return opts.version;
   if (opts.latest || opts.major) return "latest";
-  if (opts.minor) return `${major}.x.x`;
-  if (opts.patch) return `${major}.${minor}.x`;
 
   return currentVersion;
 }
 
-export { listPlugins, moduleParser, selectParser, versionBumpTemplate };
+export { filterPlugins, moduleParser, selectParser, versionBumpTemplate };

@@ -1,18 +1,17 @@
-import path from "https://deno.land/std@0.148.0/node/path.ts";
-import { yaml } from "@fsml/packages/utils/deps/mod.ts";
+import { path, yaml } from "@fsml/packages/utils/deps/mod.ts";
 import { isNil, set } from "@fsml/packages/utils/deps/lodash.ts";
 import { read, toFile } from "@fsml/packages/utils/mod.ts";
 import {
   TBasePluginModule,
   TPluginRegistry,
   TPluginsRegistry,
-} from "../types/mod.ts";
+} from "../../../types/plugin.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 export const MODULE_REGISTRY_DIR = path.resolve(__dirname);
 const PLUGINS_REGISTRY_FILEPATH = path.join(
   MODULE_REGISTRY_DIR,
-  "modules.yaml",
+  "plugins-registry.yaml",
 );
 
 async function addModuleToRegistry(

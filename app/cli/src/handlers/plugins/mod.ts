@@ -1,12 +1,8 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
-import PluginHandler from "@fsml/packages/plugins/mod.ts";
-import { getRegisteredModule } from "@fsml/packages/plugins/registry/mod.ts";
 import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
-import { listPlugins, moduleParser, versionBumpTemplate } from "./utils.ts";
-
-// TODO: get these plugin cli command keyword arguments from
-// somewhere more centralized.
-const pluginCommandArgs = ["module", "cache", "sort", "latest", "$0"];
+import PluginHandler from "./handler/mod.ts";
+import { getPluginRegistry, getRegisteredModule } from "./cache/registry.ts";
+import { filterPlugins, moduleParser, versionBumpTemplate } from "./utils.ts";
 
 async function install(args: Arguments) {
   const {
@@ -84,9 +80,17 @@ async function list(args: Arguments) {
     sort,
   } = args;
 
-  const pluginsRegistry = await listPlugins({ type, regex, sort });
+  const pluginsRegistry = await getPluginRegistry();
+  const pluginsRegistry_filtered = filterPlugins(pluginsRegistry, {
+    type,
+    regex,
+    sort,
+  });
 
-  const text = jsonToText({ format: "yaml", content: pluginsRegistry });
+  const text = jsonToText({
+    format: "yaml",
+    content: pluginsRegistry_filtered,
+  });
 
   return toStdOut(text);
 }
@@ -131,6 +135,9 @@ async function run(args: Arguments) {
 
   const pluginKeywordArgs: Record<string, unknown> = {};
 
+  // TODO: get these plugin cli command keyword arguments from
+  // somewhere more centralized.
+  const pluginCommandArgs = ["module", "cache", "sort", "latest", "$0"];
   Object.keys(_args).forEach((_argKey) => {
     if (!pluginCommandArgs.includes(_argKey)) {
       pluginKeywordArgs[_argKey] = _args[_argKey];

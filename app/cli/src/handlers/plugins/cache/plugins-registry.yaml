@@ -1,0 +1,7 @@
+plugins:
+  lodash:
+    name: lodash
+    version: 4.17.21
+    url: 'https://esm.sh/lodash@4.17.21?bundle'
+    uriScheme: https
+    cached: false
