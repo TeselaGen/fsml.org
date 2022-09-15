@@ -22,6 +22,8 @@ detailed information on each of the tabular data columns.
 This information explains in a well-defined set of properties the nature of each column, both human and machine
 readable which makes it specifically useful for the automation of processes such a Statisticaly Analyses or Machine Learning modelling.
 
+This well-defined properties as described as [Data Types](../data-types).
+
 
 # File Reference
 A reference to the source file as [File Schema](./file-data.md).
