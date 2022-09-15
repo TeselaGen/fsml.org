@@ -1,7 +1,7 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
 import PluginHandler from "./handler/mod.ts";
-import { getPluginRegistry, getRegisteredModule } from "./cache/registry.ts";
+import { getPluginRegistry, getRegisteredModule } from "./registry.ts";
 import { filterPlugins, moduleParser, versionBumpTemplate } from "./utils.ts";
 
 async function install(args: Arguments) {

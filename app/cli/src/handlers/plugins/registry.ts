@@ -4,14 +4,14 @@ import {
   TBasePluginModule,
   TPluginRegistry,
   TPluginsRegistry,
-} from "../../../types/plugin.ts";
+} from "../../types/plugin.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const PLUGIN_REGISTRY_TEMPLATE: TPluginsRegistry = {
   plugins: {},
   cacheDir: null,
 };
-const MODULE_REGISTRY_DIR = path.resolve(__dirname);
+const MODULE_REGISTRY_DIR = path.resolve(__dirname, "../../");
 const PLUGINS_REGISTRY_FILEPATH = path.join(
   MODULE_REGISTRY_DIR,
   "plugins.yaml",

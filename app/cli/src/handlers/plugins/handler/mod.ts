@@ -5,7 +5,7 @@ import {
   getRegisteredModule,
   removeModuleFromRegistry,
   updateModuleRegistry,
-} from "../cache/registry.ts";
+} from "../registry.ts";
 import {
   IPluginHandlerOptions,
   TPluginRegistry,
