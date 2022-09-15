@@ -24,7 +24,6 @@ The bioindustrial manufacturing and design community is in great need of new sta
 ## Scope 
 Here we will be documenting the basis of the new FSML (Fermentation Systems Modeling Language) data exchange standard. In this site you can also learn more about the guiding principles of FSML and an overview of the key sections describing the core FSML schema. We are also open sourcing the development of the FSML standard together with some basic tools to process FSML files. You will be able to find the open repository at https://github.com/TeselaGen/fsml.org/.    
 
-
 As BioMADE CEO Douglas Friedman, Ph.D says, "The bioindustrial manufacturing industry stands to benefit from this standardization and the shared tools to follow.”    
 
 If your are interested in making any contributions of suggestions to FSML, please do!:    
