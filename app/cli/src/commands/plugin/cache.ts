@@ -8,7 +8,7 @@ function builder(yargs: Yargs) {
   });
 }
 export default {
-  command: "cache",
+  command: "cache <module>",
   describe: "Force plugin to be downloaded and cached locally",
   builder,
   handler: cache,

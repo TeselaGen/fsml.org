@@ -1,5 +1,4 @@
-import { path, yaml } from "@fsml/packages/utils/deps/mod.ts";
-import { isNil, set } from "@fsml/packages/utils/deps/lodash.ts";
+import { fs, path, yaml } from "@fsml/packages/utils/deps/mod.ts";
 import { read, toFile } from "@fsml/packages/utils/mod.ts";
 import {
   TBasePluginModule,
@@ -8,10 +7,14 @@ import {
 } from "../../../types/plugin.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
-export const MODULE_REGISTRY_DIR = path.resolve(__dirname);
+const PLUGIN_REGISTRY_TEMPLATE: TPluginsRegistry = {
+  plugins: {},
+  cacheDir: null,
+};
+const MODULE_REGISTRY_DIR = path.resolve(__dirname);
 const PLUGINS_REGISTRY_FILEPATH = path.join(
   MODULE_REGISTRY_DIR,
-  "plugins-registry.yaml",
+  "plugins.yaml",
 );
 
 async function addModuleToRegistry(
@@ -26,7 +29,7 @@ async function addModuleToRegistry(
     return false;
   }
 
-  set(pluginsRegistry, "plugins", { [name]: module });
+  Object.assign(pluginsRegistry.plugins, { [name]: module });
 
   // @ts-ignore <yaml.stringify input type is not very well defined>
   const pluginsRegistryString_updated = yaml.stringify(
@@ -70,11 +73,11 @@ async function removeModuleFromRegistry(
 }
 
 async function getPluginRegistry(): Promise<TPluginsRegistry> {
+  fs.ensureFileSync(PLUGINS_REGISTRY_FILEPATH);
   const pluginsRegistryString = await read(PLUGINS_REGISTRY_FILEPATH);
   const pluginsRegistry =
-    (await yaml.parse(pluginsRegistryString) as TPluginsRegistry);
-
-  if (isNil(pluginsRegistry.plugins)) set(pluginsRegistry, "plugins", {});
+    (await yaml.parse(pluginsRegistryString) as TPluginsRegistry) ||
+    PLUGIN_REGISTRY_TEMPLATE;
 
   return pluginsRegistry;
 }

@@ -33,6 +33,7 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
 
   async function cache(): Promise<boolean> {
     const moduleRegistry = await getRegisteredModule(pluginBaseModule);
+    if (!moduleRegistry) return false;
     let isCached = false;
     try {
       isCached = await moduleCacher(moduleRegistry);

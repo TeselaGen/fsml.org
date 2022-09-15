@@ -59,7 +59,7 @@ export type TPluginsRegistry = {
   plugins: Record<string, TPluginRegistry>;
   // NOTE: 'cacheDir' optionaly at the moment, but we might want to force it
   // if we want to be able to manage caching.
-  cacheDir?: string;
+  cacheDir?: string | null;
 };
 
 export * from "./plugin.ts";
