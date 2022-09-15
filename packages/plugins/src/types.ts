@@ -4,57 +4,61 @@ import {
 import { TManifest } from "@fsml/packages/standard/manifest/manifest.ts";
 
 export enum PluginTypes {
-  GENERIC = "generic",
+  /**
+   * Any plugin used for transforming experimental
+   * data into the FSML schema.
+   */
   PARSER = "parser",
+  /**
+   * Any plugin used for exporting an FSML manifest
+   * into some other format.
+   */
   EXPORTER = "exporter",
+  /**
+   * Any plugin used other purposes.
+   */
+  GENERIC = "generic",
 }
 
+/**
+ * Common Plugin interface that any FSML plugin should extend.
+ */
 export interface IPlugin {
-  // Design plugin interface. The current plan is to
-  // make them publishable packages that can be dynamically imported in deno.
   name: string;
   type: PluginTypes;
+  // deno-lint-ignore no-explicit-any
+  run: (...args: any[]) => void;
 }
 
-// deno-lint-ignore no-explicit-any
-export abstract class Plugin<RunFunction extends (...args: any[]) => void>
-  implements IPlugin {
-  name: string;
-  type: PluginTypes;
-
-  constructor(name: string, type: PluginTypes) {
-    this.name = name;
-    this.type = type;
-  }
-
-  public abstract run: RunFunction;
-}
-
-type ParserRun = (
-  filepath: string,
-) => Promise<
-  Partial<{
-    filepath: string;
-    data: TTabularData;
-  }>
->;
-export interface IParser extends Plugin<ParserRun> {
+/**
+ * Parser interface that any Parser Plugin should extend.
+ */
+export interface IParser extends IPlugin {
   /**
    * Receives filepath as input and returns
    * a filepath as an output and/or along with the parsed data
    * of type TTabularData
    */
-  run: ParserRun;
+  run: (
+    filepath: string,
+  ) => Promise<
+    Partial<{
+      filepath: string;
+      data: TTabularData;
+    }>
+  >;
   isApplicable: (filepath: string) => Promise<boolean>;
 }
 
-type ExporterRun = (
-  manifest: TManifest,
-) => Promise<Partial<{ filepath: string; data: unknown }>>;
-export interface IExporter extends Plugin<ExporterRun> {
+/**
+ * Parser interface that any Exporter Plugin should extend.
+ */
+export interface IExporter extends IPlugin {
   /**
    * Receives an fsml manifest and returns a
    * filepath as an output and/or along with
    * a data object of some unknown type (e.g, json, yaml, etc.). */
-  run: ExporterRun;
+  run: (
+    manifest: TManifest,
+  ) => Promise<Partial<{ filepath: string; data: unknown }>>;
 }

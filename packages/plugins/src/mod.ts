@@ -1,4 +1,4 @@
-import { IExporter, IParser, IPlugin, Plugin, PluginTypes } from "./types.ts";
+import { IExporter, IParser, IPlugin, PluginTypes } from "./types.ts";
 
 function isParser(plugin: IPlugin | IParser): plugin is IParser {
   return plugin.type === PluginTypes.PARSER;
@@ -9,4 +9,4 @@ function isExporter(plugin: IPlugin | IExporter): plugin is IExporter {
 }
 
 export { isExporter, isParser };
-export type { IExporter, IParser, IPlugin, Plugin };
+export type { IExporter, IParser, IPlugin };
