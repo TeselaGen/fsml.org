@@ -10,6 +10,7 @@ Data can be stored in different formats and with different degrees of completene
 containing the experimental information, while the highest attainable by reading, parsing and explaining the data extracted from such files.
 This degree of completeness is accounted for in the Utility Score of described in [Core Sections](../../core-sections.md).
 
+## More information
 
-- [File](./file-data)
-- [Tabular](./tabular-data)
+- [File Data](./file-data)
+- [Tabular Data](./tabular-data)
