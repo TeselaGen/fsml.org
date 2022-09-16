@@ -1,5 +1,5 @@
 ---
-title: 'Tabular'
+title: 'Tabular Schema'
 ---
 
 # Tabular Schema
