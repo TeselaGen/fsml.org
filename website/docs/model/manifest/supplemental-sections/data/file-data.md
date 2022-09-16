@@ -1,5 +1,5 @@
 ---
-title: 'File'
+title: 'File Schema'
 ---
 
 # File Schema
