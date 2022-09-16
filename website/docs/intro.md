@@ -31,7 +31,7 @@ https://github.com/TeselaGen/fsml.org/issues
 
 
 
-## Relevant Links
+## Learn more
 
 - [Background](/background)
 - [The Model](/model)
