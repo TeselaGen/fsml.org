@@ -99,3 +99,7 @@ Protocols can oftentimes use domain specific lingo that may make it difficult fo
 # Search Attributes
 
 This section provides a place to define attributes used for querying or searching for this protocol.
+
+# Experimental Data
+
+FSML defines a [data schema](./data) for protocols experimentation data.
