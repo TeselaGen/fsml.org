@@ -1,5 +1,7 @@
 ---
 title: 'Background'
+sidebar_position: 2
+slug: /background/
 ---
 
 # Background
