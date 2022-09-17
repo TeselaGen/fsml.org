@@ -1,5 +1,7 @@
 ---
 title: 'Model'
+sidebar_position: 3
+slug: /model/
 ---
 
 # Overview
