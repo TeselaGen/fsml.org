@@ -2,15 +2,15 @@
 title: 'Core Sections'
 ---
 
-# Overview
+## Core Sections
 
-Core sections are sections that must be present in all manifest files. They represent the minimum that is required to model a protocol using FSML.
+Core sections of the shema are sections that must be present in all manifest files. They represent the minimum that is required to model a protocol using FSML.
 
-# Version
+### Version
 
 This section describes the version of the specification format that this content adheres to.
 
-# Identification
+### Identification
 
 Every manifest must provide a way to uniquely identify a protocol. This can come in 2 main ways:
 
@@ -18,11 +18,11 @@ Content Identification - in this case an identifier (hash) is generated from the
 
 Authoritative Identification - in this an authority such as a software platform issues an ID to the protocol.
 
-# Source Content
+### Source Content
 
 Every manifest must provide URL’s (or relative file paths if in an archive) to the various sources of content that comprise this protocol. Additionally the mime type of each content source should be annotated if possible. In most cases these will be links to files or HTTP GET URL’s that will serve up the content on demand.
 
-# Utility Score
+### Utility Score
 
 The intent behind a protocol can vary greatly based on the use case that precipitated its creation. For example a protocol that is used in a highly regulated production environment is going to be focused on including content that is different from the content in protocols used in a development environment where researchers are focused on trying to optimize the performance of the protocol.
 

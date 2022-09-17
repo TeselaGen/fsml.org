@@ -1,8 +1,8 @@
 ---
-title: 'Tabular'
+title: 'Tabular Data Schema'
 ---
 
-# Tabular Schema
+# Tabular Data Schema
 
 The tabular schema stores data as an array of rows referencing the source data file(s). Additionally,
 the schema provides a columns array where all the information expalining each column is stored. The Tabular schema

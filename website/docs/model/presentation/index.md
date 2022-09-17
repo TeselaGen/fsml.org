@@ -1,10 +1,10 @@
 ---
-title: 'Presentation'
+title: 'Visualization'
 ---
 
-# Presentation Layer
+# Visualization
 
-The presentation layer is set of tools and formats that render the protocol manifest in a human friendly way.
+Here we will document a set of tools and formats that render the manifest data in a human friendly way.
 
 ### Links
 

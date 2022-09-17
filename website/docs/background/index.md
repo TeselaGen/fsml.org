@@ -2,7 +2,7 @@
 title: 'Background'
 ---
 
-# Human + Machine
+# Background
 
 Fermentation is as much of an art as it is science. In nearly all fermentation processes the challenge is to create the right environment with the right food for the right microbial strain to yield the desired product.
 

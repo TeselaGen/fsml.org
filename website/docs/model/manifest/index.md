@@ -4,9 +4,10 @@ title: 'Manifest'
 
 # Manifest Data Model
 
-The manifest data describes the protocol source content in a way that can be easily parsed by current technologies.
+The manifest data model describes the protocol source content in a way that can be easily parsed by current technologies. The schema of this data model has a core section (mandatory) and some supplemantal sections: the protocol schema and the data schema. 
 
-### Links
 
-- [Core Sections](./core-sections)
+## Learn more
+
+- [Core Section](./core-sections)
 - [Supplemental Sections](./supplemental-sections)
