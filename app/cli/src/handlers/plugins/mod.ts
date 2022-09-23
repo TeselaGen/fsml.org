@@ -1,16 +1,38 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
+import { PluginTypes } from "../../../../../packages/plugins/src/types.ts";
+import {
+  TBasePluginModule,
+  TPluginRegistry,
+  URISchemes,
+} from "../../types/plugin.ts";
 import PluginHandler from "./handler/mod.ts";
 import { getPluginRegistry, getRegisteredModule } from "./registry.ts";
-import { filterPlugins, moduleParser, versionBumpTemplate } from "./utils.ts";
+import {
+  filterPlugins,
+  moduleParser,
+  resolveUriScheme,
+  versionBumpTemplate,
+} from "./utils.ts";
 
 async function install(args: Arguments) {
   const {
     cache: cacheModule = false,
+    "from-url": fromUrl,
     module,
   } = args;
 
-  const pluginModule = moduleParser(module);
+  let pluginModule: TBasePluginModule | TPluginRegistry = moduleParser(module);
+
+  if (fromUrl) {
+    pluginModule = {
+      ...pluginModule,
+      url: fromUrl,
+      uriScheme: resolveUriScheme(fromUrl),
+      type: PluginTypes.GENERIC,
+      cached: true,
+    };
+  }
 
   const moduleRegistry = await getRegisteredModule(pluginModule);
 
@@ -29,7 +51,8 @@ async function install(args: Arguments) {
     `Plugin installed: '${pluginRegistry.name}@${pluginRegistry.version}'`,
   );
 
-  if (cacheModule) {
+  // It only makes sense to cache remote modules.
+  if (cacheModule && pluginRegistry.uriScheme === URISchemes.HTTPS) {
     await cache(args);
   }
 }

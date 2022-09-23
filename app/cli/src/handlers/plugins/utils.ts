@@ -1,15 +1,21 @@
 import { toStdOut } from "@fsml/packages/utils/mod.ts";
-import { omitBy, sortBy } from "@fsml/packages/utils/deps/lodash.ts";
+import { every, omitBy, sortBy } from "@fsml/packages/utils/deps/lodash.ts";
 import { IParser, isParser } from "@fsml/packages/plugins/mod.ts";
 import {
   TBasePluginModule,
   TPluginRegistry,
   TPluginsRegistry,
+  URISchemes,
 } from "../../types/plugin.ts";
 import PluginHandler from "./handler/mod.ts";
 import DefaultParser from "./default-parser.ts";
 
 const MODULE_VERSION_SEPARATOR = "@";
+
+const UriSchemePrefixes = {
+  [URISchemes.FILE]: "file://",
+  [URISchemes.HTTPS]: "https://",
+};
 
 function moduleParser(
   module: string,
@@ -101,4 +107,37 @@ function versionBumpTemplate(currentVersion: string, opts: {
   return currentVersion;
 }
 
-export { filterPlugins, moduleParser, selectParser, versionBumpTemplate };
+function isPluginRegistry(
+  pluginRegistry: TBasePluginModule | TPluginRegistry,
+): pluginRegistry is TPluginRegistry {
+  const TPluginRegistryKeys = ["name", "url", "uriScheme"];
+  const _keys = Object.keys(pluginRegistry);
+
+  return every(
+    TPluginRegistryKeys,
+    (key: string) => _keys.includes(key),
+    undefined,
+  );
+}
+
+function resolveUriScheme(url: string): URISchemes {
+  for (
+    const [uriScheme, uriSchemePrefix] of Object.entries(UriSchemePrefixes)
+  ) {
+    if (url.startsWith(uriSchemePrefix)) return uriScheme as URISchemes;
+  }
+
+  // File URLs dont usually come with the file:// prefix
+  // so defaulting to FILE seems reasonable,
+  // in case no URI scheme prefix is found.
+  return URISchemes.FILE;
+}
+
+export {
+  filterPlugins,
+  isPluginRegistry,
+  moduleParser,
+  resolveUriScheme,
+  selectParser,
+  versionBumpTemplate,
+};

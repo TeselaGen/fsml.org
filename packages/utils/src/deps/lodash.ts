@@ -10,7 +10,9 @@ import isUndefined from "https://deno.land/x/lodash@4.17.15-es/isUndefined.js";
 import uniqBy from "https://deno.land/x/lodash@4.17.15-es/uniqBy.js";
 import find from "https://deno.land/x/lodash@4.17.15-es/find.js";
 import sortBy from "https://deno.land/x/lodash@4.17.15-es/sortBy.js";
+import every from "https://deno.land/x/lodash@4.17.15-es/every.js";
 export {
+  every,
   find,
   get,
   identity,
@@ -19,7 +21,7 @@ export {
   merge,
   omitBy,
   set,
+  sortBy,
   uniqBy,
   unset,
-  sortBy
 };

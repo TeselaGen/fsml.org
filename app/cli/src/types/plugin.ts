@@ -6,7 +6,7 @@ export type TBasePluginModule = {
 };
 
 export interface IPluginHandlerOptions {
-  module: TBasePluginModule;
+  module: TBasePluginModule | TPluginRegistry;
   versionResolver?: (module: TBasePluginModule) => Promise<string>;
   /**
    * The resolver is to handle plugin URIs

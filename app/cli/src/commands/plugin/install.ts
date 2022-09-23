@@ -1,11 +1,21 @@
-import { Yargs } from "@fsml/cli/deps/yargs.ts";
+import { Options, Yargs } from "@fsml/cli/deps/yargs.ts";
 import { install } from "@fsml/cli/handlers/plugins/mod.ts";
 
-function builder(yargs: Yargs) {
-  yargs.option("cache", {
+const OPTIONS: { [key: string]: Options } = {
+  cache: {
     type: "boolean",
+    alias: "c",
     describe: "Caches the plugin",
-  }).positional("module", {
+  },
+  ["from-url"]: {
+    type: "string",
+    alias: "u",
+    describe: "Installs plugin from specific URL",
+  },
+};
+
+function builder(yargs: Yargs) {
+  yargs.options(OPTIONS).positional("module", {
     type: "string",
     describe:
       "Module to be installed in the format of name@version (latest version will be used by default)",

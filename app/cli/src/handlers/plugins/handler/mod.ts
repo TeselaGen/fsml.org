@@ -16,6 +16,7 @@ import {
   defaultResolver,
   defaultVersionResolver,
 } from "./utils.ts";
+import { isPluginRegistry } from "../utils.ts";
 
 const PluginHandler = (opts: IPluginHandlerOptions) => {
   const {
@@ -51,6 +52,11 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
   }
 
   async function install(): Promise<TPluginRegistry> {
+    if (isPluginRegistry(pluginBaseModule)) {
+      await addModuleToRegistry(pluginBaseModule);
+      return pluginBaseModule;
+    }
+
     const resolvedVersion = await versionResolver({
       ...pluginBaseModule,
       version: pluginBaseModule.version || "latest",

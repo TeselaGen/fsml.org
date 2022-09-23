@@ -83,7 +83,7 @@ async function getPluginRegistry(): Promise<TPluginsRegistry> {
 }
 
 async function getRegisteredModule(
-  module: TBasePluginModule,
+  module: TBasePluginModule | TPluginRegistry,
 ): Promise<TPluginRegistry> {
   const { name } = module;
   const pluginsRegistry = await getPluginRegistry();
