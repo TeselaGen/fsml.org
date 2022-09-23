@@ -27,7 +27,7 @@ export interface IPlugin {
   name: string;
   type: PluginTypes;
   // deno-lint-ignore no-explicit-any
-  run: (...args: any[]) => void;
+  run: (...args: any[]) => Promise<any>;
 }
 
 /**

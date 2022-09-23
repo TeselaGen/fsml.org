@@ -1,5 +1,10 @@
 import { TManifest } from "@fsml/packages/standard/manifest/manifest.ts";
-import { IPlugin, isExporter, isParser } from "@fsml/packages/plugins/mod.ts";
+import {
+  IPlugin,
+  isExporter,
+  isGeneric,
+  isParser,
+} from "@fsml/packages/plugins/mod.ts";
 import {
   addModuleToRegistry,
   getRegisteredModule,
@@ -110,22 +115,37 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
     return moduleRegsitry_updated;
   }
 
-  async function run(args: Record<string, unknown>): Promise<unknown> {
+  async function run(
+    // We don't really know the nature of the plugin arguments a-priori.
+    // deno-lint-ignore no-explicit-any
+    args: { positional: any[]; keyword: Record<string, any> },
+  ): Promise<unknown> {
+    const { positional: _positional, keyword } = args;
+
     const plugin = await _import();
 
-    if (isParser(plugin)) {
-      const filepath = args.filepath as string;
-      const result = await plugin.run(filepath);
-      return result;
-    }
+    try {
+      if (isParser(plugin)) {
+        const filepath = keyword.filepath as string;
+        const result = await plugin.run(filepath);
+        return result;
+      }
 
-    if (isExporter(plugin)) {
-      const manifest = args.manifest as TManifest;
-      const result = await plugin.run(manifest);
-      return result;
-    }
+      if (isExporter(plugin)) {
+        const manifest = keyword.manifest as TManifest;
+        const result = await plugin.run(manifest);
+        return result;
+      }
 
-    return `Error running plugin '${plugin.name}': Unrecognized plugin type.`;
+      if (isGeneric(plugin)) {
+        const result = await plugin.run(..._positional);
+        return result;
+      }
+    } catch (error) {
+      console.error(
+        `Error running plugin '${plugin.name}': Unrecognized plugin type:\n ${error}`,
+      );
+    }
   }
 
   return { install, uninstall, cache, import: _import, upgrade, run };

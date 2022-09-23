@@ -1,4 +1,4 @@
-import { path, yaml } from "@fsml/cli/deps/mod.ts";
+import { fs, path, yaml } from "@fsml/cli/deps/mod.ts";
 import { merge, set } from "@fsml/packages/utils/deps/lodash.ts";
 import { TypeCompiler } from "@fsml/packages/utils/deps/typebox.ts";
 import {
@@ -24,6 +24,7 @@ async function getDefaultConfigs() {
 
 async function getConfigs({ section }: { section?: string } = {}) {
   const defaultConfigs = await getDefaultConfigs();
+  fs.ensureFileSync(USER_CONFIG_FILEPATH);
   const configsText = await read(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);
