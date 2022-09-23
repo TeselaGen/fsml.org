@@ -28,7 +28,7 @@ const PluginHandler = (opts: IPluginHandlerOptions) => {
 
   async function _import(): Promise<IPlugin> {
     const pluginRegistry = await getRegisteredModule(pluginBaseModule);
-    const plugin: IPlugin = await import(pluginRegistry.url);
+    const { default: plugin } = await import(pluginRegistry.url);
     return plugin;
   }
 
