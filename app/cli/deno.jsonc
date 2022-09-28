@@ -1,8 +1,19 @@
 {
   "tasks": {
+    "compile": "mkdir -p bin && deno bundle src/mod.ts bin/run && npx oclif-rc pack:macos -r . && rm -rf ./tmp ./bin",
     "fsml": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run src/mod.ts",
     "test": "deno test --coverage=./cov_profile/ --allow-read --allow-env",
     "coverage": "deno coverage ./cov_profile --lcov --output=cov_profile.lcov"
   },
-  "importMap": "../../import_map.json"
+  "importMap": "../../import_map.json",
+  "oclif": {
+    "macos": {
+      "identifier": "com.oclif.fsml"
+    },
+    "update": {
+      "deno": {
+        "version": "latest"
+      }
+    }
+  }
 }

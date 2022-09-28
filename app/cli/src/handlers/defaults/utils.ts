@@ -9,17 +9,29 @@ import {
 } from "@fsml/packages/utils/mod.ts";
 import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
 
-const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
-const DEFAULT_CONFIG_FILEPATH = path.normalize(
-  path.join(__dirname, "../../default_configs.yaml"),
-);
+const DEFAULT_CONFIGS = {
+  "defaults": { "filepath": "./configs.yaml", "format": "yaml" },
+  "manifest": {
+    "author": null,
+    "format": "yaml",
+    "write": null,
+    "pack": null,
+    "unpack": false,
+    "summary": false,
+  },
+  "plugin": { "cache": false, "sort": "asc", "latest": true },
+  "registry": { "platform": "git", "properties": "" },
+};
+
+const userHomePath = Deno.env.get("HOME") || "~/";
+const homeFsmlPath = path.resolve(userHomePath, ".fsml/");
+
 const USER_CONFIG_FILEPATH = path.normalize(
-  path.join(__dirname, "../../configs.yaml"),
+  path.join(homeFsmlPath, "./configs.yaml"),
 );
 
-async function getDefaultConfigs() {
-  const defaultConfigsText = await read(DEFAULT_CONFIG_FILEPATH);
-  return await yaml.parse(defaultConfigsText);
+function getDefaultConfigs() {
+  return DEFAULT_CONFIGS;
 }
 
 async function getConfigs({ section }: { section?: string } = {}) {
