@@ -1,4 +1,4 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
+import { Type } from '../../../../deps/mod.ts';
 import { ColumnClassEnum } from '../../types.ts';
 import Unit from './unit.ts';
 

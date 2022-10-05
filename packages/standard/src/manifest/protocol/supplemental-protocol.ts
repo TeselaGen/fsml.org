@@ -1,4 +1,4 @@
-import { Type, Static } from '../../deps/typebox.ts';
+import { Type, Static } from '../../deps/mod.ts';
 import { UtilityScoreDetails } from "./utility-score-details.ts";
 
 export const SupplementalProtocol = Type.Object({

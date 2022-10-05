@@ -1,4 +1,4 @@
-import { Type, Static } from '../../deps/typebox.ts';
+import { Type, Static } from '../../deps/mod.ts';
 // import { UtilityScoreCategory } from "./utility-score-category.ts";
 
 export const UtilityScoreDetails = Type.Object({});

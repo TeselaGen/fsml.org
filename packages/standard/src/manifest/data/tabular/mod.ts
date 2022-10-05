@@ -1,4 +1,4 @@
-import { Static, Type } from "../../../deps/typebox.ts";
+import { Static, Type } from "../../../deps/mod.ts";
 import { DataTypesEnum } from "../types.ts";
 import Row from "./row.ts";
 import Column from "./column/mod.ts";

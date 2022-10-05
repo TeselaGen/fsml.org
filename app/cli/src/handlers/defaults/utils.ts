@@ -1,7 +1,12 @@
-import { path, yaml } from "@fsml/cli/deps/mod.ts";
-import { merge, set } from "@fsml/cli/deps/lodash.ts";
-import { TypeCompiler } from "@fsml/cli/deps/typebox.ts";
-import { jsonToText, toStdOut } from "@fsml/packages/utils/mod.ts";
+import { fs, path, yaml } from "@fsml/cli/deps/mod.ts";
+import { merge, set } from "@fsml/packages/utils/deps/lodash.ts";
+import { TypeCompiler } from "@fsml/packages/utils/deps/typebox.ts";
+import {
+  jsonToText,
+  read,
+  toFile,
+  toStdOut,
+} from "@fsml/packages/utils/mod.ts";
 import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
@@ -13,13 +18,14 @@ const USER_CONFIG_FILEPATH = path.normalize(
 );
 
 async function getDefaultConfigs() {
-  const defaultConfigsText = await Deno.readTextFile(DEFAULT_CONFIG_FILEPATH);
+  const defaultConfigsText = await read(DEFAULT_CONFIG_FILEPATH);
   return await yaml.parse(defaultConfigsText);
 }
 
 async function getConfigs({ section }: { section?: string } = {}) {
   const defaultConfigs = await getDefaultConfigs();
-  const configsText = await Deno.readTextFile(USER_CONFIG_FILEPATH);
+  fs.ensureFileSync(USER_CONFIG_FILEPATH);
+  const configsText = await read(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);
 
@@ -35,7 +41,10 @@ async function saveConfigs(
 ) {
   if (validateConfigs(newConfigs)) {
     const newConfigTextFile = yaml.stringify(newConfigs);
-    await Deno.writeTextFile(USER_CONFIG_FILEPATH, newConfigTextFile);
+    await toFile({
+      filepath: USER_CONFIG_FILEPATH,
+      content: newConfigTextFile,
+    });
   }
 }
 

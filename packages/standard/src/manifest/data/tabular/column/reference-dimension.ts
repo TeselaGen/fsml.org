@@ -1,5 +1,5 @@
-import { Type, Static } from '../../../../deps/typebox.ts';
-import { ColumnClassEnum, ValueTypeEnum } from '../../types.ts';
+import { Type } from '../../../../deps/mod.ts';
+import { ColumnClassEnum } from '../../types.ts';
 import Unit from './unit.ts';
 import Dimension from './dimension.ts';
 

@@ -1,4 +1,4 @@
-import { Static, Type } from "../deps/typebox.ts";
+import { Static, Type } from "../deps/mod.ts";
 import { ContentReference } from "./content-reference.ts";
 import { SupplementalData } from "./data/supplemental-data.ts";
 import { SupplementalProtocol } from "./protocol/supplemental-protocol.ts";

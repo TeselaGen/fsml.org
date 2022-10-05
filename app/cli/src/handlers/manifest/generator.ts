@@ -1,12 +1,11 @@
-import { uuid } from "@fsml/cli/deps/mod.ts";
-import { set } from "@fsml/cli/deps/lodash.ts";
+import { uuid } from "@fsml/packages/utils/deps/mod.ts";
+import { set } from "@fsml/packages/utils/deps/lodash.ts";
 import { ManifestTypes } from "@fsml/cli/types/enums.ts";
 import {
   createValueForType,
   jsonToText,
   read,
 } from "@fsml/packages/utils/mod.ts";
-import { selectParser } from "./utils.ts";
 
 import {
   Manifest,
@@ -28,6 +27,7 @@ import {
   TabularData,
   TTabularData,
 } from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
+import { selectParser } from "../plugins/utils.ts";
 
 const FSML_UUID = "0db4fe89-155e-4484-a09f-a8955294de1b";
 
@@ -62,7 +62,7 @@ const ManifestGenerator = (
 
   async function data(
     filepath: string,
-    parser?: string | string[],
+    parser?: string,
   ): Promise<TSupplementalData> {
     const parserPlugin = await selectParser(filepath, parser);
 
@@ -77,7 +77,7 @@ const ManifestGenerator = (
     if (!parserPlugin) {
       dataObject = <TFileData> createValueForType(FileData);
     } else {
-      const result = await parserPlugin.parse(filepath);
+      const result = await parserPlugin.run(filepath);
       dataObject = (result.data ||
         createValueForType(TabularData)) as TTabularData;
       if (!result.data && result.filepath) {
@@ -92,7 +92,7 @@ const ManifestGenerator = (
   async function generate(args: {
     author: string;
     filepath: string;
-    parser: string | string[];
+    parser: string;
   }): Promise<TManifest> {
     const { author: _author, filepath, parser } = args;
     const provenanceObject = author(_author);

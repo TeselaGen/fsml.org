@@ -1,4 +1,4 @@
-import { Static, Type } from "../../../../deps/typebox.ts";
+import { Static, Type } from "../../../../deps/mod.ts";
 import { ColumnKindEnum } from "../../types.ts";
 import Subject from "./subject.ts";
 import ReferenceDimension from "./reference-dimension.ts";

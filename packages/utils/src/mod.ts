@@ -1,6 +1,6 @@
-import { TSchema, Value } from "@fsml/cli/deps/typebox.ts";
-import { conversion, fs, path, yaml } from "@fsml/cli/deps/mod.ts";
-import compress from "@fsml/cli/deps/compress.ts";
+import { TSchema, Value } from "./deps/typebox.ts";
+import { conversion, fs, path, yaml } from "./deps/mod.ts";
+import compress from "./deps/compress.ts";
 
 export async function remove(filepath: string, opts?: Deno.RemoveOptions) {
   return await Deno.remove(filepath, opts);
@@ -12,7 +12,7 @@ export async function read(filepath: string) {
 }
 
 export async function toStdOut(str: string) {
-  const text = new TextEncoder().encode(str);
+  const text = new TextEncoder().encode(`${str}\n`);
   await conversion.writeAll(Deno.stdout, text);
 }
 

@@ -1,5 +1,8 @@
-import { Static, Type } from "@fsml/cli/deps/typebox.ts";
+import { Static, TSchema, Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { FormatTypes, PackTypes } from "@fsml/cli/types/enums.ts";
+
+const Nullable = <T extends TSchema>(type: T) =>
+  Type.Union([type, Type.Null()]);
 
 const DefaultsConfigs = Type.Object({
   filepath: Type.String(),
@@ -8,7 +11,7 @@ const DefaultsConfigs = Type.Object({
 
 const ManifestConfigs = Type.Object({
   format: Type.Enum(FormatTypes),
-  pack: Type.Enum(PackTypes),
+  pack: Nullable(Type.Enum(PackTypes)),
 });
 
 // TODO: extend for all missing configs.
