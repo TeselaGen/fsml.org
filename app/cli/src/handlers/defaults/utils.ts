@@ -35,7 +35,7 @@ function getDefaultConfigs() {
 }
 
 async function getConfigs({ section }: { section?: string } = {}) {
-  const defaultConfigs = await getDefaultConfigs();
+  const defaultConfigs = getDefaultConfigs();
   fs.ensureFileSync(USER_CONFIG_FILEPATH);
   const configsText = await read(USER_CONFIG_FILEPATH);
 
