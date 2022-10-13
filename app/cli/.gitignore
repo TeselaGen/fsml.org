@@ -1,3 +1,5 @@
 configs.yaml
 plugins.yaml
 scratch/**
+dist/**
+tmp/**

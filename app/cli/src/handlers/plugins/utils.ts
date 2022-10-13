@@ -72,11 +72,11 @@ function filterPlugins(
   } = opts;
 
   const plugins_filtered = omitBy(
-    pluginsRegistry.plugins,
+    Object.values(pluginsRegistry.plugins),
     (pluginRegistry: TPluginRegistry) => {
       const typeCheck = !type || pluginRegistry.type === type;
       const regexCheck = !regex || pluginRegistry.name.match(new RegExp(regex));
-      return typeCheck && regexCheck;
+      return !(typeCheck && regexCheck);
     },
   ) as TPluginsRegistry["plugins"];
 
