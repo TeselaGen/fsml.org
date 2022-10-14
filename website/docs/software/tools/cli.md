@@ -13,5 +13,5 @@ The CLI itself comes with documentation on all the available commands and what t
 ## Releases
 
 #### Version 1.1.0
-- [**fsml-v1.1.0-433c7ef-x64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-433c7ef-x64.pkg)
-- [**fsml-v1.1.0-433c7ef-arm64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-433c7ef-arm64.pkg)
+- [**fsml-v1.1.0-2c7ccc7-x64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-2c7ccc7-x64.pkg)
+- [**fsml-v1.1.0-2c7ccc7-arm64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-2c7ccc7-arm64.pkg)
