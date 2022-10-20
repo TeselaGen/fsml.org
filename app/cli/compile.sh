@@ -1,2 +1,2 @@
-bash ./docker/build.sh
+(cd ./docker && bash ./build.sh)
 bash ./docker/run.sh
