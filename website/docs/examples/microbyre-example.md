@@ -12,7 +12,8 @@ This example showcases how to leverage the FSML CLI tool to install a parser plu
 
 Three files are necessary to carry on with this example and those are available in the following link:
 
-- [**microbyreExample.zip**](../../static/microbyreExample-01.zip)
+<!-- Not sure how to reference the file in the static folder -->
+- [**microbyreExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/microbyreExample-01.zip)
 
 ## Installing the FSML CLI Tool
 
