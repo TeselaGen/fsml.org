@@ -16,12 +16,10 @@ const OPTIONS: { [key: string]: Options } = {
   },
   parser: {
     alias: "p",
-    // NOTE: Yargs doesnt seem to support specifying the
-    // type of the array elements.
-    type: "array",
+    type: "string",
     demandOption: false,
     // choices: INSTALLED_PLUGINS,
-    describe: "Parsers needed for the FSML manifest data type",
+    describe: "Parser needed for the FSML manifest data type",
   },
   write: {
     alias: "o",

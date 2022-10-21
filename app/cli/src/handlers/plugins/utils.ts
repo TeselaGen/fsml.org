@@ -51,7 +51,7 @@ async function selectParser(
     const plugin = await _import();
 
     if (isParser(plugin)) {
-      if (!await plugin.isApplicable(filepath)) return plugin;
+      if (await plugin.isApplicable(filepath)) return plugin;
     }
   }
   // If no parser is provided use the default parser if applicable.
