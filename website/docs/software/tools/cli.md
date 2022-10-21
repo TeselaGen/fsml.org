@@ -14,9 +14,9 @@ The CLI itself comes with documentation on all the available commands and what t
 
 #### Version 1.1.0
 ###### macos
-- [**fsml-v1.1.0-2c7ccc7-x64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-2c7ccc7-x64.pkg)
-- [**fsml-v1.1.0-2c7ccc7-arm64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-2c7ccc7-arm64.pkg)
+- [**fsml-v1.1.0-239859b-x64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-239859b-x64.pkg)
+- [**fsml-v1.1.0-239859b-arm64.pkg**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml-v1.1.0-239859b-arm64.pkg)
 
 ###### debian
-- [**fsml_1.1.0.0eba780-1_amd64.deb**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml_1.1.0.0eba780-1_amd64.deb)
-- [**fsml_1.1.0.0eba780-1_armel.deb**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml_1.1.0.0eba780-1_armel.deb)
+- [**fsml_1.1.0.239859b-1_amd64.deb**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml_1.1.0.239859b-1_amd64.deb)
+- [**fsml_1.1.0.239859b-1_armel.deb**](https://github.com/TeselaGen/fsml.org/releases/download/v.1.1.0/fsml_1.1.0.239859b-1_armel.deb)
