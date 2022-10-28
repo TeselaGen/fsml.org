@@ -1,4 +1,4 @@
-import { Type, Static } from '../deps/typebox.ts';
+import { Type, Static } from '../deps/mod.ts';
 
 export const ContentReference = Type.Object({
   contentType: Type.String(),

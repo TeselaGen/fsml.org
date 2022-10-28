@@ -1,0 +1,6 @@
+configs.yaml
+plugins.yaml
+scratch/**
+dist/**
+bin/**
+tmp/**

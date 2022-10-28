@@ -4,11 +4,25 @@
       "path": "../fsml.org"
     },
     {
+      "name": "cli",
       "path": "app/cli"
     },
     {
+      "name": "standard",
       "path": "packages/standard"
+    },
+    {
+      "name": "utils",
+      "path": "packages/utils"
+    },
+    {
+      "name": "plugins",
+      "path": "packages/plugins"
     }
   ],
-  "settings": {}
+  "settings": {
+    "deno.enable": true,
+    "deno.unstable": true,
+    "deno.importMap": "./import_map.json"
+  }
 }

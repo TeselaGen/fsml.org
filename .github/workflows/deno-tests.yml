@@ -30,17 +30,16 @@ jobs:
       # - name: Build Deno Module
       #   run: deno run --reload --allow-env --allow-read ./src/main.ts
       - name: Test Deno Module
-        run: deno test --coverage=coverage/
-      - run: '([ -d ./coverage ] && echo Coverage Folder Exists) || echo coverage folder does not exist.. zoonk'
+        run: deno task test
       # This generates a report from the collected coverage in `deno test --coverage`. It is
       # stored as a .lcov file which integrates well with services such as Codecov, Coveralls and Travis CI.
-      - run: deno coverage --lcov coverage/ > cov.lcov
+      - run: deno task coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           working-directory: ./app/cli
-          directory: ./coverage/
-          files: ./cov.lcov
+          directory: ./cov_profile/
+          files: ./cov_profile.lcov
           name: codecov-umbrella
           # fail_ci_if_error: true
           path_to_write_report: ./codecov_report.gz

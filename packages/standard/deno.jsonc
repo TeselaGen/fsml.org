@@ -1,5 +1,6 @@
 {
   "tasks": {
-   "start": "deno run --allow-read --allow-env example/example1.ts" 
-  }
+   "start": "deno run --allow-read --allow-env example/example1.ts"
+  },
+  "importMap": "../../import_map.json"
 }
