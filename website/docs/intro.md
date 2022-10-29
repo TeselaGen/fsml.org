@@ -4,7 +4,7 @@ slug: /
 ---
 
 #    
-### Welcome to the Fermentation Systems Modeling Language (FSML) community portal!
+**Welcome to the Fermentation Systems Modeling Language (FSML) community portal!**
 
 TeselaGen (https://teselagen.com/) in collaboration with BioMADE (https://www.biomade.org/) has launched FSML.org (Fermentation Systems Modeling Language) to help further our ability to create the best fermentation processes through protocol modeling.    
 
