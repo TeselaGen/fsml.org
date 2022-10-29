@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'FSML.org',
+  title: 'FSML',
   tagline: '',
   url: 'https://fsml.org',
   baseUrl: process.env.DOCUSAURUS_PATH_PREFIX || '/',
