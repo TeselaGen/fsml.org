@@ -12,6 +12,7 @@ export default function CliDocs() {
           alignItems: 'center',
           height: 1000,
           fontSize: '20px',
+          background: 'white'
         }}>
         <iframe width="100%" height="1000" src="https://doc.deno.land/https://deno.land/x/fsml_cli@v1.0.0/src/main.ts" />
       </div>
