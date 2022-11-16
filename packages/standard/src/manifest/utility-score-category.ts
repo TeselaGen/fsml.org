@@ -1,4 +1,4 @@
-import { Type, Static } from '../deps/mod.ts';
+import { Type, Static } from "@fsml/packages/utils/deps/typebox.ts";
 
 export const UtilityScoreCategory = Type.Object({
   score: Type.Number(),

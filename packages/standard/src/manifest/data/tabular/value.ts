@@ -1,4 +1,4 @@
-import { Type } from '../../../deps/mod.ts';
+import { Type } from "@fsml/packages/utils/deps/typebox.ts";
 
 const Value = Type.Object({
   /**

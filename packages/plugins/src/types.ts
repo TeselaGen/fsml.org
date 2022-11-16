@@ -1,6 +1,4 @@
-import {
-  TTabularData,
-} from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
+import { TTabularData } from "@fsml/packages/standard/manifest/data/tabular/mod.ts";
 import { TManifest } from "@fsml/packages/standard/manifest/manifest.ts";
 
 export enum PluginTypes {

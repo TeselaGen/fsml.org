@@ -1,4 +1,4 @@
-import { TSchema, Value } from "./deps/typebox.ts";
+import { Value } from "./deps/typebox.ts";
 import { conversion, fs, path, yaml } from "./deps/mod.ts";
 import compress from "./deps/compress.ts";
 
@@ -84,8 +84,11 @@ export async function expandGlobPaths(filepattern: string) {
   return filepaths;
 }
 
-export function createValueForType(type: TSchema) {
-  //@ts-ignore:next-line : This seems like an issue with typebox types.
+// TypeBox is not fully well supported for deno yet,
+// thus we have to use and ignore the 'any type here.
+// According to the docs 'createValueForType(type: TSchema)' should work.
+// deno-lint-ignore no-explicit-any
+export function createValueForType(type: any) {
   return Value.Create(type);
 }
 /**

@@ -1,4 +1,4 @@
-import { Static, Type } from "../../../deps/mod.ts";
+import { Static, Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { DataTypesEnum } from "../types.ts";
 import Row from "./row.ts";
 import Column from "./column/mod.ts";

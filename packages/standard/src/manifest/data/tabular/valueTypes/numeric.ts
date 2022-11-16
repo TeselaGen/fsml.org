@@ -1,4 +1,4 @@
-import { Type } from '../../../../deps/mod.ts';
+import { Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { ValueTypeEnum } from '../../types.ts';
 
 const NumericType = Type.Object({
