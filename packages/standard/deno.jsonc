@@ -1,6 +1,7 @@
 {
   "tasks": {
-   "start": "deno run --allow-read --allow-env example/example1.ts"
+   "start": "deno run --allow-read --allow-env example/example1.ts",
+   "bundle": "mkdir -p dist && deno bundle ./src/mod.ts ./dist/standard_bundle.ts"
   },
   "importMap": "../../import_map.json"
 }

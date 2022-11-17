@@ -2,7 +2,20 @@
   "name": "fsml.org",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "bundle:standard": "cd ./packages/standard && deno task bundle",
+    "bundle:plugins": "cd ./packages/plugins && deno task bundle",
+    "bundle:utils": "cd ./packages/utils && deno task bundle",
+    "bundle:all": "yarn build:standard && yarn build:plugins && yarn build:utils",
+    "build:standard": "yarn build:standard && deno run -A build-packages.ts standard",
+    "build:plugins": "yarn build:plugins && deno run -A build-packages.ts plugins",
+    "build:utils": "yarn build:utils && deno run -A build-packages.ts utils",
+    "build:all": "yarn build:all && yarn publish:standard && yarn publish:plugins && yarn publish:utils",
+    "publish:standard": "",
+    "publish:plugins": "",
+    "publish:utils": "",
+    "publish:all": ""
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {

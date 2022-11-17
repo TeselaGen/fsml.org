@@ -1,0 +1,11 @@
+{
+    "entryPoints": [
+        "./dist/plugins_bundle.ts"
+    ],
+    "outDir": "./dist/npm",
+    "package": {
+        "name": "prez-plugins",
+        "version": "1.0.0",
+        "description": "Plugins Package"
+    }
+}
