@@ -5,6 +5,9 @@ dist
 tmp
 /out-tsc
 
+# npm token
+.npmrc
+
 # dependencies
 node_modules
 
