@@ -4,8 +4,8 @@
     ],
     "outDir": "./dist/npm",
     "package": {
-        "name": "prez-standard",
+        "name": "@fsml/standard",
         "version": "1.0.0",
-        "description": "Standard Package"
+        "description": "FSML.org Standard Package"
     }
 }

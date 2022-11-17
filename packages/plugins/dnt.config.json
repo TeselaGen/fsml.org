@@ -4,8 +4,8 @@
     ],
     "outDir": "./dist/npm",
     "package": {
-        "name": "prez-plugins",
+        "name": "@fsml/plugins",
         "version": "1.0.0",
-        "description": "Plugins Package"
+        "description": "FSML.org Plugins Package"
     }
 }
