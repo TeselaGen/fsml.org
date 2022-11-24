@@ -1,4 +1,4 @@
-import { Static, Type } from "../../../../deps/mod.ts";
+import { Static, Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { ColumnKindEnum } from "../../types.ts";
 import Subject from "./subject.ts";
 import ReferenceDimension from "./reference-dimension.ts";

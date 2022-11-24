@@ -1,4 +1,4 @@
-import { Type } from '../../../../deps/mod.ts';
+import { Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { DimensionsEnum } from '../../types.ts';
 
 const Dimension = Type.Object({

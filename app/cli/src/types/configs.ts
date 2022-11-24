@@ -1,7 +1,11 @@
 import { Static, TSchema, Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { FormatTypes, PackTypes } from "@fsml/cli/types/enums.ts";
 
-const Nullable = <T extends TSchema>(type: T) =>
+// TypeBox is not fully well supported for deno yet,
+// thus we have to use and ignore the 'any type here.
+// According to the docs '<T extends TSchema>(type: T)' should work.
+// deno-lint-ignore no-explicit-any
+const Nullable = <T extends TSchema>(type: any) =>
   Type.Union([type, Type.Null()]);
 
 const DefaultsConfigs = Type.Object({

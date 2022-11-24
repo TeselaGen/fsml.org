@@ -1,4 +1,6 @@
 {
-  "tasks": {},
+  "tasks": {
+    "bundle": "mkdir -p dist && deno bundle ./src/mod.ts ./dist/plugins_bundle.ts"
+  },
   "importMap": "../../import_map.json"
 }

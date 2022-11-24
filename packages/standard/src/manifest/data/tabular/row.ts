@@ -1,4 +1,4 @@
-import { Type } from '../../../deps/mod.ts';
+import { Type } from "@fsml/packages/utils/deps/typebox.ts";
 import Value from './value.ts';
 
 // NOTE: we might want to add a property specific to the row

@@ -1,0 +1,11 @@
+{
+    "entryPoints": [
+        "./dist/plugins_bundle.ts"
+    ],
+    "outDir": "./dist/npm",
+    "package": {
+        "name": "fsml-plugins",
+        "version": "1.0.0",
+        "description": "FSML.org Plugins Package"
+    }
+}

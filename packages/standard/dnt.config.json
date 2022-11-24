@@ -1,0 +1,11 @@
+{
+    "entryPoints": [
+        "./dist/standard_bundle.ts"
+    ],
+    "outDir": "./dist/npm",
+    "package": {
+        "name": "fsml-standard",
+        "version": "1.0.0",
+        "description": "FSML.org Standard Package"
+    }
+}

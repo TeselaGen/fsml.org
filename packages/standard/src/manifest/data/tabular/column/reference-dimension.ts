@@ -1,4 +1,4 @@
-import { Type } from '../../../../deps/mod.ts';
+import { Type } from "@fsml/packages/utils/deps/typebox.ts";
 import { ColumnClassEnum } from '../../types.ts';
 import Unit from './unit.ts';
 import Dimension from './dimension.ts';
