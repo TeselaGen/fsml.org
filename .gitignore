@@ -41,3 +41,4 @@ cov_profile.lcov
 # System Files
 .DS_Store
 Thumbs.db
+scratch

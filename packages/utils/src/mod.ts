@@ -2,23 +2,23 @@ import { Value } from "./deps/typebox.ts";
 import { conversion, fs, path, yaml } from "./deps/mod.ts";
 import compress from "./deps/compress.ts";
 
-export async function remove(filepath: string, opts?: Deno.RemoveOptions) {
-  return await Deno.remove(filepath, opts);
+export function remove(filepath: string, opts?: Deno.RemoveOptions) {
+  return Deno.removeSync(filepath, opts);
 }
 
-export async function read(filepath: string) {
-  const text = await Deno.readTextFile(filepath);
+export function read(filepath: string) {
+  const text = Deno.readTextFileSync(filepath);
   return text;
 }
 
-export async function toStdOut(str: string) {
+export function toStdOut(str: string) {
   const text = new TextEncoder().encode(`${str}\n`);
-  await conversion.writeAll(Deno.stdout, text);
+  conversion.writeAllSync(Deno.stdout, text);
 }
 
-export async function toFile(args: { filepath: string; content: string }) {
+export function toFile(args: { filepath: string; content: string }) {
   const { filepath, content } = args;
-  await Deno.writeTextFile(filepath, content);
+  Deno.writeTextFileSync(filepath, content);
 }
 
 export function jsonToText(
@@ -76,9 +76,9 @@ export async function packFiles(
   }
 }
 
-export async function expandGlobPaths(filepattern: string) {
+export function expandGlobPaths(filepattern: string) {
   const filepaths = [];
-  for await (const file of fs.expandGlob(filepattern)) {
+  for (const file of fs.expandGlobSync(filepattern)) {
     filepaths.push(file.path);
   }
   return filepaths;
@@ -112,14 +112,14 @@ async function compressFiles(
   const archiveName = `${archivePath}.${compressor}`;
 
   // Create the directory to be compressed.
-  await fs.ensureDir(archivePath);
+  fs.ensureDirSync(archivePath);
 
   // Move the filepaths to be compressed into the target directory.
   for (const filepath of filepaths) {
     // Get the filepath's file name, and join it with the archivePath.
     const destinationFilepath = path.join(archivePath, path.basename(filepath));
     // copy the filepath into the directory to be compressed.
-    await Deno.copyFile(filepath, destinationFilepath);
+    Deno.copyFileSync(filepath, destinationFilepath);
   }
 
   // NOTE: refer to src/deps.ts as to why "zip" compressor is treated differently at the moment.
@@ -145,6 +145,6 @@ async function compressFiles(
 
   // Finally, delete the directory now that its already compressed
   // into the archiveName compression file
-  await remove(archivePath, { recursive: true });
+  remove(archivePath, { recursive: true });
   return true;
 }

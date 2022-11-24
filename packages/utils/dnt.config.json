@@ -4,7 +4,7 @@
     ],
     "outDir": "./dist/npm",
     "package": {
-        "name": "@fsml/utils",
+        "name": "fsml-utils",
         "version": "1.0.0",
         "description": "FSML.org Plugins Package"
     }
