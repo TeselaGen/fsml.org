@@ -65,6 +65,12 @@ const templateParser: IParser = {
      */
     const manifest: TManifest = fsml.utils.createTemplateForType(fsml.standard.Manifest);
 
+    /** The data is then feed into a common npm csv parser package which returns a JSON array of the csv rows. */
+    const rows = csvParser(data)
+
+    /** Finally, some custom function can be used to take those rows and format them as required by FSML standard. */
+    manifest.SupplementalData.data[0].rows = jsonRowsToFsml(rows)
+
     return await Promise.resolve({ manifest });
   },
   isApplicable: async (file) => {
