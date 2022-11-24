@@ -6,11 +6,11 @@ slug: /software/plugins/exporter
 
 # Exporter Plugin
 
-The FSML Plugin Framework provides the [Exporter Interface](/software/plugins/appendix#exporter-interface) which defines the structure the plugin package must export.
+The FSML Plugin Framework provides the [Exporter Interface](/software/plugins/exporter#exporter-interface) which defines the structure the plugin package must export.
 
 ## Structure
 - **name** (string): An identifier for plugin.
-- **type** (string): Type of the plugin. these must be one of the [Plugin Types](/software/plugins/appendix#plugin-types) provided by the FSML SDK.
+- **type** (string): Type of the plugin. these must be one of the [Plugin Types](/software/plugins#plugin-types) provided by the FSML SDK.
 - **run** (function): Main function of the module which takes in an FSML manifest and returns one or many data objects along with optional files.
 
 

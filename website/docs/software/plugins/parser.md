@@ -10,7 +10,7 @@ The FSML Plugin Framework provides the [Parser Interface](/software/plugins/pars
 
 ## Structure
 - **name** (string): An identifier for plugin.
-- **type** (string): Type of the plugin. these must be one of the [Plugin Types](/software/plugins/appendix#plugin-types) provided by the FSML SDK.
+- **type** (string): Type of the plugin. these must be one of the [Plugin Types](/software/plugins#plugin-types) provided by the FSML SDK.
 - **run** (function): Main function of the module which takes in a file or a filepath and returns an FSML Manifest.
 - **isApplicable** (function): Secondary function used to determine whether the input file has the correct format or properties to be correctly parsed by this module. It is essentially a validation function whose main utility is to prevent any attempt at parsing a file not suited for the parser.
 
