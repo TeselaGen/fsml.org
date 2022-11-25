@@ -82,9 +82,8 @@ const ManifestGenerator = (
         createTemplateForType(TabularData)) as TTabularData;
       if (!result.data && result.file) {
         dataObject = typeof result.file === "string"
-          ? JSON.parse(await read(result.file))
-          // NOTE: we may need to specify that the encoding (s.a., UTF-8)
-          : (new TextDecoder().decode(result.file));
+          ? JSON.parse(read(result.file))
+          : (new TextDecoder().decode(result.file)); // NOTE: we may need to specify that the encoding (s.a., UTF-8)
       }
     }
     SupplementalDataObject.data.push(dataObject);
