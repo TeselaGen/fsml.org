@@ -12,7 +12,7 @@ This is a real-world example from FSML partner **Phycus**.
 This example showcases how to build an FSML Parser Plugin to parse experimental data into an FSML Manifest. The Plugin will then be installed
 with the FSML CLI tool and used to take in the experimental data file and convert that into an FSML Manifest.
 
-Three files are necessary to carry on with this example and those are available in the following link:
+This .zip file is necessary to carry on with this example and those are available in the following link:
 
 <!-- Not sure how to reference the file in the static folder -->
 - [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-parser-example-01.zip)
@@ -289,9 +289,9 @@ const run: (file) => {
 
 ## Phycus FSML Manifest
 
-The Phycus Applikon Plugin Parser is complete. Next, we can use the FSML CLI tool to install it and generate the FSML Manifest. To install this Plugin we can either publish it to the npm registries and install it via its public https URL, or use a local version of it. Here, we'll use the published version of the parser.
+The Phycus Applikon Plugin Parser is complete. Next, we can use the FSML CLI tool to install it and generate the FSML Manifest. To install this Plugin we can either publish it to the npm registries and install it via its public https URL, or use a local version of it. Here, we'll use a published version of the npm package: [phycus-parser@1.2.0](https://www.npmjs.com/package/phycus-parser).
 
-To install the Phycus Parser Plugin tun the following command:
+To install the Phycus Parser Plugin run the following command:
 
 ```
       $> fsml plugin install phycus-parser@1.2.0
