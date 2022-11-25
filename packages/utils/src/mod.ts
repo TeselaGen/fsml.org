@@ -1,4 +1,4 @@
-import { Value } from "./deps/typebox.ts";
+import { TypeCompiler, Value } from "./deps/typebox.ts";
 import { conversion, fs, path, yaml } from "./deps/mod.ts";
 import compress from "./deps/compress.ts";
 
@@ -54,6 +54,30 @@ export function jsonToText(
   return text;
 }
 
+export function expandGlobPaths(filepattern: string) {
+  const filepaths = [];
+  for (const file of fs.expandGlobSync(filepattern)) {
+    filepaths.push(file.path);
+  }
+  return filepaths;
+}
+
+// TypeBox is not fully well supported for deno yet,
+// thus we have to use and ignore the 'any type here.
+// According to the docs 'createValueForType(type: TSchema)' should work.
+// deno-lint-ignore no-explicit-any
+export function createTemplateForType(type: any) {
+  return Value.Create(type);
+}
+
+// deno-lint-ignore no-explicit-any
+export function validateType(type: any, value: any) {
+  const ValueCompiler = TypeCompiler.Compile(type);
+  const isValid = ValueCompiler.Check(value);
+  const valueErrors = [...ValueCompiler.Errors(value)];
+  return { isValid, errors: valueErrors };
+}
+
 export async function packFiles(
   args: { pack: string; filepaths: string[]; write: string },
 ) {
@@ -74,22 +98,6 @@ export async function packFiles(
       console.error(`Compressor ${pack} not implemented.`);
       break;
   }
-}
-
-export function expandGlobPaths(filepattern: string) {
-  const filepaths = [];
-  for (const file of fs.expandGlobSync(filepattern)) {
-    filepaths.push(file.path);
-  }
-  return filepaths;
-}
-
-// TypeBox is not fully well supported for deno yet,
-// thus we have to use and ignore the 'any type here.
-// According to the docs 'createValueForType(type: TSchema)' should work.
-// deno-lint-ignore no-explicit-any
-export function createValueForType(type: any) {
-  return Value.Create(type);
 }
 /**
  * Uses one of the available compressors to compress 'filepaths'

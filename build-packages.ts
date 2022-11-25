@@ -49,7 +49,8 @@ async function getPackageVersion(name: string): Promise<string> {
   } catch {
     /* module not published yet. */
   }
-  const newVersion = prompt(`Current version '${version}'. Select version: `);
+  const newVersion =
+    Deno.args[1] || prompt(`Current version '${version}'. Select version: `);
   return newVersion || version;
 }
 
@@ -66,11 +67,23 @@ async function build_npm(configs: BuildOptions) {
     entryPoints,
     outDir,
     package: _package,
-    shims = { deno: true },
+    shims = {
+      deno: true,
+      // Attempt to resolve this issue: https://github.com/denoland/deno/issues/16817
+      // custom: [
+      //   {
+      //     package: {
+      //       name: 'event-target-shim',
+      //       version: '6.0.2',
+      //     },
+      //     globalNames: ['internal'],
+      //   },
+      // ],
+    },
     ...rest
   } = configs;
 
-  console.log(`Emptying build dir '${outDir}'`);
+  console.info(`Emptying build dir '${outDir}'`);
   await emptyDir(outDir);
 
   await build({

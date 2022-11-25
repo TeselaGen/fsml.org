@@ -2,7 +2,7 @@ import { uuid } from "@fsml/packages/utils/deps/mod.ts";
 import { set } from "@fsml/packages/utils/deps/lodash.ts";
 import { ManifestTypes } from "@fsml/cli/types/enums.ts";
 import {
-  createValueForType,
+  createTemplateForType,
   jsonToText,
   read,
 } from "@fsml/packages/utils/mod.ts";
@@ -40,10 +40,10 @@ const ManifestGenerator = (
   _opts?: ManifestGeneratorOpts,
 ) => {
   // Make an instance of the manifest if none is passed.
-  const manifest = _manifest || <TManifest> createValueForType(Manifest);
+  const manifest = _manifest || <TManifest> createTemplateForType(Manifest);
 
   function author(author: string): TProvenance {
-    const provenanceObject = <TProvenance> createValueForType(Provenance);
+    const provenanceObject = <TProvenance> createTemplateForType(Provenance);
     set(provenanceObject, "author", author);
     return provenanceObject;
   }
@@ -67,7 +67,7 @@ const ManifestGenerator = (
     const parserPlugin = await selectParser(filepath, parser);
 
     const SupplementalDataObject = <TSupplementalData> (
-      createValueForType(SupplementalData)
+      createTemplateForType(SupplementalData)
     );
 
     let dataObject: TFileData | TTabularData;
@@ -75,13 +75,15 @@ const ManifestGenerator = (
     // When no parser is available a 'TFileData' data object
     // will be generated.
     if (!parserPlugin) {
-      dataObject = <TFileData> createValueForType(FileData);
+      dataObject = <TFileData> createTemplateForType(FileData);
     } else {
       const result = await parserPlugin.run(filepath);
       dataObject = (result.data ||
-        createValueForType(TabularData)) as TTabularData;
-      if (!result.data && result.filepath) {
-        dataObject = JSON.parse(await read(result.filepath));
+        createTemplateForType(TabularData)) as TTabularData;
+      if (!result.data && result.file) {
+        dataObject = typeof result.file === "string"
+          ? JSON.parse(read(result.file))
+          : (new TextDecoder().decode(result.file)); // NOTE: we may need to specify that the encoding (s.a., UTF-8)
       }
     }
     SupplementalDataObject.data.push(dataObject);

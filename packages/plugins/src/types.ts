@@ -13,7 +13,8 @@ export enum PluginTypes {
    */
   EXPORTER = "exporter",
   /**
-   * Any plugin used other purposes.
+   * Any plugin used for other purposes. Keep in mind these type of plugins
+   * will not necessarily work with all of the FSML SDK modules.
    */
   GENERIC = "generic",
 }
@@ -32,20 +33,19 @@ export interface IPlugin {
  * Parser interface that any Parser Plugin should extend.
  */
 export interface IParser extends IPlugin {
+  type: PluginTypes.PARSER;
   /**
-   * Receives filepath as input and returns
-   * a filepath as an output and/or along with the parsed data
-   * of type TTabularData
+   * Receives a file as input and returns an FSML manifest (optionally an output file).
    */
   run: (
-    filepath: string,
-  ) => Promise<
-    Partial<{
-      filepath: string;
-      data: TTabularData;
-    }>
-  >;
-  isApplicable: (filepath: string) => Promise<boolean>;
+    /* Input File, either as a filepath (string) or the file's data buffer stream (Uint8Array) */
+    file: string | Uint8Array,
+  ) => Promise<{
+    file?: string | Uint8Array;
+    data: TTabularData | TTabularData[];
+  }>;
+  /* Input File, either as a filepath (string) or the file's data buffer stream (Uint8Array) */
+  isApplicable: (file: string | Uint8Array) => Promise<boolean>;
 }
 
 /**
@@ -54,9 +54,9 @@ export interface IParser extends IPlugin {
 export interface IExporter extends IPlugin {
   /**
    * Receives an fsml manifest and returns a
-   * filepath as an output and/or along with
-   * a data object of some unknown type (e.g, json, yaml, etc.). */
+   * file and data object of some unknown type (e.g, json, yaml, etc.).
+   */
   run: (
     manifest: TManifest,
-  ) => Promise<Partial<{ filepath: string; data: unknown }>>;
+  ) => Promise<{ file: string | Uint8Array; data: unknown }>;
 }

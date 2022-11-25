@@ -2,7 +2,7 @@ import { Arguments } from "@fsml/cli/deps/yargs.ts";
 import { jsonToText, remove, toStdOut } from "@fsml/packages/utils/mod.ts";
 import { generateManifest, packManifest, writeManifest } from "./utils.ts";
 
-/** CLI "manifest" commmand handlers **/
+/** CLI "manifest" command handlers **/
 
 async function create(args: Arguments) {
   const { type, parser, format, write, pack, author, filepattern } = args;
@@ -19,7 +19,7 @@ async function create(args: Arguments) {
 
   // Manifest will be sent to stdout when no write path is passed.
   if (!write) {
-    return await toStdOut(jsonToText({ content: manifest }));
+    return toStdOut(jsonToText({ content: manifest }));
   }
 
   const manifestFilepath = await writeManifest({ format, manifest });
