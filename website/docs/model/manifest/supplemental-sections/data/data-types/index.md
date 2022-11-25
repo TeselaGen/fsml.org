@@ -9,7 +9,6 @@ the columns of tabular data.
 
 - [Columns](/model/manifest/supplemental-sections/data/data-types/columns)
 - [Values](/model/manifest/supplemental-sections/data/data-types/values)
-- [Units](/model/manifest/supplemental-sections/data/data-types/units)
 - [Dimensions](/model/manifest/supplemental-sections/data/data-types/dimensions)
 
 

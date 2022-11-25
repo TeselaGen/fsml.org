@@ -32,7 +32,7 @@ The columns of the Applikon Bioreactor’s output file denote the independent va
 
 Leverage the FSML [Parser Plugin Template](/software/plugins/parser/#template) as the starting point for implementing the Phycus Plugin Parser for Applikon Bioreactor data.
 
-This template generates a very generic FSML manifest file, so to convert an equipment-specific exported file to a more well-defined and descriptive FSML data schema, in this case a CSV exported from the Applikon Bioreactor, we'll need to describe the CSV columns by filling out the FSML [Columns](/model/manifest/supplemental-sections/data/tabular-data/columns) type object.
+This template generates a very generic FSML manifest file, so to convert an equipment-specific exported file to a more well-defined and descriptive FSML data schema, in this case a CSV exported from the Applikon Bioreactor, we'll need to describe the CSV columns by filling out the FSML [Columns](/model/manifest/supplemental-sections/data/tabular-data#columns) type object.
 
 ### Column Definitions
 
@@ -181,7 +181,7 @@ The first step in the implementation is converting the CSV data into a javascrip
 import * as fs from 'fs';
 import papaparse from 'papaparse';
 
-// Main function of the FSML Parser Pplugin.
+// Main function of the FSML Parser Plugin.
 const run: (file) => {
 
     // Reads the file in case its a filepath and converts the buffer stream into a string
@@ -252,7 +252,7 @@ Finally, all that is left to do is to populate the **rows** property of the **Ta
 import * as fs from 'fs';
 import papaparse from 'papaparse';
 
-// Main function of the FSML Parser Pplugin.
+// Main function of the FSML Parser Plugin.
 const run: (file) => {
 
     /**
