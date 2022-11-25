@@ -15,7 +15,7 @@ with the FSML CLI tool and used to take in the experimental data file and conver
 Three files are necessary to carry on with this example and those are available in the following link:
 
 <!-- Not sure how to reference the file in the static folder -->
-- [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/microbyreExample-01.zip)
+- [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-parser-example-01.zip)
 
 
 ## Installing the FSML CLI Tool
@@ -24,7 +24,7 @@ Follow the steps in [Installing CLI Tool](/software/tools/cli#installing-cli-too
 
 ## Phycus Applikon Bioreactor Data
 
-Bioreactors provide a controlled environment for experiments involving growth or biological reactions under specific conditions. For example, the Applikon bioreactor allows a user to set and measure parameters such as temperature, dissolved oxygen, pH, and stirring speed. After a run, the bioreactor exports a CSV describing the experimental design. An example of such CSV is included in the [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/microbyreExample-01.zip) file.
+Bioreactors provide a controlled environment for experiments involving growth or biological reactions under specific conditions. For example, the Applikon bioreactor allows a user to set and measure parameters such as temperature, dissolved oxygen, pH, and stirring speed. After a run, the bioreactor exports a CSV describing the experimental design. An example of such CSV is included in the [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-parser-example-01.zip) file.
 
 The columns of the Applikon Bioreactor’s output file denote the independent variables of time, dissolved oxygen, pH, stirring speed, and volume.
 
@@ -171,7 +171,7 @@ Following the FSML [Parser Plugin Template](/software/plugins/parser/#template),
 
 #### CSV Parsing
 
-The first step in the implementation is converting the CSV data into a javascript object (JSON) in order to handle it properly within the program. A popular npm csv parser is [papaparse](https://www.papaparse.com/). It is conveniently easy to use and a short snippet of it is shown here (complete implementation is found in the [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/microbyreExample-01.zip))
+The first step in the implementation is converting the CSV data into a javascript object (JSON) in order to handle it properly within the program. A popular npm csv parser is [papaparse](https://www.papaparse.com/). It is conveniently easy to use and a short snippet of it is shown here (complete implementation is found in the [**phycusExample.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-parser-example-01.zip))
 
 
 <details>
