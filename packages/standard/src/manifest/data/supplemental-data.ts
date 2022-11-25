@@ -8,7 +8,7 @@ export const SupplementalData = Type.Object({
   utilityScore: Type.Number(), // normalized to be between 0 and 1 inclusive
   // categoryScores: UtilityScoreDetails, // we need to design these categories
   data: Type.Array(Type.Union([FileData, TabularData])),
-  // suplemental data sections.
+  // supplemental data sections.
 
   // NOTE: This could be moved up a level.
   provenance: Type.Optional(Provenance),

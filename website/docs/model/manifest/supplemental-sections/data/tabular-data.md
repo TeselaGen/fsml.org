@@ -8,13 +8,13 @@ The tabular schema stores data as an array of rows referencing the source data f
 the schema provides a columns array where all the information expalining each column is stored. The Tabular schema
 is particularly useful for storing datasets such as fermentation experiments.
 
-# Row
+## Row
 
 Rows represent a line of text extracted from a specific data file. For its lowest degree of completeness
 each row would simply correspond to the full unparsed text of a particular line in the data file. For highest completeness,
 each text line is converted into column values usually by splitting the row based on some column delimiter.
 
-# Columns
+## Columns
 
 An array type property of the tabular schema which increases the degree of completeness and the overall Utility Score as it stores
 detailed information on each of the tabular data columns.
@@ -25,9 +25,9 @@ readable which makes it specifically useful for the automation of processes such
 This well-defined properties as described as [Data Types](../data-types).
 
 
-# File Reference
+## File Reference
 A reference to the source file as [File Schema](./file-data.md).
 
-# Metadata
+## Metadata
 Metadata is a flexible property in the schema to support storing anye extra information such a notes, a description or
 even the column delimiter used for parsing rows.
