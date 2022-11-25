@@ -1,5 +1,4 @@
 import { path } from "@fsml/cli/deps/mod.ts";
-import { TypeCompiler } from "@fsml/packages/utils/deps/typebox.ts";
 import {
   expandGlobPaths,
   jsonToText,
@@ -7,6 +6,7 @@ import {
   remove,
   toFile,
   toStdOut,
+  validateType,
 } from "@fsml/packages/utils/mod.ts";
 import { DataFileFormats, ManifestTypes } from "@fsml/cli/types/enums.ts";
 import {
@@ -120,17 +120,15 @@ async function getDataFilepath(
 }
 
 function validateManifest(manifest: TManifest): boolean {
-  //@ts-ignore:next-line : This seems like an issue with typebox types.
-  const ManifestCompiler = TypeCompiler.Compile(Manifest);
-  const isValid = ManifestCompiler.Check(manifest);
-  const manifestErrors = [...ManifestCompiler.Errors(manifest)];
+  const { isValid, errors } = validateType(Manifest, manifest);
   if (!isValid) {
     toStdOut("Error in Manifest: \n");
-    manifestErrors.forEach((error) =>
-      // NOTE: Maybe extend it so that these errors can be written
-      // into a log file.
-      toStdOut(jsonToText({ format: "json", content: error }))
-    );
+    // TypeBox's TypeCompiler errors are quite verbosy and the escalate upwards the JSON tree.
+    // so if the error is located at a given leaf in the JSON tree, additional errors upwards the tree
+    // will be generated.
+
+    // For this reason, it might be best to throw the leaf error only, which is the first one.
+    console.info(errors[0]);
   }
   return isValid;
 }

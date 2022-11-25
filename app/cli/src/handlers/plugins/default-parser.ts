@@ -2,7 +2,7 @@
  * whatever interface we end up designing for data parsers. **/
 import { IParser, PluginTypes } from "@fsml/packages/plugins/types.ts";
 import { set } from "@fsml/packages/utils/deps/lodash.ts";
-import { createValueForType } from "@fsml/packages/utils/mod.ts";
+import { createTemplateForType } from "@fsml/packages/utils/mod.ts";
 import {
   TabularData,
   TTabularData,
@@ -24,12 +24,12 @@ import {
 const DefaultDataParser: IParser = {
   name: "defaultDataParser",
   type: PluginTypes.PARSER,
-  run: async (filepath: string) => {
+  run: async (filepath) => {
     console.info(`Parsing file '${filepath}'...`);
-    const tabularDataObject = <TTabularData> createValueForType(TabularData);
-    const columnObject = <TColumn> createValueForType(Column);
-    const kindObject = <TKind> createValueForType(Kind);
-    const classObject = <TClass> createValueForType(Class);
+    const tabularDataObject = <TTabularData> createTemplateForType(TabularData);
+    const columnObject = <TColumn> createTemplateForType(Column);
+    const kindObject = <TKind> createTemplateForType(Kind);
+    const classObject = <TClass> createTemplateForType(Class);
 
     set(kindObject, "class", classObject);
     set(columnObject, "kind", kindObject);
@@ -40,7 +40,7 @@ const DefaultDataParser: IParser = {
     return await Promise.resolve({ data: tabularDataObject });
   },
 
-  isApplicable: async (filepath: string) => {
+  isApplicable: async (filepath) => {
     console.info(`Checking if ${filepath} can be parsed...`);
     return await Promise.resolve(true);
   },

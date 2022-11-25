@@ -11,7 +11,8 @@
     "build:plugins": "yarn bundle:plugins && deno run -A build-packages.ts plugins",
     "build:utils": "yarn bundle:utils && deno run -A build-packages.ts utils",
     "build:all": "yarn build:standard && yarn build:plugins && yarn build:utils",
-    "publish:standard": "(cd ./packages/standard/dist/npm && npm publish)"
+    "publish:standard": "(cd ./packages/standard/dist/npm && npm publish)",
+    "publish:utils": "(cd ./packages/utils/dist/npm && npm publish)"
   },
   "private": true,
   "dependencies": {},

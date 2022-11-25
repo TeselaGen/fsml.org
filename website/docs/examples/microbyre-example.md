@@ -58,7 +58,7 @@ Now that we have the proper parser installed we can use it to parse one of the D
     $> fsml manifest create microbyreData.csv --parser microbyreParser --type data --author YOUR_NAME --format json --write mbManifest --pack tar
 ```
 
-Noted all the flags passed to the command? Well, we can set some of them as defaults so we don’t have to pass them in every time.
+Note all the flags passed to the command? Well, we can set some of them as defaults so we don’t have to pass them in every time.
 
 To do so we can use the “defaults” commands:
 
