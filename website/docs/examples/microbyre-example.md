@@ -1,7 +1,8 @@
 ---
 title: 'MicroByre Manifest'
 metaTitle: 'FSML Manifest for MicroByre'
-metaDescription: 'FSML PDF Protocol with a YAML generated manifest'
+metaDescription: 'MicroByre FSML Manifest Example'
+sidebar_position: 1
 ---
 
 # MicroByre: FSML Manifest Generation
@@ -17,28 +18,7 @@ Three files are necessary to carry on with this example and those are available 
 
 ## Installing the FSML CLI Tool
 
-Double-click on the `fsml-v1.1.0-239859b-x64.pkg` installer file and follow through the MacOS installer steps.
-
-## Trying out the FSML CLI Tool
-
-Open a terminal window and type the following command _(note that the “$>” symbol is not to be typed, it's just used here to represent your CLI prompt)_
-
-```
-    $> fsml
-```
-
-You should see the FSML CLI helper docs.
-
-```
-fsml <command>
-
-Commands:
-  fsml defaults <subcommand>  Configures default values for CLI flags
-  fsml manifest <subcommand>  Operates with the FSML manifest
-  fsml plugin <subcommand>    Handles external plugin modules
-```
-
-Feel free to navigate into the CLI commands docs by typing any of the described commands (e.g., `$> fsml defaults`).
+Follow the steps in [Installing CLI Tool](/software/tools/cli#installing-cli-tool). Get familiarized with the CLI Tool commands in [CLI Tool](/software/tools/cli).
 
 ## Installing the Microbyre plugin
 

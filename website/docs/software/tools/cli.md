@@ -81,6 +81,39 @@ Options:
   --latest                                                       [default: true]
 ```
 
+## Installing CLI Tool
+
+Download the installer files from the links provided in the [Releases](/software/tools/cli#releases) section.
+
+- For Mac users, double-click on the installer `.pkg` file and follow through the MacOS installer steps.
+
+- For Linux users, a popular way of installing `.deb` files is via the `dpkg` command as so:
+
+```
+    sudo dpkg -i PATH_TO_FSML_INSTALLER
+```
+
+## Trying out the FSML CLI Tool
+
+Open a terminal window and type the following command _(note that the “$>” symbol is not to be typed, it's just used here to represent your CLI prompt)_
+
+```
+    $> fsml
+```
+
+You should see the FSML CLI helper docs.
+
+```
+fsml <command>
+
+Commands:
+  fsml defaults <subcommand>  Configures default values for CLI flags
+  fsml manifest <subcommand>  Operates with the FSML manifest
+  fsml plugin <subcommand>    Handles external plugin modules
+```
+
+Feel free to navigate into the CLI commands docs by typing any of the described commands (e.g., `$> fsml defaults`).
+
 ## Releases
 
 #### Version 1.1.0

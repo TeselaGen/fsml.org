@@ -22,7 +22,7 @@ export enum ColumnClassEnum {
    */
   CALL = 'CALL',
   /**
-   * Computed values are a computation of other values, (e.g., the divisin of two other observation columns).
+   * Computed values are a computation of other values, (e.g., the division of two other observation columns).
    */
   COMPUTED_VALUE = 'COMPUTED_VALUE',
   /**
