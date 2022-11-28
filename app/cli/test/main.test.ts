@@ -5,8 +5,8 @@ import {
   it,
 } from "https://deno.land/std@0.166.0/testing/bdd.ts";
 import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
-import { DEFAULT_CONFIGS, getConfigs } from "../src/handlers/defaults/utils.ts";
-import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
+// import { DEFAULT_CONFIGS, getConfigs } from "../src/handlers/defaults/utils.ts";
+// import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
 import get from "https://deno.land/x/lodash@4.17.15-es/get.js";
 import { generateManifest } from "../src/handlers/manifest/utils.ts";
 import { ManifestTypes } from "../src/types/enums.ts";
