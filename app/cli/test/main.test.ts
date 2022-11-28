@@ -61,8 +61,8 @@ describe("plugin commands", () => {
     await uninstall({ module: MODULE_NAME, _: [] });
   }
 
-  beforeAll(cleanTestPlugin);
-  afterAll(cleanTestPlugin);
+  beforeAll(async () => await cleanTestPlugin());
+  afterAll(async () => await cleanTestPlugin());
 
   it("install", async () => {
     const args = {
