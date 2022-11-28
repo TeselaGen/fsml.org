@@ -9,7 +9,7 @@ import {
 } from "@fsml/packages/utils/mod.ts";
 import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
 
-const DEFAULT_CONFIGS = {
+export const DEFAULT_CONFIGS = {
   "defaults": { "filepath": "./configs.yaml", "format": "yaml" },
   "manifest": {
     "author": null,
@@ -37,7 +37,7 @@ function getDefaultConfigs() {
 async function getConfigs({ section }: { section?: string } = {}) {
   const defaultConfigs = getDefaultConfigs();
   fs.ensureFileSync(USER_CONFIG_FILEPATH);
-  const configsText = await read(USER_CONFIG_FILEPATH);
+  const configsText = read(USER_CONFIG_FILEPATH);
 
   const configs = await yaml.parse(configsText);
 
@@ -48,12 +48,12 @@ async function getConfigs({ section }: { section?: string } = {}) {
   return finalConfigs;
 }
 
-async function saveConfigs(
+function saveConfigs(
   newConfigs: Partial<TConfigs>,
 ) {
   if (validateConfigs(newConfigs)) {
     const newConfigTextFile = yaml.stringify(newConfigs);
-    await toFile({
+    toFile({
       filepath: USER_CONFIG_FILEPATH,
       content: newConfigTextFile,
     });

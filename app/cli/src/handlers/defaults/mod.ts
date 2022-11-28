@@ -8,7 +8,7 @@ import {
   saveConfigs,
 } from "./utils.ts";
 
-/** CLI "defaults" commmand handlers **/
+/** CLI "defaults" command handlers **/
 async function edit(args: Arguments) {
   const { section } = args;
   const configs = await getConfigs();
@@ -22,11 +22,11 @@ async function list(args: Arguments) {
   const configs = await getConfigs();
   const _format = format || configs?.defaults?.format;
 
-  const stdout_text: string = await jsonToText({
+  const stdout_text: string = jsonToText({
     format: _format,
     content: configs,
   });
-  await toStdOut(stdout_text);
+  toStdOut(stdout_text);
 }
 
 async function set(args: Arguments) {

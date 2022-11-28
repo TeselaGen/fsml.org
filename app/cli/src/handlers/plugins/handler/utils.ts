@@ -33,6 +33,8 @@ const defaultVersionResolver = async (
       version = match[1];
     }
   }
+  // Just close response read stream. We don't need to read its body.
+  await resp.body?.cancel();
 
   return version;
 };

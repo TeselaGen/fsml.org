@@ -37,7 +37,7 @@ async function addModuleToRegistry(
     pluginsRegistry,
   );
 
-  await toFile({
+  toFile({
     filepath: PLUGINS_REGISTRY_FILEPATH,
     content: pluginsRegistryString_updated,
   });
@@ -75,7 +75,7 @@ async function removeModuleFromRegistry(
 
 async function getPluginRegistry(): Promise<TPluginsRegistry> {
   fs.ensureFileSync(PLUGINS_REGISTRY_FILEPATH);
-  const pluginsRegistryString = await read(PLUGINS_REGISTRY_FILEPATH);
+  const pluginsRegistryString = read(PLUGINS_REGISTRY_FILEPATH);
   const pluginsRegistry =
     (await yaml.parse(pluginsRegistryString) as TPluginsRegistry) ||
     PLUGIN_REGISTRY_TEMPLATE;
