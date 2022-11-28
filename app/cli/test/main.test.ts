@@ -5,8 +5,8 @@ import {
   it,
 } from "https://deno.land/std@0.166.0/testing/bdd.ts";
 import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
-// import { DEFAULT_CONFIGS, getConfigs } from "../src/handlers/defaults/utils.ts";
-// import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
+import { DEFAULT_CONFIGS, getConfigs } from "../src/handlers/defaults/utils.ts";
+import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
 import get from "https://deno.land/x/lodash@4.17.15-es/get.js";
 import { generateManifest } from "../src/handlers/manifest/utils.ts";
 import { ManifestTypes } from "../src/types/enums.ts";
@@ -16,38 +16,45 @@ import { install, uninstall, upgrade } from "../src/handlers/plugins/mod.ts";
 import { getRegisteredModule } from "../src/handlers/plugins/registry.ts";
 import { Arguments } from "../src/deps/yargs.ts";
 
-// describe("defaults list", async () => {
-//   const allSections = await getConfigs();
-//   const manifestSection = await getConfigs({ section: "manifest" });
+describe("defaults commands", () => {
+  it("list", async () => {
+    const allSections = await getConfigs();
+    const manifestSection = await getConfigs({ section: "manifest" });
 
-//   const expectedDefaultSections = Object.keys(DEFAULT_CONFIGS);
-//   const defaultSections = Object.keys(allSections);
-//   assertEquals(difference(defaultSections, expectedDefaultSections).length, 0);
+    const expectedDefaultSections = Object.keys(DEFAULT_CONFIGS);
+    const defaultSections = Object.keys(allSections);
+    assertEquals(
+      difference(defaultSections, expectedDefaultSections).length,
+      0,
+    );
 
-//   const expectedManifestDefaults = Object.keys(DEFAULT_CONFIGS.manifest);
-//   const manifestDefaults = Object.keys(manifestSection);
-//   assertEquals(
-//     difference(manifestDefaults, expectedManifestDefaults).length,
-//     0,
-//   );
-// });
-
-describe("manifest create", async () => {
-  const fixtureFilepath = fixturePath("example_data.csv");
-
-  const manifest = await generateManifest({
-    parser: "",
-    type: ManifestTypes.DATA,
-    filepattern: fixtureFilepath,
-    author: "deno-test",
+    const expectedManifestDefaults = Object.keys(DEFAULT_CONFIGS.manifest);
+    const manifestDefaults = Object.keys(manifestSection);
+    assertEquals(
+      difference(manifestDefaults, expectedManifestDefaults).length,
+      0,
+    );
   });
+});
 
-  assertExists(manifest);
+describe("manifest create", () => {
+  it("generate", async () => {
+    const fixtureFilepath = fixturePath("example_data.csv");
 
-  const rows = get(manifest, "supplementalInfo.data[0].rows");
+    const manifest = await generateManifest({
+      parser: "",
+      type: ManifestTypes.DATA,
+      filepattern: fixtureFilepath,
+      author: "deno-test",
+    });
 
-  assertEquals(rows[0].values.length, 7);
-  assertEquals(rows.length, 147);
+    assertExists(manifest);
+
+    const rows = get(manifest, "supplementalInfo.data[0].rows");
+
+    assertEquals(rows[0].values.length, 7);
+    assertEquals(rows.length, 147);
+  });
 });
 
 describe("plugin commands", () => {
