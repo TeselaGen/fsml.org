@@ -1,6 +1,9 @@
-import { TypeCompiler, Value } from "./deps/typebox.ts";
+import { TypeCompiler, Value, ValueError } from "./deps/typebox.ts";
 import { conversion, fs, path, yaml } from "./deps/mod.ts";
 import compress from "./deps/compress.ts";
+import { partition } from "./deps/lodash.ts";
+
+const UNION_TYPE_ERROR_CODE = 34;
 
 export function remove(filepath: string, opts?: Deno.RemoveOptions) {
   return Deno.removeSync(filepath, opts);
@@ -13,7 +16,7 @@ export function read(filepath: string) {
 
 export function toStdOut(str: string) {
   const text = new TextEncoder().encode(`${str}\n`);
-  conversion.writeAllSync(Deno.stdout, text);
+  return conversion.writeAllSync(Deno.stdout, text);
 }
 
 export function toFile(args: { filepath: string; content: string }) {
@@ -54,6 +57,25 @@ export function jsonToText(
   return text;
 }
 
+export async function textToJson(
+  args: { format?: string; text: string },
+  // deno-lint-ignore no-explicit-any
+): Promise<any> {
+  const { format, text } = args;
+  switch (format || "json") {
+    case "yaml":
+      return await yaml.parse(text);
+
+    case "json":
+      return JSON.parse(text);
+
+    default:
+      throw new Error(
+        `output format '${format}' not supported.`,
+      );
+  }
+}
+
 export function expandGlobPaths(filepattern: string) {
   const filepaths = [];
   for (const file of fs.expandGlobSync(filepattern)) {
@@ -70,12 +92,40 @@ export function createTemplateForType(type: any) {
   return Value.Create(type);
 }
 
-// deno-lint-ignore no-explicit-any
-export function validateType(type: any, value: any) {
+export function validateType(
+  // deno-lint-ignore no-explicit-any
+  type: any,
+  // deno-lint-ignore no-explicit-any
+  value: any,
+): { isValid: boolean; errors?: ValueError[] } {
   const ValueCompiler = TypeCompiler.Compile(type);
   const isValid = ValueCompiler.Check(value);
   const valueErrors = [...ValueCompiler.Errors(value)];
-  return { isValid, errors: valueErrors };
+
+  if (!valueErrors.length) return { isValid };
+
+  /**
+   * TypeBox's TypeCompiler errors are quite verbosy and the escalate upwards the JSON tree, specially for Union Type.
+   * So if the error is located at a given leaf in the JSON tree, additional errors upwards the tree
+   * will be generated.
+   * For this reason, a little formatting is done here to only keep the errors
+   * for one of the last leafs of the json tree,
+   */
+
+  // Only keep last-leaf errors.
+  const lastLeafPath = valueErrors[0].path;
+  const lastLeafErrors = valueErrors.filter((error) =>
+    error.path === lastLeafPath
+  );
+  const [unionErrors, otherErrors] = <ValueError[][]> partition(
+    lastLeafErrors,
+    (error: ValueError) => error.type === UNION_TYPE_ERROR_CODE,
+  );
+
+  // Prefer union errors.
+  const errors = (unionErrors.length ? unionErrors : otherErrors);
+
+  return { isValid, errors };
 }
 
 export async function packFiles(

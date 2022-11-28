@@ -1,20 +1,29 @@
+import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
+import get from "https://deno.land/x/lodash@4.17.15-es/get.js";
+import _set from "https://deno.land/x/lodash@4.17.15-es/set.js";
 import {
   afterAll,
   beforeAll,
   describe,
   it,
 } from "https://deno.land/std@0.166.0/testing/bdd.ts";
-import { assertEquals } from "https://deno.land/std@0.148.0/testing/asserts.ts";
+import {
+  assertEquals,
+  assertExists,
+} from "https://deno.land/std@0.166.0/testing/asserts.ts";
+
+import { cliArgs, fixturePath } from "./supports/mod.ts";
+
 import { DEFAULT_CONFIGS, getConfigs } from "../src/handlers/defaults/utils.ts";
-import difference from "https://deno.land/x/lodash@4.17.15-es/difference.js";
-import get from "https://deno.land/x/lodash@4.17.15-es/get.js";
 import { generateManifest } from "../src/handlers/manifest/utils.ts";
-import { ManifestTypes } from "../src/types/enums.ts";
-import { assertExists } from "https://deno.land/std/testing/asserts.ts";
-import { fixturePath } from "./supports/mod.ts";
 import { install, uninstall, upgrade } from "../src/handlers/plugins/mod.ts";
+import { set } from "../src/handlers/defaults/mod.ts";
 import { getRegisteredModule } from "../src/handlers/plugins/registry.ts";
-import { Arguments } from "../src/deps/yargs.ts";
+
+import { ManifestTypes } from "../src/types/enums.ts";
+import { validateType } from "../../../packages/utils/src/mod.ts";
+import { Manifest } from "../../../packages/standard/src/manifest/manifest.ts";
+import ManifestGenerator from "../src/handlers/manifest/generator.ts";
 
 describe("defaults commands", () => {
   it("list", async () => {
@@ -35,10 +44,27 @@ describe("defaults commands", () => {
       0,
     );
   });
+
+  it("set", async () => {
+    const MANIFEST_DEFAULT_FORMAT = "json";
+    await set(
+      cliArgs({ key: "manifest.format", value: MANIFEST_DEFAULT_FORMAT }),
+    );
+    let manifestSection = await getConfigs({ section: "manifest" });
+    assertEquals(manifestSection.format, MANIFEST_DEFAULT_FORMAT);
+
+    await set(
+      cliArgs({ key: "manifest.format", value: "some-invalid-format" }),
+    );
+
+    manifestSection = await getConfigs({ section: "manifest" });
+    // Shouldn't have changed to "some-invalid-format", because its not a valid one
+    assertEquals(manifestSection.format, MANIFEST_DEFAULT_FORMAT);
+  });
 });
 
-describe("manifest create", () => {
-  it("generate", async () => {
+describe("manifest commands", () => {
+  it("create", async () => {
     const fixtureFilepath = fixturePath("example_data.csv");
 
     const manifest = await generateManifest({
@@ -54,6 +80,21 @@ describe("manifest create", () => {
 
     assertEquals(rows[0].values.length, 7);
     assertEquals(rows.length, 147);
+  });
+
+  it("validate", async () => {
+    const manifestGenerator = ManifestGenerator();
+
+    const manifest = await manifestGenerator.generate({
+      author: "Deno Tester",
+      filepath: fixturePath("example_data.csv"),
+    });
+
+    _set(manifest, "supplementalInfo.data[0].type", "invalid-type");
+
+    const { errors } = validateType(Manifest, manifest);
+    assertExists(errors);
+    assertEquals(errors.length, 2);
   });
 });
 
@@ -72,11 +113,7 @@ describe("plugin commands", () => {
   afterAll(async () => await cleanTestPlugin());
 
   it("install", async () => {
-    const args = {
-      module: `${MODULE_NAME}@${MODULE_VERSION_3}`,
-      _: [],
-    };
-    await install(args);
+    await install(cliArgs({ module: `${MODULE_NAME}@${MODULE_VERSION_3}` }));
 
     const pluginModule = await getRegisteredModule({ name: MODULE_NAME });
 
@@ -86,11 +123,8 @@ describe("plugin commands", () => {
     assertEquals(pluginModule.uriScheme, "https");
   });
 
-  it("upgrade patch", async () => {
-    const args: Arguments = {
-      module: MODULE_NAME,
-      _: [],
-    };
+  it("upgrade", async () => {
+    const args = cliArgs({ module: MODULE_NAME });
     // Patch
     args.patch = true;
     await upgrade(args);
@@ -116,11 +150,7 @@ describe("plugin commands", () => {
   });
 
   it("uninstall", async () => {
-    const args = {
-      module: MODULE_NAME,
-      _: [],
-    };
-    await uninstall(args);
+    await uninstall(cliArgs({ module: MODULE_NAME }));
 
     const pluginModule = await getRegisteredModule({ name: MODULE_NAME });
 

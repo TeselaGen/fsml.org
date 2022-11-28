@@ -1,4 +1,5 @@
 import { path } from "../../src/deps/mod.ts";
+import { Arguments } from "../../src/deps/yargs.ts";
 
 export * as path from "https://deno.land/std@0.149.0/path/mod.ts";
 
@@ -14,4 +15,12 @@ export function fixturePath(filename: string) {
     filename,
   );
   return absolute_filepath;
+}
+
+// deno-lint-ignore no-explicit-any
+export function cliArgs(args: any): Arguments {
+  return {
+    ...args,
+    _: [],
+  };
 }

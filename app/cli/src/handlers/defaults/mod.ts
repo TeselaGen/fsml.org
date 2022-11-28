@@ -33,7 +33,7 @@ async function set(args: Arguments) {
   const { key, value } = args;
   const configs = await getConfigs();
   _set(configs, key, parseConfigValue(value));
-  await saveConfigs(configs);
+  saveConfigs(configs);
 }
 
 async function reset(args: Arguments) {

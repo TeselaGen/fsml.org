@@ -1,11 +1,12 @@
-import { fs, path, yaml } from "@fsml/cli/deps/mod.ts";
+import { fs, path } from "@fsml/cli/deps/mod.ts";
 import { merge, set } from "@fsml/packages/utils/deps/lodash.ts";
-import { TypeCompiler } from "@fsml/packages/utils/deps/typebox.ts";
 import {
   jsonToText,
   read,
+  textToJson,
   toFile,
   toStdOut,
+  validateType,
 } from "@fsml/packages/utils/mod.ts";
 import { Configs, TConfigs, TConfigValue } from "@fsml/cli/types/configs.ts";
 
@@ -39,7 +40,7 @@ async function getConfigs({ section }: { section?: string } = {}) {
   fs.ensureFileSync(USER_CONFIG_FILEPATH);
   const configsText = read(USER_CONFIG_FILEPATH);
 
-  const configs = await yaml.parse(configsText);
+  const configs = await textToJson({ format: "yaml", text: configsText });
 
   const finalConfigs = merge(defaultConfigs, configs || {});
 
@@ -52,7 +53,10 @@ function saveConfigs(
   newConfigs: Partial<TConfigs>,
 ) {
   if (validateConfigs(newConfigs)) {
-    const newConfigTextFile = yaml.stringify(newConfigs);
+    const newConfigTextFile = jsonToText({
+      format: "yaml",
+      content: newConfigs,
+    });
     toFile({
       filepath: USER_CONFIG_FILEPATH,
       content: newConfigTextFile,
@@ -101,16 +105,10 @@ function parseConfigValue(value: string | null) {
 }
 
 function validateConfigs(configs: Partial<TConfigs>) {
-  //@ts-ignore:next-line : This seems like an issue with typebox types.
-  const ConfigsCompiler = TypeCompiler.Compile(Configs);
-  const isValid = ConfigsCompiler.Check(configs);
-  // NOTE: these config error messages may be too verbose
-  // typebox documentation also references ajv for validation: https://deno.land/x/typebox@0.24.27#validation
-  const configsErrors = [...ConfigsCompiler.Errors(configs)];
+  const { isValid, errors } = validateType(Configs, configs);
+
   if (!isValid) {
-    configsErrors.forEach((error) =>
-      toStdOut(jsonToText({ format: "json", content: error }))
-    );
+    toStdOut(JSON.stringify(errors, null, 2));
   }
   return isValid;
 }
