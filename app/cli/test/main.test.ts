@@ -79,7 +79,7 @@ describe("manifest commands", () => {
     const rows = get(manifest, "supplementalInfo.data[0].rows");
 
     assertEquals(rows[0].values.length, 7);
-    assertEquals(rows.length, 147);
+    assertEquals(rows.length, 21);
   });
 
   it("validate", async () => {

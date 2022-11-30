@@ -48,10 +48,10 @@ const DefaultDataParser: IParser = {
           index: columnIndex,
           value,
         });
-        tabularDataObject.rows.push({
-          index: rowIndex,
-          values,
-        });
+      });
+      tabularDataObject.rows.push({
+        index: rowIndex,
+        values,
       });
     });
 
