@@ -1,5 +1,5 @@
 ---
-title: 'MicroByre Manifest'
+title: 'FSML CLI'
 metaTitle: 'FSML Manifest for MicroByre'
 metaDescription: 'MicroByre FSML Manifest Example'
 sidebar_position: 1

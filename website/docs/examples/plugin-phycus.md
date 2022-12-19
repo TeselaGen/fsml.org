@@ -1,6 +1,6 @@
 ---
-title: 'Phycus Parser Example'
-metaTitle: 'FSML Manifest for MicroByre'
+title: 'Parser Plugin'
+metaTitle: 'FSML Manifest for Phycus'
 metaDescription: 'Phycus Parser Example'
 sidebar_position: 2
 ---
