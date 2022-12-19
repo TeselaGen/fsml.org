@@ -123,14 +123,15 @@ The above implementation leverages the FSML SDK for validation and parsing of an
 
 ## Import FSML into TeselaGen
 
-Finally, we are going to trigger the above Node-RED flow to get the FSML Phycus manifest into a TeselaGen Data Grid. Since Node-RED flows are essentially HTTP endpoints, we can trigger them with any kind of tool that allows calling http requests. If you are a Biomade member you can leverage TeselaGen's Biomade app, if not you can hit the endpoint of any Node-RED server you might have access to.
+Now, we are going to trigger the above Node-RED flow to get the FSML Phycus manifest into a TeselaGen Data Grid. Since Node-RED flows are essentially HTTP endpoints, we can trigger them with any kind of tool that allows calling http requests. If you are a Biomade member you can leverage TeselaGen's Biomade app, if not you can hit the endpoint of any Node-RED server you might have access to.
 
 The next steps of the example are for Biomade members only.
 
-### Log into the Teselaegn Biomade app
+#### Log into the Teselaegn Biomade app
 
 Head to https://biomade.teselagen.com and log in with your credentials _(if you are a Biomade member and don't own an account, contact fsml@teselagen.com to get one)_.
 
+#### Import TeselaGen Integration file
 
 After logging into the app, head to [Setting > Intergations](https://biomade.teselagen.com/test/client/settings/integrations-management), you shall see the Integrations Management Panel, where you can upload an existing Integration. Included in the [**phycusTeselagenNodeRed.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-tg-nodered-example-01.zip) file you should find a JSON file called `phycus-teselagen-integration.json` that you can use to uploading in the `Upload Existing` button shown below.
 
@@ -143,3 +144,27 @@ After so, and if you scroll down to the `API Integration` subsection you shall a
 
 
 The TeselaGen app runs its own dedicated Node-RED Server, you can open its Node-RED editor and look at the Node-RED flow by clicking in the View in Node Red button shown above, which should take you the same Node-RED flow explained at the beginning.
+
+#### Run TeselaGen Integration Flow
+
+Now that your integration is created, you can run it by calling TeselaGen's Integrations API. Documentation on it can be found at [TeselaGen API Docs](https://biomade.teselagen.com/test/cli-api/docs/#/Integrations/NodeRedCallIntegration). Here you can understand how to construct the HTTP request.
+
+Essentially you need to make a POST request like the following.
+
+```
+ POST https://biomade.teselagen.com//test/cli-api/integrations?name=fsml
+
+ body:  {
+  manifest: PASTE YOUR FSML MANIFEST JSON HERE.
+ }
+```
+
+_NOTE: you will need your API token in order to get authorization to the TeselaGen API. To do so head to [Settings > API Password > Generate API OTP], this will generate a one-time-password token that together with your email you can authenticate to TeselaGen's API._
+
+
+### FSML Manifest imported as a TeselaGen Data Grid
+
+Finally, after calling the Node-RED flow you can see how the Applikon Bioreactor data is imported as a Data Grid in TeselaGen's TEST Module by heading to [TEST > Experimental Data > Data Grids](https://biomade.teselagen.com/test/client/data-grids), you can open the Data grid and shall see the actual data imported.
+
+![image](https://user-images.githubusercontent.com/11540280/208513113-f3b7d72d-092e-47cc-9bb0-a3e30f05e2bc.png)
+
