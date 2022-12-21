@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Phycus-TeselaGen Integration
 
-This is a real-world Node-RED integration between from FSML partners **Phycus** and **TeselaGen**.
+This is a real-world Node-RED integration between FSML partners **Phycus** and **TeselaGen**.
 
 Here we show how to leverage the Node-RED technology to integrate the Applikon Bioreactor data from **Phycus** into **TeselaGen** TEST module.
 
@@ -133,7 +133,7 @@ Head to https://biomade.teselagen.com and log in with your credentials _(if you 
 
 #### Import TeselaGen Integration file
 
-After logging into the app, head to [Setting > Intergations](https://biomade.teselagen.com/test/client/settings/integrations-management), you shall see the Integrations Management Panel, where you can upload an existing Integration. Included in the [**phycusTeselagenNodeRed.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-tg-nodered-example-01.zip) file you should find a JSON file called `phycus-teselagen-integration.json` that you can use to uploading in the `Upload Existing` button shown below.
+After logging into the app, head to [Setting > Integrations](https://biomade.teselagen.com/test/client/settings/integrations-management), you shall see the Integrations Management Panel, where you can upload an existing Integration. Included in the [**phycusTeselagenNodeRed.zip**](https://raw.githubusercontent.com/TeselaGen/fsml.org/main/website/static/phycus-tg-nodered-example-01.zip) file you should find a JSON file called `phycus-teselagen-integration.json` that you can use to uploading in the `Upload Existing` button shown below.
 
 
 ![image](https://user-images.githubusercontent.com/11540280/208506273-4404bd53-5547-4d44-ae2a-49eb0019774c.png)
