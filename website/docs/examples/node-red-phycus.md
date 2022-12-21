@@ -168,3 +168,10 @@ Finally, after calling the Node-RED flow you can see how the Applikon Bioreactor
 
 ![image](https://user-images.githubusercontent.com/11540280/208513113-f3b7d72d-092e-47cc-9bb0-a3e30f05e2bc.png)
 
+
+
+### Demo
+
+Here's a link to a demo video going through this very same example;
+
+[Demo](https://www.loom.com/share/1ff9058a3f1143308d7ca1d1dcd55e02)
