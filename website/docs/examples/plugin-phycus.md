@@ -334,3 +334,9 @@ Now you can try the previous command with fewer flags.
 That’s it, you should have generated a .tar file. You can untar it and you shall see the fsml.json manifest file.
 
 Feel free to continue exploring the different commands at [Software > Tools > CLI](../software/tools/cli.md) and implementing your own plugin parsers following the [Plugin Framework](../software/plugins/index.md).
+
+### Demo
+
+Here's a link to a demo video going through this very same example;
+
+[Demo](https://www.loom.com/share/a75909ffec6149b593d022cb2da87fc7)
