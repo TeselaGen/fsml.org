@@ -7,10 +7,7 @@ slug: /
 
 **Welcome to the Fermentation Systems Modeling Language (FSML) community portal!**
 
-TeselaGen (https://teselagen.com/) in collaboration with BioMADE (https://www.biomade.org/) has launched FSML.org (Fermentation Systems Modeling Language) to help further our ability to create the best fermentation processes through protocol modeling.
-
-BioMADE, or more formally the Bioindustrial Manufacturing and Design Ecosystem, launched in 2021 as a Manufacturing Innovation Institute sponsored by the U.S. Department of Defense. BioMADE has grown to 100 plus members and its goal is to "enable domestic bioindustrial manufacturing at all scales, develop technologies to enhance U.S. bioindustrial competitiveness, de-risk investment in relevant infrastructure, and expand the biomanufacturing workforce to realize the economic promise of industrial biotechnology."
-
+TeselaGen (https://teselagen.com/), in early collaboration with BioMADE, has launched FSML.org (Fermentation Systems Modeling Language) to help further our ability to create the best fermentation processes through protocol modeling.
 
 ## Introduction - the first fermentation
 
@@ -29,10 +26,16 @@ As BioMADE CEO Douglas Friedman, Ph.D says, "The bioindustrial manufacturing ind
 
 If your are interested in making any contributions of suggestions to FSML, please do!:
 https://github.com/TeselaGen/fsml.org/issues
-
-
-
-## Learn more
+      
+## About TeselaGen     
+       
+TeselaGen Biotechnology is a leading provider of intelligent software solutions for the biotechnology and life sciences industries. The company's AI-assisted platform accelerates the design, build, and testing of biological systems, enabling organizations to bring products to market faster and more efficiently. TeselaGen is dedicated to empowering scientists and researchers with innovative tools that drive advancements in biotechnology. For more information about TeselaGen Biotechnology, please visit www.teselagen.com.      
+       
+## About BioMADE      
+     
+BioMADE, or more formally the Bioindustrial Manufacturing and Design Ecosystem, launched in 2021 as a Manufacturing Innovation Institute sponsored by the U.S. Department of Defense. BioMADE has grown to 100 plus members and its goal is to "enable domestic bioindustrial manufacturing at all scales, develop technologies to enhance U.S. bioindustrial competitiveness, de-risk investment in relevant infrastructure, and expand the biomanufacturing workforce to realize the economic promise of industrial biotechnology."
+         
+## Learn more         
 
 - [Background](/background)
 - [The Model](/model)
