@@ -20,13 +20,8 @@ Map showing the extent of Mesopotamia, a historical region situated within the T
 The bioindustrial manufacturing and design community is in great need of new standards for open data exchange of the fermentation process, and new technologies that make exchanging information easier. There is also a need of new tools that can encourage more collaboration across the industry.
 
 ## Scope
-Here we will be documenting the basis of the new FSML (Fermentation Systems Modeling Language) data exchange standard. In this site you can also learn more about the guiding principles of FSML and an overview of the key sections describing the core FSML schema. We are also open sourcing the development of the FSML standard together with some basic tools to process FSML files. You will be able to find the open repository at https://github.com/TeselaGen/fsml.org/.
-
-As BioMADE CEO Douglas Friedman, Ph.D says, "The bioindustrial manufacturing industry stands to benefit from this standardization and the shared tools to follow.”
-
-If your are interested in making any contributions of suggestions to FSML, please do!:
-https://github.com/TeselaGen/fsml.org/issues
-      
+Here we will be documenting the basis of the new FSML (Fermentation Systems Modeling Language) data exchange standard. In this site you can also learn more about the guiding principles of FSML and an overview of the key sections describing the core FSML schema. We are also open sourcing the development of the FSML standard together with some basic tools to process FSML files. You will be able to find the open repository at https://github.com/TeselaGen/fsml.org/.         
+        
 ## About TeselaGen     
        
 TeselaGen Biotechnology is a leading provider of intelligent software solutions for the biotechnology and life sciences industries. The company's AI-assisted platform accelerates the design, build, and testing of biological systems, enabling organizations to bring products to market faster and more efficiently. TeselaGen is dedicated to empowering scientists and researchers with innovative tools that drive advancements in biotechnology. For more information about TeselaGen Biotechnology, please visit www.teselagen.com.      
