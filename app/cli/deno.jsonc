@@ -4,7 +4,7 @@
     "compile:deb": "deno task bundle && bash ./compile.sh && rm -rf ./tmp ./bin",
     "bundle": "mkdir -p bin && deno bundle src/mod.ts bin/run",
     "fsml": "deno run --allow-net --allow-read --allow-env --allow-write --allow-run src/mod.ts",
-    "test": "deno test --coverage=./cov_profile/ --allow-read --allow-env",
+    "test": "deno test --coverage=./cov_profile/ --allow-read --allow-env --allow-net --allow-write",
     "coverage": "deno coverage ./cov_profile --lcov --output=cov_profile.lcov"
   },
   "importMap": "../../import_map.json",

@@ -11,6 +11,7 @@ import uniqBy from "https://deno.land/x/lodash@4.17.15-es/uniqBy.js";
 import find from "https://deno.land/x/lodash@4.17.15-es/find.js";
 import sortBy from "https://deno.land/x/lodash@4.17.15-es/sortBy.js";
 import every from "https://deno.land/x/lodash@4.17.15-es/every.js";
+import partition from "https://deno.land/x/lodash@4.17.15-es/partition.js";
 export {
   every,
   find,
@@ -20,6 +21,7 @@ export {
   isUndefined,
   merge,
   omitBy,
+  partition,
   set,
   sortBy,
   uniqBy,

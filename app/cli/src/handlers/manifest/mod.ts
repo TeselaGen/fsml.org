@@ -1,6 +1,17 @@
 import { Arguments } from "@fsml/cli/deps/yargs.ts";
-import { jsonToText, remove, toStdOut } from "@fsml/packages/utils/mod.ts";
-import { generateManifest, packManifest, writeManifest } from "./utils.ts";
+import {
+  jsonToText,
+  read,
+  remove,
+  textToJson,
+  toStdOut,
+} from "@fsml/packages/utils/mod.ts";
+import {
+  generateManifest,
+  packManifest,
+  validateManifest,
+  writeManifest,
+} from "./utils.ts";
 
 /** CLI "manifest" command handlers **/
 
@@ -49,7 +60,15 @@ async function _import() {}
 
 // async function _export(args: Arguments) {}
 
-// async function validate(args: Arguments) {}
+async function validate(args: Arguments) {
+  const { filepath } = args;
+
+  const manifestString = read(filepath);
+
+  const manifest = await textToJson({ format: "json", text: manifestString });
+
+  return validateManifest(manifest);
+}
 
 // async function pack(args: Arguments) {}
 
@@ -65,5 +84,5 @@ export {
   // score,
   // unpack,
   // update,
-  // validate,
+  validate,
 };

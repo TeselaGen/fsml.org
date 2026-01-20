@@ -1,4 +1,4 @@
-import { Type } from "@fsml/packages/utils/deps/typebox.ts";
+import { Static, Type } from "@fsml/packages/utils/deps/typebox.ts";
 import Value from './value.ts';
 
 // NOTE: we might want to add a property specific to the row
@@ -23,4 +23,5 @@ const Row = Type.Object({
   fileReference: Type.Optional(Type.String()),
 });
 
+export type TRow = Static<typeof Row>;
 export default Row;

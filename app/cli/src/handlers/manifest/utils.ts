@@ -119,16 +119,10 @@ async function getDataFilepath(
   return { filepath: datafilepath, isPack };
 }
 
-function validateManifest(manifest: TManifest): boolean {
+export function validateManifest(manifest: TManifest): boolean {
   const { isValid, errors } = validateType(Manifest, manifest);
   if (!isValid) {
-    toStdOut("Error in Manifest: \n");
-    // TypeBox's TypeCompiler errors are quite verbosy and the escalate upwards the JSON tree.
-    // so if the error is located at a given leaf in the JSON tree, additional errors upwards the tree
-    // will be generated.
-
-    // For this reason, it might be best to throw the leaf error only, which is the first one.
-    console.info(errors[0]);
+    toStdOut(JSON.stringify(errors, null, 2));
   }
   return isValid;
 }

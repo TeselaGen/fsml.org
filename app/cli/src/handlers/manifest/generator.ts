@@ -94,7 +94,7 @@ const ManifestGenerator = (
   async function generate(args: {
     author: string;
     filepath: string;
-    parser: string;
+    parser?: string;
   }): Promise<TManifest> {
     const { author: _author, filepath, parser } = args;
     const provenanceObject = author(_author);

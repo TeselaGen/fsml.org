@@ -52,11 +52,19 @@ export interface IParser extends IPlugin {
  * Parser interface that any Exporter Plugin should extend.
  */
 export interface IExporter extends IPlugin {
+  type: PluginTypes.EXPORTER;
   /**
    * Receives an fsml manifest and returns a
    * file and data object of some unknown type (e.g, json, yaml, etc.).
    */
   run: (
-    manifest: TManifest,
-  ) => Promise<{ file: string | Uint8Array; data: unknown }>;
+    // This could be either a filepath to a manifest, a buffer stream
+    // or an already parsed JSON manifest.
+
+    // NOTE: allowing multiple input type alternatives
+    // passes the input type handling responsibility to Plugin implementation.
+    // We could have different input vars for each input type alternative as well
+    // or implement some sort of common input adapter
+    manifest: string | Uint8Array | TManifest,
+  ) => Promise<{ file?: string | Uint8Array; data: unknown }>;
 }

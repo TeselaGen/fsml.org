@@ -1,4 +1,4 @@
-import { Type } from "@fsml/packages/utils/deps/typebox.ts";
+import { Static, Type } from "@fsml/packages/utils/deps/typebox.ts";
 
 const Value = Type.Object({
   /**
@@ -13,4 +13,5 @@ const Value = Type.Object({
   // unit: Type.Optional(Unit)
 });
 
+export type TValue = Static<typeof Value>;
 export default Value;
